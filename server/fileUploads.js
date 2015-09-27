@@ -3,9 +3,9 @@ Slingshot.createDirective('fileUploads', Slingshot.S3Storage, {
   acl: 'public-read',
 
   authorize() {
-    if (!this.userId) {
-      throw new Meteor.Error(403, "Login Required");
-     }
+    // if (!this.userId) {
+    //   throw new Meteor.Error(403, "Login Required");
+    // }
 
     return true;
   },

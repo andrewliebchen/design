@@ -1,4 +1,8 @@
 ProjectForm = React.createClass({
+  propTypes: {
+    project: React.PropTypes.object
+  },
+
   handleSaveProject() {
     let projectName = React.findDOMNode(this.refs.name).value;
     let projectDescription = React.findDOMNode(this.refs.description).value;
