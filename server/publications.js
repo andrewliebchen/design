@@ -4,3 +4,10 @@ Meteor.publish('projects', () => {
     Images.find()
   ];
 });
+
+Meteor.publish('singleProject', (id) => {
+  return [
+    Projects.find({_id: id}),
+    Images.find({parent: id})
+  ];
+});
