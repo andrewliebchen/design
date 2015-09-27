@@ -8,6 +8,7 @@ Meteor.publish('projects', () => {
 Meteor.publish('singleProject', (id) => {
   return [
     Projects.find({_id: id}),
-    Images.find({parent: id})
+    Images.find({parent: id}),
+    Comments.find({parent: id})
   ];
 });

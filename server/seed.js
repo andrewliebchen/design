@@ -47,9 +47,11 @@ function createImage(projectId) {
   });
 };
 
-function createComment() {
+function createComment(projectId) {
   return Comments.insert({
-
+    comment: 'Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue.',
+    created_at: Date.now(),
+    parent: projectId
   });
 };
 
@@ -60,5 +62,7 @@ Meteor.startup(function() {
     _.times(3, () => {
       createImage(seedProject)
     });
+
+    createComment(seedProject);
   }
 });

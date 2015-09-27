@@ -26,7 +26,7 @@ ProjectForm = React.createClass({
         <input type="text" value={this.props.project.name} ref="name"/>
         <label>Description</label>
         <textarea ref="description" value={this.props.project.description}/>
-        <input type="submit" onClick={this.handleSaveProject}/>
+        <input type="submit" onSubmit={this.handleSaveProject}/>
       </form>
     );
   }
