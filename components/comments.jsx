@@ -13,13 +13,32 @@ const Comment = React.createClass({
 })
 
 const NewComment = React.createClass({
+  propTypes: {
+    projectId: React.PropTypes.string.isRequired
+  },
+
+  handleCreateComment(event) {
+    event.preventDefault();
+
+    let comment = React.findDOMNode(this.refs.comment).value;
+    Meteor.call('newComment', {
+      comment: comment,
+      created_at: Date.now(),
+      parent: this.props.projectId
+    }, (error, success) => {
+      if(success) {
+        comment = '';
+      }
+    });
+  },
+
   render() {
     return (
-      <form>
+      <div>
         <label>Your comment</label>
         <textarea ref="comment"></textarea>
-        <input type="submit" onSubmit={this.handleCreateComment}/>
-      </form>
+        <button onClick={this.handleCreateComment}>Comment</button>
+      </div>
     );
   }
 });
@@ -38,8 +57,16 @@ CommentsList = React.createClass({
         {comments ? comments.map((comment, i) => {
           return <Comment key={i} comment={comment}/>;
         }) : <span>No comments</span>}
-        <NewComment/>
+        <NewComment projectId={this.props.projectId}/>
       </div>
     );
   }
 });
+
+if(Meteor.isServer) {
+  Meteor.methods({
+    newComment(args) {
+      return Comments.insert(args);
+    }
+  });
+}
