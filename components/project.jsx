@@ -4,15 +4,36 @@ Project = React.createClass({
     images: React.PropTypes.array
   },
 
+  getInitialState() {
+    return {
+      editing: false
+    };
+  },
+
+  handleEditToggle() {
+    this.setState({editing: !this.state.editing});
+  },
+
+  renderProject() {
+    let {project, images} = this.props;
+    return (
+      <div className="project__container">
+        <h2>
+          <a href={`/projects/${project._id}`}>{project.name}</a>
+        </h2>
+        <p>{project.description}</p>
+        <a onClick={this.handleEditToggle}>Edit</a>
+        {images.map((image, i) => {
+          return <img key={i} src={image.url}/>;
+        })}
+      </div>
+    );
+  },
+
   render() {
     return (
       <div className="project">
-        <h2>
-          <a href={`/projects/${this.props.project._id}`}>{this.props.project.name}</a>
-        </h2>
-        {this.props.images.map((image, i) => {
-          return <img key={i} src={image.url}/>;
-        })}
+        {this.state.editing ? <ProjectForm project={this.props.project}/> : this.renderProject()}
       </div>
     );
   }

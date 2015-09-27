@@ -21,6 +21,7 @@ App = React.createClass({
               images={_.filter(this.data.images, {parent: project._id})}/>
           );
         })}
+        <NewProject/>
       </div>
     );
   }
