@@ -26,6 +26,7 @@ Project = React.createClass({
         {images.map((image, i) => {
           return <img key={i} src={image.url}/>;
         })}
+        <ImageUploader projectId={project._id}/>
       </div>
     );
   },
