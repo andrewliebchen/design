@@ -4,7 +4,8 @@ Projects = {
   description: string,
   created_at: number,
   images: array,
-  team: array
+  team: array,
+  cover_image: string
 }
 
 Images = {

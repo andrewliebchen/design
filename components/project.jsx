@@ -20,7 +20,7 @@ Project = React.createClass({
     return (
       <span>
         {this.state.editing ?
-          <ProjectForm project={this.props.project}/>
+          <ProjectForm project={project}/>
         : <div className="project__content">
             <h2>
               <a href={`/projects/${project._id}`}>{project.name}</a>
