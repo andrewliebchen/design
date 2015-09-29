@@ -14,7 +14,7 @@ const Comment = React.createClass({
 
 const NewComment = React.createClass({
   propTypes: {
-    projectId: React.PropTypes.string.isRequired
+    parentId: React.PropTypes.string.isRequired
   },
 
   handleCreateComment(event) {
@@ -24,7 +24,7 @@ const NewComment = React.createClass({
     Meteor.call('newComment', {
       comment: comment,
       created_at: Date.now(),
-      parent: this.props.projectId
+      parent: this.props.parentId
     }, (error, success) => {
       if(success) {
         comment = '';
@@ -46,18 +46,18 @@ const NewComment = React.createClass({
 CommentsList = React.createClass({
   propTypes: {
     comments: React.PropTypes.array,
-    projectId: React.PropTypes.string
+    parentId: React.PropTypes.string
   },
 
   render() {
-    let {comments, projectId} = this.props;
+    let {comments, parentId} = this.props;
     return (
       <div className="comments">
         <h3>Comments</h3>
         {comments ? comments.map((comment, i) => {
           return <Comment key={i} comment={comment}/>;
         }) : <span>No comments</span>}
-        <NewComment projectId={this.props.projectId}/>
+        <NewComment parentId={this.props.parentId}/>
       </div>
     );
   }

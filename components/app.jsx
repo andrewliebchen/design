@@ -12,7 +12,7 @@ App = React.createClass({
 
   render() {
     return (
-      <div className="wrapper">
+      <div className="projects wrapper">
         {this.data.projects.map((project, i) => {
           return (
             <Project
