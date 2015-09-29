@@ -20,12 +20,13 @@ ProjectForm = React.createClass({
   },
 
   render() {
+    let {project} = this.props;
     return (
       <div>
         <label>Name</label>
-        <input type="text" value={this.props.project.name} ref="name"/>
+        <input type="text" value={project ? project.name : null} ref="name"/>
         <label>Description</label>
-        <textarea ref="description" value={this.props.project.description}/>
+        <textarea value={project ? project.description : null} ref="description"/>
         <button onClick={this.handleSaveProject}>Save</button>
       </div>
     );

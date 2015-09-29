@@ -1,6 +1,6 @@
 ImageUploader = React.createClass({
   propTypes: {
-    projectId: React.PropTypes.string.isRequired
+    parentId: React.PropTypes.string.isRequired
   },
 
   handleImageUpload(event) {
@@ -14,7 +14,7 @@ ImageUploader = React.createClass({
       } else {
         Meteor.call('newImage', {
           url: url,
-          parent: this.props.projectId,
+          parent: this.props.parentId,
           created_at: Date.now()
         });
       }

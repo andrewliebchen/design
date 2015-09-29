@@ -15,27 +15,40 @@ Project = React.createClass({
     this.setState({editing: !this.state.editing});
   },
 
+  renderHeader() {
+    let {project, images} = this.props;
+    return (
+      <header className="project__header">
+        <h2 className="project__title">
+          <a href={`/projects/${project._id}`}>{project.name}</a>
+        </h2>
+        <p className="project__description">{project.description}</p>
+        <a onClick={this.handleEditToggle}>Edit</a>
+      </header>
+    );
+  },
+
   render() {
     let {project, images} = this.props;
     return (
-      <span>
-        {this.state.editing ?
-          <ProjectForm project={project}/>
-        : <div className="project__content">
-            <h2>
-              <a href={`/projects/${project._id}`}>{project.name}</a>
-            </h2>
-            <p>{project.description}</p>
-            <a onClick={this.handleEditToggle}>Edit</a>
-            {images.map((image, i) => {
-              return <img key={i} src={image.url}/>;
-            })}
-            <ImageUploader projectId={project._id}/>
-            {this.props.showComments ?
-              <CommentsList comments={this.props.comments} projectId={project._id}/>
-            : null}
-          </div>}
-      </span>
+      <div className="project">
+        {this.state.editing ? <ProjectForm project={project}/> : this.renderHeader()}
+        <div className="project__thumbnails">
+          {images.map((image, i) => {
+            return (
+              <a key={i}
+                className="project__thumbnail"
+                href={`/images/${image._id}`}>
+                <img src={image.url}/>
+              </a>
+            );
+          })}
+        </div>
+        <ImageUploader parentId={project._id}/>
+        {this.props.showComments ?
+          <CommentsList comments={this.props.comments} parentId={project._id}/>
+        : null}
+      </div>
     );
   }
 });
@@ -53,13 +66,11 @@ SingleProject = React.createClass({
 
   render() {
     return (
-      <div className="project">
-        <Project
-          project={this.data.project}
-          images={this.data.images}
-          comments={this.data.comments}
-          showComments/>
-      </div>
+      <Project
+        project={this.data.project}
+        images={this.data.images}
+        comments={this.data.comments}
+        showComments/>
     );
   }
 });
