@@ -17,8 +17,8 @@ Image = React.createClass({
         </header>
         <div className="image">
           <img src={this.data.image.url}/>
+          <ImageUploader parentId={this.data.image._id}/>
         </div>
-        <ImageUploader parentId={this.data.image._id}/>
         <CommentsList comments={this.data.comments} parentId={this.data.image._id}/>
       </div>
     );
