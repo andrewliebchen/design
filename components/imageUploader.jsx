@@ -3,8 +3,8 @@ ImageUploader = React.createClass({
     parentId: React.PropTypes.string.isRequired
   },
 
-  handleImageUpload(event) {
-    let file = event.target.files[0];
+  handleImageUpload(files) {
+    let file = files[0];
     console.log(file);
     let uploader = new Slingshot.Upload('fileUploads');
 
@@ -24,7 +24,12 @@ ImageUploader = React.createClass({
   render() {
     return (
       <div className="image-uploader">
-        <input type="file" onChange={this.handleImageUpload}/>
+        <Dropzone
+          className="image-uploader__dropzone"
+          onDrop={this.handleImageUpload}
+          multiple={false}
+          accept="image/*"
+          style={{height: "100%", width: "100%"}}/>
       </div>
     );
   }

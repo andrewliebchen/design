@@ -43,8 +43,12 @@ Project = React.createClass({
               </a>
             );
           })}
+          <a className="project__thumbnail">
+            <ImageUploader parentId={project._id}/>
+            ✚
+          </a>
         </div>
-        <ImageUploader parentId={project._id}/>
+        {/*<ImageUploader parentId={project._id}/>*/}
         {this.props.showComments ?
           <CommentsList comments={this.props.comments} parentId={project._id}/>
         : null}

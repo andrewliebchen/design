@@ -1,5 +1,5 @@
 * {
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 html,
@@ -42,6 +42,7 @@ img {
   width: 25%;
   display: inline-block;
   padding: 1em;
+  position: relative;
 }
 
 .image__wrapper {
@@ -52,4 +53,21 @@ img {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.image {
+  position: relative;
+}
+
+.image-uploader__dropzone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  &:hover,
+  &.active {
+    border: 5px solid blue;
+  }
 }
