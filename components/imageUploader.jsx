@@ -28,8 +28,7 @@ ImageUploader = React.createClass({
           className="image-uploader__dropzone"
           onDrop={this.handleImageUpload}
           multiple={false}
-          accept="image/*"
-          style={{height: "100%", width: "100%"}}/>
+          accept="image/*"/>
       </div>
     );
   }
