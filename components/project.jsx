@@ -35,19 +35,12 @@ Project = React.createClass({
         {this.state.editing ? <ProjectForm project={project}/> : this.renderHeader()}
         <div className="project__thumbnails">
           {images.map((image, i) => {
-            return (
-              <a key={i}
-                className="project__thumbnail"
-                href={`/images/${image._id}`}>
-                <img src={image.url}/>
-              </a>
-            );
+            return <Thumbnail key={i} image={image}/>;
           })}
           <div className="project__thumbnail">
             <ImageUploader parentId={project._id}/>
           </div>
         </div>
-        {/*<ImageUploader parentId={project._id}/>*/}
         {this.props.showComments ?
           <CommentsList comments={this.props.comments} parentId={project._id}/>
         : null}
