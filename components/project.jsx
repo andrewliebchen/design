@@ -15,6 +15,10 @@ Project = React.createClass({
     this.setState({editing: !this.state.editing});
   },
 
+  handleDelete() {
+    Meteor.call('deleteProject', this.props.project._id);
+  },
+
   renderHeader() {
     let {project, images} = this.props;
     return (
@@ -23,7 +27,7 @@ Project = React.createClass({
           <a href={`/projects/${project._id}`}>{project.name}</a>
         </h2>
         <p className="project__description">{project.description}</p>
-        <a onClick={this.handleEditToggle}>Edit</a>
+        <a onClick={this.handleEditToggle}>Edit</a> <a onClick={this.handleDelete}>Delete</a>
       </header>
     );
   },
@@ -81,6 +85,14 @@ if(Meteor.isClient) {
       FlowRouter.subsReady('singleProject', () => {
         ReactLayout.render(SingleProject);
       });
+    }
+  });
+}
+
+if(Meteor.isServer) {
+  Meteor.methods({
+    deleteProject(id) {
+      Projects.remove(id);
     }
   });
 }
