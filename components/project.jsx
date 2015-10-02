@@ -1,13 +1,13 @@
 Project = React.createClass({
   propTypes: {
     project: React.PropTypes.object.isRequired,
-    images: React.PropTypes.array,
-    showComments: React.PropTypes.bool
+    images: React.PropTypes.array
   },
 
   getInitialState() {
     return {
-      editing: false
+      editing: false,
+      comments: false
     };
   },
 
@@ -19,6 +19,10 @@ Project = React.createClass({
     Meteor.call('deleteProject', this.props.project._id);
   },
 
+  handleToggleComments() {
+    this.setState({comments: !this.state.comments});
+  },
+
   renderHeader() {
     let {project, images} = this.props;
     return (
@@ -27,7 +31,11 @@ Project = React.createClass({
           <a href={`/projects/${project._id}`}>{project.name}</a>
         </h2>
         <p className="project__description">{project.description}</p>
-        <a onClick={this.handleEditToggle}>Edit</a> <a onClick={this.handleDelete}>Delete</a>
+        <ul className="project__actions">
+          <li onClick={this.handleEditToggle}>Edit</li>
+          <li onClick={this.handleDelete}>Delete</li>
+          <li onClick={this.handleToggleComments}>Comments</li>
+        </ul>
       </header>
     );
   },
@@ -45,8 +53,10 @@ Project = React.createClass({
             <ImageUploader parentId={project._id}/>
           </div>
         </div>
-        {this.props.showComments ?
-          <CommentsList comments={this.props.comments} parentId={project._id}/>
+        {this.state.comments ?
+          <Panel title="Panel" onClose={this.handleToggleComments}>
+            <CommentsList parentId={project._id}/>
+          </Panel>
         : null}
       </div>
     );
@@ -69,8 +79,7 @@ SingleProject = React.createClass({
       <Project
         project={this.data.project}
         images={this.data.images}
-        comments={this.data.comments}
-        showComments/>
+        comments={this.data.comments}/>
     );
   }
 });

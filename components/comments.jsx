@@ -18,8 +18,6 @@ const NewComment = React.createClass({
   },
 
   handleCreateComment(event) {
-    event.preventDefault();
-
     let comment = React.findDOMNode(this.refs.comment).value;
     Meteor.call('newComment', {
       comment: comment,
@@ -28,6 +26,8 @@ const NewComment = React.createClass({
     }, (error, success) => {
       if(success) {
         comment = '';
+      } else {
+        console.log(error);
       }
     });
   },
@@ -44,17 +44,27 @@ const NewComment = React.createClass({
 });
 
 CommentsList = React.createClass({
+  mixins: [ReactMeteorData],
+
   propTypes: {
-    comments: React.PropTypes.array,
     parentId: React.PropTypes.string
   },
 
+  getMeteorData() {
+    let data = {};
+    let comments = Meteor.subscribe('comments', this.props.parentId);
+
+    if (comments.ready()) {
+      data.comments = Comments.find().fetch();
+    }
+    return data;
+  },
+
   render() {
-    let {comments, parentId} = this.props;
+    let {parentId} = this.props;
     return (
       <div className="comments">
-        <h3>Comments</h3>
-        {comments ? comments.map((comment, i) => {
+        {this.data.comments ? this.data.comments.map((comment, i) => {
           return <Comment key={i} comment={comment}/>;
         }) : <span>No comments</span>}
         <NewComment parentId={this.props.parentId}/>

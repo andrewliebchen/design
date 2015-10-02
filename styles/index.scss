@@ -104,3 +104,15 @@ img {
     color: blue;
   }
 }
+
+.panel {
+  width: 25vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-left: 1px solid;
+  padding: 1em;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
