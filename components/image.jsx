@@ -16,7 +16,7 @@ Image = React.createClass({
           <a className="image__close" href="/">✖</a>
         </header>
         <div className="image">
-          <img src={this.data.image.url}/>
+          <img src={this.data.image.src}/>
           <ImageUploader parentId={this.data.image._id}/>
         </div>
         <CommentsList comments={this.data.comments} parentId={this.data.image._id}/>

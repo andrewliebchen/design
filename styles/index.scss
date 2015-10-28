@@ -1,9 +1,17 @@
+$thumbnailOffset: 0.25em;
+
 @mixin clearfix {
   &::after {
     clear: both;
     content: "";
     display: table;
   }
+}
+
+@mixin prefixer($property, $value) {
+     -moz-#{$property}: $value;
+  -webkit-#{$property}: $value;
+          #{$property}: $value;
 }
 
 * {
@@ -43,21 +51,25 @@ img {
 }
 
 .project__thumbnails {
+  $margin: -($thumbnailOffset);
   @include clearfix;
-  margin: 1em -1em;
+  @include prefixer(columns, 4 1em);
+  margin: 0 $margin;
+  position: relative;
+  min-height: 10em;
 }
 
 .project__thumbnail {
   cursor: pointer;
-  float: left;
-  width: 25%;
-  height: 200px;
   display: inline-block;
-  padding: 1em;
   position: relative;
+  width: 100%;
+  margin: 0 $thumbnailOffset $thumbnailOffset;
 
   img {
-
+    width: 100%;
+    height: auto;
+    display: block;
   }
 }
 
@@ -90,18 +102,20 @@ img {
   position: relative;
 }
 
-.image-uploader__dropzone {
+.image-uploader {
   position: absolute;
-  top: 1em;
-  left: 1em;
-  right: 1em;
-  bottom: 1em;
-  color: #ccc;
-  border: 3px dashed;
+  top: 0;
+  left: $thumbnailOffset;
+  right: $thumbnailOffset;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  display: none;
 
-  &:hover,
-  &.active {
-    color: blue;
+  &.is-active {
+    display: block;
+    box-shadow: 0 0 0 3px blue;
+    background-color: rgba(white, 0.8);
   }
 }
 
