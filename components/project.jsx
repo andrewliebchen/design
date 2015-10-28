@@ -46,12 +46,10 @@ Project = React.createClass({
       <div className="project">
         {this.state.editing ? <ProjectForm project={project}/> : this.renderHeader()}
         <div className="project__thumbnails">
-          {images.map((image, i) => {
+          {images.length > 0 ? images.map((image, i) => {
             return <Thumbnail key={i} image={image}/>;
-          })}
-          <div className="project__thumbnail">
-            <ImageUploader parentId={project._id}/>
-          </div>
+          }) : <span>No images</span>}
+          <ImageUploader parentId={project._id}/>
         </div>
         {this.state.comments ?
           <Panel title="Panel" onClose={this.handleToggleComments}>

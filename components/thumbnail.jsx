@@ -1,4 +1,8 @@
 Thumbnail = React.createClass({
+  propTypes: {
+    image: React.PropTypes.object.isRequired
+  },
+
   getInitialState() {
     return {
       actions: false
@@ -23,7 +27,7 @@ Thumbnail = React.createClass({
             <a href={`/images/${image._id}`}>View</a>
           </div>
         : null}
-        <img src={image.url}/>
+        <img src={image.src}/>
       </div>
     );
   }

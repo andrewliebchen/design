@@ -23,13 +23,12 @@ ImageUploader = React.createClass({
 
   render() {
     return (
-      <div className="image-uploader">
-        <Dropzone
-          className="image-uploader__dropzone"
-          onDrop={this.handleImageUpload}
-          multiple={false}
-          accept="image/*"/>
-      </div>
+      <Dropzone
+        className="image-uploader"
+        activeClassName="is-active"
+        onDrop={this.handleImageUpload}
+        multiple={false}
+        accept="image/*"/>
     );
   }
 });
