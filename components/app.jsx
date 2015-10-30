@@ -13,6 +13,9 @@ App = React.createClass({
   render() {
     return (
       <div className="projects wrapper">
+        <header className="header">
+          <a href="/">Design</a>
+        </header>
         {this.data.projects.map((project, i) => {
           return (
             <Project

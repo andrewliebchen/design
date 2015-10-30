@@ -6,8 +6,7 @@ Project = React.createClass({
 
   getInitialState() {
     return {
-      editing: false,
-      comments: false
+      editing: false
     };
   },
 
@@ -17,10 +16,6 @@ Project = React.createClass({
 
   handleDelete() {
     Meteor.call('deleteProject', this.props.project._id);
-  },
-
-  handleToggleComments() {
-    this.setState({comments: !this.state.comments});
   },
 
   renderHeader() {
@@ -34,7 +29,6 @@ Project = React.createClass({
         <ul className="project__actions">
           <li onClick={this.handleEditToggle}>Edit</li>
           <li onClick={this.handleDelete}>Delete</li>
-          <li onClick={this.handleToggleComments}>Comments</li>
         </ul>
       </header>
     );
@@ -49,8 +43,8 @@ Project = React.createClass({
           {images.length > 0 ? images.map((image, i) => {
             return <Thumbnail key={i} image={image}/>;
           }) : <span>No images</span>}
-          <ImageUploader parentId={project._id}/>
         </div>
+        <ImageUploader parentId={project._id}/>
         <CommentsList parentId={project._id}/>
       </div>
     );

@@ -28,3 +28,4 @@ cosmos:browserify
 
 
 npm-container
+momentjs:moment

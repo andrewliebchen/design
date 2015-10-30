@@ -13,7 +13,7 @@ ImageUploader = React.createClass({
         console.error('Error uploading', uploader.xhr.response);
       } else {
         Meteor.call('newImage', {
-          url: url,
+          src: url,
           parent: this.props.parentId,
           created_at: Date.now()
         });

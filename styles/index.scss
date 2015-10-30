@@ -20,9 +20,15 @@ $thumbnailOffset: 0.25em;
 
 html,
 body {
-  font-family: "helvetica neue", helvetica, arial, sans-serif;
+  font-family: "work sans" ,"helvetica neue", helvetica, arial, sans-serif;
   font-size: 16px;
   line-height: 1.3;
+}
+
+h1,
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 img {
@@ -34,7 +40,11 @@ img {
 .wrapper {
   max-width: 60em;
   margin: auto;
-  padding: 2em;
+  padding: 1em 2em 2em;
+}
+
+.header {
+
 }
 
 .projects {
@@ -42,19 +52,13 @@ img {
 }
 
 .project {
-  padding: 2em;
   position: relative;
-
-  + .project {
-    margin-top: 2em;
-  }
+  margin: 1em 0;
 }
 
 .project__thumbnails {
-  $margin: -($thumbnailOffset);
-  @include clearfix;
-  @include prefixer(columns, 4 1em);
-  margin: 0 $margin;
+  @include prefixer(columns, 4);
+  @include prefixer(column-gap, $thumbnailOffset*2);
   position: relative;
   min-height: 10em;
 }
@@ -64,7 +68,7 @@ img {
   display: inline-block;
   position: relative;
   width: 100%;
-  margin: 0 $thumbnailOffset $thumbnailOffset;
+  margin-bottom: $thumbnailOffset;
 
   img {
     width: 100%;
@@ -75,12 +79,12 @@ img {
 
 .project__thumbnail__actions {
   position: absolute;
-  top: 1em;
-  left: 1em;
-  right: 1em;
-  bottom: 1em;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   padding: 0.5em;
-  background-color: blue;
+  background-color: rgba(blue, 0.5);
   color: white;
 
   a {
@@ -103,30 +107,24 @@ img {
 }
 
 .image-uploader {
-  position: absolute;
-  top: 0;
-  left: $thumbnailOffset;
-  right: $thumbnailOffset;
-  bottom: 0;
+  border: 2px dashed;
+  color: #CCC;
+  height: 100px;
   width: 100%;
-  z-index: 1;
-  display: none;
 
+  &:hover,
   &.is-active {
-    display: block;
-    box-shadow: 0 0 0 3px blue;
-    background-color: rgba(white, 0.8);
+    color: blue;
   }
 }
 
-.panel {
-  width: 25vw;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  border-left: 1px solid;
+.comments {
   padding: 1em;
-  overflow-x: hidden;
-  overflow-y: auto;
+  background-color: #F7F7F7;
+}
+
+.comment {
+  + .comment {
+    margin-top: 1em;
+  }
 }
