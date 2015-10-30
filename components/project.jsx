@@ -51,11 +51,7 @@ Project = React.createClass({
           }) : <span>No images</span>}
           <ImageUploader parentId={project._id}/>
         </div>
-        {this.state.comments ?
-          <Panel title="Panel" onClose={this.handleToggleComments}>
-            <CommentsList parentId={project._id}/>
-          </Panel>
-        : null}
+        <CommentsList parentId={project._id}/>
       </div>
     );
   }
