@@ -21,6 +21,7 @@ Comments = {
   user: string,
   comment: string,
   created_at: string,
+  parent: string,
   location: {
     x: number,
     y: number

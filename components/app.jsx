@@ -6,7 +6,8 @@ App = React.createClass({
   getMeteorData() {
     return {
       projects: Projects.find().fetch(),
-      images: Images.find().fetch()
+      images: Images.find().fetch(),
+      comments: Comments.find().fetch()
     }
   },
 
@@ -21,7 +22,8 @@ App = React.createClass({
             <Project
               key={i}
               project={project}
-              images={_.filter(this.data.images, {parent: project._id})}/>
+              images={_.filter(this.data.images, {parent: project._id})}
+              comments={_.filter(this.data.comments, {parent: project._id})}/>
           );
         })}
         <NewProject/>
