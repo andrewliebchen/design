@@ -6,6 +6,10 @@ const Comment = React.createClass({
   render() {
     return (
       <div className="comment">
+        <ul className="comment__meta">
+          <li><strong>Andrew Liebchen</strong></li>
+          <li><small>{moment(this.props.comment.created_at).fromNow()}</small></li>
+        </ul>
         <p>{this.props.comment.comment}</p>
       </div>
     );
@@ -35,8 +39,7 @@ const NewComment = React.createClass({
   render() {
     return (
       <div>
-        <label>Your comment</label>
-        <textarea ref="comment"></textarea>
+        <textarea ref="comment"/>
         <button onClick={this.handleCreateComment}>Comment</button>
       </div>
     );

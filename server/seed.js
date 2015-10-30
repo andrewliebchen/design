@@ -40,7 +40,7 @@ function createProject() {
 
 function createImage(projectId) {
   return Images.insert({
-    url: 'http://thecatapi.com/api/images/get?format=src',
+    src: `https://unsplash.it/${_.random(300, 600)}/${_.random(300, 600)}`,
     name: `Image ${_.random(100, 999)}`,
     description: 'Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare.',
     created_at: Date.now(),
@@ -60,7 +60,7 @@ Meteor.startup(function() {
   if(Projects.find().count() === 0) {
     const seedProject = createProject();
 
-    _.times(3, () => {
+    _.times(6, () => {
       createImage(seedProject)
     });
 
