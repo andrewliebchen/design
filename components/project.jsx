@@ -1,7 +1,8 @@
 Project = React.createClass({
   propTypes: {
     project: React.PropTypes.object.isRequired,
-    images: React.PropTypes.array
+    images: React.PropTypes.array,
+    comment: React.PropTypes.array
   },
 
   getInitialState() {
@@ -35,7 +36,7 @@ Project = React.createClass({
   },
 
   render() {
-    let {project, images} = this.props;
+    let {project, images, comments} = this.props;
     return (
       <div className="project">
         {this.state.editing ? <ProjectForm project={project}/> : this.renderHeader()}
@@ -45,7 +46,7 @@ Project = React.createClass({
           }) : <span>No images</span>}
         </div>
         <ImageUploader parentId={project._id}/>
-        <CommentsList parentId={project._id}/>
+        <CommentsList comments={comments} parentId={project._id}/>
       </div>
     );
   }

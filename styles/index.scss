@@ -1,3 +1,5 @@
+$colorBrand: blue;
+
 $thumbnailOffset: 0.25em;
 
 @mixin clearfix {
@@ -37,6 +39,26 @@ img {
   display: block;
 }
 
+button,
+.button {
+  appearance: none;
+  background-color: $colorBrand;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  line-height: 2em;
+  border: 0;
+  padding: 0 1em;
+
+  &:hover {
+    background-color: lighten($colorBrand, 10%);
+  }
+
+  &:active {
+    background-color: darken($colorBrand, 10%);
+  }
+}
+
 .wrapper {
   max-width: 60em;
   margin: auto;
@@ -60,7 +82,6 @@ img {
   @include prefixer(columns, 4);
   @include prefixer(column-gap, $thumbnailOffset*2);
   position: relative;
-  min-height: 10em;
 }
 
 .project__thumbnail {
@@ -84,7 +105,7 @@ img {
   right: 0;
   bottom: 0;
   padding: 0.5em;
-  background-color: rgba(blue, 0.5);
+  background-color: rgba($colorBrand, 0.5);
   color: white;
 
   a {
@@ -114,13 +135,16 @@ img {
 
   &:hover,
   &.is-active {
-    color: blue;
+    color: $colorBrand;
   }
 }
 
 .comments {
   padding: 1em;
-  background-color: #F7F7F7;
+
+  .project & {
+    background-color: #F7F7F7;    
+  }
 }
 
 .comment {
