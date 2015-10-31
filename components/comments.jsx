@@ -21,26 +21,25 @@ const NewComment = React.createClass({
     parentId: React.PropTypes.string.isRequired
   },
 
-  handleCreateComment(event) {
-    let comment = React.findDOMNode(this.refs.comment).value;
-    Meteor.call('newComment', {
-      comment: comment,
-      created_at: Date.now(),
-      parent: this.props.parentId
-    }, (error, success) => {
-      if(success) {
-        comment = '';
-      } else {
-        console.log(error);
-      }
-    });
+  handleKeyUp(event) {
+    if(event.keyCode === 13) {
+      Meteor.call('newComment', {
+        comment: event.target.value,
+        created_at: Date.now(),
+        parent: this.props.parentId
+      }, (error, success) => {
+        if(error) {
+          console.log(error);
+        }
+      });
+      event.target.value = '';
+    }
   },
 
   render() {
     return (
       <div>
-        <textarea ref="comment"/>
-        <button onClick={this.handleCreateComment}>Comment</button>
+        <input onKeyUp={this.handleKeyUp}/>
       </div>
     );
   }
