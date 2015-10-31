@@ -39,8 +39,7 @@ img {
   display: block;
 }
 
-button,
-.button {
+button {
   appearance: none;
   background-color: $colorBrand;
   color: white;
@@ -56,6 +55,11 @@ button,
 
   &:active {
     background-color: darken($colorBrand, 10%);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($colorBrand, 0.5);
   }
 }
 
@@ -123,8 +127,33 @@ button,
   left: 0;
 }
 
+.image__close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
+.image__container {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
 .image {
+  flex: 3;
   position: relative;
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.image__aside {
+  flex: 1;
 }
 
 .image-uploader {
@@ -144,9 +173,8 @@ button,
 }
 
 .comments {
-  padding: 1em;
-
   .project & {
+    padding: 1em;
     background-color: #F7F7F7;
   }
 }

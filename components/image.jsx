@@ -11,15 +11,17 @@ Image = React.createClass({
   render() {
     return (
       <div className="image__wrapper">
-        <header className="image__header">
-          <h1>{this.data.image.name}</h1>
-          <a className="image__close" href="/">✖</a>
-        </header>
-        <div className="image">
-          <img src={this.data.image.src}/>
-          <ImageUploader parentId={this.data.image._id}/>
+        <a className="image__close" href="/">✖</a>
+        <div className="image__container">
+          <div className="image">
+            <img src={this.data.image.src}/>
+            {/*<ImageUploader parentId={this.data.image._id}/>*/}
+          </div>
+          <aside class="image__aside">
+            <h1 className="image__title">{this.data.image.name}</h1>
+            <CommentsList comments={this.data.comments} parentId={this.data.image._id}/>
+          </aside>
         </div>
-        <CommentsList comments={this.data.comments} parentId={this.data.image._id}/>
       </div>
     );
   }
