@@ -11,6 +11,30 @@ Project = React.createClass({
     };
   },
 
+  handleEditToggle() {
+    this.setState({editing: !this.state.editing});
+  },
+
+  handleDelete() {
+    console.log(this.props.project._id);
+    Meteor.call('deleteProject', this.props.project._id);
+  },
+
+  handleSaveProject() {
+    let projectName = React.findDOMNode(this.refs.name).value;
+    let projectDescription = React.findDOMNode(this.refs.description).value;
+
+    Meteor.call('editProject', {
+      id: this.props.project._id,
+      name: projectName,
+      description: projectDescription
+    }, (error, success) => {
+      if(success) {
+        this.setState({editing: false});
+      }
+    });
+  },
+
   renderEditing() {
     let {project} = this.props;
     return (
@@ -38,29 +62,6 @@ Project = React.createClass({
         </ul>
       </header>
     );
-  },
-
-  handleEditToggle() {
-    this.setState({editing: !this.state.editing});
-  },
-
-  handleDelete() {
-    Meteor.call('deleteProject', this.props.project._id);
-  },
-
-  handleSaveProject() {
-    let projectName = React.findDOMNode(this.refs.name).value;
-    let projectDescription = React.findDOMNode(this.refs.description).value;
-
-    Meteor.call('editProject', {
-      id: this.props.project._id,
-      name: projectName,
-      description: projectDescription
-    }, (error, success) => {
-      if(success) {
-        this.setState({editing: false});
-      }
-    });
   },
 
   render() {
@@ -118,10 +119,6 @@ if(Meteor.isClient) {
 if(Meteor.isServer) {
   Meteor.methods({
     deleteProject(id) {
-      check(id, {
-        id: String
-      });
-
       Projects.remove(id);
     },
 

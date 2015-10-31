@@ -5,15 +5,16 @@ ImageUploader = React.createClass({
 
   handleImageUpload(files) {
     let file = files[0];
-    console.log(file);
     let uploader = new Slingshot.Upload('fileUploads');
 
     uploader.send(file, (error, url) => {
       if (error) {
         console.error('Error uploading', uploader.xhr.response);
       } else {
+        // Will have to check if file exists first
         Meteor.call('newImage', {
           name: file.name,
+          filename: file.name,
           src: url,
           parent: this.props.parentId,
           created_at: Date.now()
@@ -39,6 +40,7 @@ if(Meteor.isServer) {
     newImage(args) {
       check(args, {
         name: String,
+        filename: String,
         src: String,
         parent: String,
         created_at: Number
