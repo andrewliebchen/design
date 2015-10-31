@@ -36,6 +36,12 @@ ImageUploader = React.createClass({
 if(Meteor.isServer) {
   Meteor.methods({
     newImage(args) {
+      check(args, {
+        src: String,
+        parent: String,
+        created_at: Number
+      });
+      
       return Images.insert(args);
     }
   });

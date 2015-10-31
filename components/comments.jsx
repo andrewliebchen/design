@@ -68,6 +68,12 @@ CommentsList = React.createClass({
 if(Meteor.isServer) {
   Meteor.methods({
     newComment(args) {
+      check(args, {
+        comment: String,
+        created_at: Number,
+        parent: String
+      });
+
       return Comments.insert(args);
     }
   });

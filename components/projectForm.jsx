@@ -36,6 +36,12 @@ ProjectForm = React.createClass({
 if(Meteor.isServer) {
   Meteor.methods({
     newProject(args) {
+      check(args, {
+        name: String,
+        description: String,
+        created_at: Number
+      });
+
       return Projects.insert(args);
     }
   });

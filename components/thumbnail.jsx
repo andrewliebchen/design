@@ -36,6 +36,10 @@ Thumbnail = React.createClass({
 if(Meteor.isServer) {
   Meteor.methods({
     deleteImage(id) {
+      check(id, {
+        id: String
+      });
+
       Images.remove(id);
     }
   });

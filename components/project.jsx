@@ -40,12 +40,12 @@ Project = React.createClass({
     return (
       <div className="project">
         {this.state.editing ? <ProjectForm project={project}/> : this.renderHeader()}
+        <ImageUploader parentId={project._id}/>
         <div className="project__thumbnails">
           {images.length > 0 ? images.map((image, i) => {
             return <Thumbnail key={i} image={image}/>;
           }) : <span>No images</span>}
         </div>
-        <ImageUploader parentId={project._id}/>
         <CommentsList comments={comments} parentId={project._id}/>
       </div>
     );
@@ -90,6 +90,10 @@ if(Meteor.isClient) {
 if(Meteor.isServer) {
   Meteor.methods({
     deleteProject(id) {
+      check(id, {
+        id: String
+      });
+
       Projects.remove(id);
     }
   });
