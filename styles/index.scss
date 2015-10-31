@@ -117,7 +117,7 @@ button {
   }
 }
 
-.image__wrapper {
+.image {
   background-color: black;
   color: white;
   height: 100vh;
@@ -135,25 +135,25 @@ button {
 
 .image__container {
   display: flex;
-  position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
+  height: 100vh;
 }
 
-.image {
+.image__main {
   flex: 3;
   position: relative;
 
   img {
     display: block;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
   }
 }
 
 .image__aside {
   flex: 1;
+  padding: 0 1em;
 }
 
 .image-uploader {
