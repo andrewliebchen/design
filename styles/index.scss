@@ -39,12 +39,28 @@ img {
   display: block;
 }
 
+input,
+textarea {
+  color: inherit;
+  appearance: none;
+  border: 2px solid;
+  // border-radius: 3px;
+  background-color: transparent;
+  padding: 0.5em;
+  display: block;
+  width: 100%;
+}
+
+input {
+  line-height: 2em;
+}
+
 button {
   appearance: none;
   background-color: $colorBrand;
   color: white;
   font-weight: bold;
-  border-radius: 5px;
+  // border-radius: 5px;
   line-height: 2em;
   border: 0;
   padding: 0 1em;
@@ -56,10 +72,15 @@ button {
   &:active {
     background-color: darken($colorBrand, 10%);
   }
+}
 
+input,
+textarea,
+button {
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($colorBrand, 0.5);
+    box-shadow: 0 0 0 3px rgba($colorBrand, 0.2);
+    border-color: $colorBrand;
   }
 }
 
@@ -86,6 +107,7 @@ button {
   @include prefixer(columns, 4);
   @include prefixer(column-gap, $thumbnailOffset*2);
   position: relative;
+  margin-bottom: 1em;
 }
 
 .project__thumbnail {
