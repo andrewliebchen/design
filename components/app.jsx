@@ -5,9 +5,9 @@ App = React.createClass({
 
   getMeteorData() {
     return {
-      projects: Projects.find().fetch(),
-      images: Images.find().fetch(),
-      comments: Comments.find().fetch()
+      projects: Projects.find({}, {sort: {created_at: -1}}).fetch(),
+      images: Images.find({}, {sort: {created_at: 1}}).fetch(),
+      comments: Comments.find({}, {sort: {created_at: -1}}).fetch()
     }
   },
 

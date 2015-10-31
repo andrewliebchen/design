@@ -13,6 +13,7 @@ ImageUploader = React.createClass({
         console.error('Error uploading', uploader.xhr.response);
       } else {
         Meteor.call('newImage', {
+          name: file.name,
           src: url,
           parent: this.props.parentId,
           created_at: Date.now()
@@ -37,11 +38,12 @@ if(Meteor.isServer) {
   Meteor.methods({
     newImage(args) {
       check(args, {
+        name: String,
         src: String,
         parent: String,
         created_at: Number
       });
-      
+
       return Images.insert(args);
     }
   });

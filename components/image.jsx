@@ -4,7 +4,7 @@ Image = React.createClass({
   getMeteorData() {
     return {
       image: Images.findOne(),
-      comments: Comments.find().fetch()
+      comments: Comments.find({}, {sort: {created_at: -1}}).fetch()
     };
   },
 
