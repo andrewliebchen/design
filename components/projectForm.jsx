@@ -3,7 +3,7 @@ ProjectForm = React.createClass({
     project: React.PropTypes.object
   },
 
-  handleSaveProject() {
+  handleCreateProject() {
     let projectName = React.findDOMNode(this.refs.name).value;
     let projectDescription = React.findDOMNode(this.refs.description).value;
 
@@ -24,10 +24,10 @@ ProjectForm = React.createClass({
     return (
       <div>
         <label>Name</label>
-        <input type="text" value={project ? project.name : null} ref="name"/>
+        <input type="text" ref="name"/>
         <label>Description</label>
-        <textarea value={project ? project.description : null} ref="description"/>
-        <button onClick={this.handleSaveProject}>Save</button>
+        <textarea ref="description"/>
+        <button onClick={this.handleCreateProject}>Save</button>
       </div>
     );
   }

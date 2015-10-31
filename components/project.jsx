@@ -11,16 +11,21 @@ Project = React.createClass({
     };
   },
 
-  handleEditToggle() {
-    this.setState({editing: !this.state.editing});
-  },
-
-  handleDelete() {
-    Meteor.call('deleteProject', this.props.project._id);
+  renderEditing() {
+    let {project} = this.props;
+    return (
+      <div>
+        <label>Name</label>
+        <input type="text" defaultValue={project.name} ref="name"/>
+        <label>Description</label>
+        <textarea defaultValue={project.description} ref="description"/>
+        <button onClick={this.handleSaveProject}>Save</button>
+      </div>
+    );
   },
 
   renderHeader() {
-    let {project, images} = this.props;
+    let {project} = this.props;
     return (
       <header className="project__header">
         <h2 className="project__title">
@@ -35,11 +40,34 @@ Project = React.createClass({
     );
   },
 
+  handleEditToggle() {
+    this.setState({editing: !this.state.editing});
+  },
+
+  handleDelete() {
+    Meteor.call('deleteProject', this.props.project._id);
+  },
+
+  handleSaveProject() {
+    let projectName = React.findDOMNode(this.refs.name).value;
+    let projectDescription = React.findDOMNode(this.refs.description).value;
+
+    Meteor.call('editProject', {
+      id: this.props.project._id,
+      name: projectName,
+      description: projectDescription
+    }, (error, success) => {
+      if(success) {
+        this.setState({editing: false});
+      }
+    });
+  },
+
   render() {
     let {project, images, comments} = this.props;
     return (
       <div className="project">
-        {this.state.editing ? <ProjectForm project={project}/> : this.renderHeader()}
+        {this.state.editing ? this.renderEditing() : this.renderHeader()}
         <ImageUploader parentId={project._id}/>
         <div className="project__thumbnails">
           {images.length > 0 ? images.map((image, i) => {
@@ -95,6 +123,21 @@ if(Meteor.isServer) {
       });
 
       Projects.remove(id);
+    },
+
+    editProject(args) {
+      check(args, {
+        id: String,
+        name: String,
+        description: String
+      });
+
+      return Projects.update(args.id, {
+        $set: {
+          name: args.name,
+          description: args.description
+        }
+      });
     }
   });
 }
