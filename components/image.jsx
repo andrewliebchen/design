@@ -19,6 +19,9 @@ Image = React.createClass({
           </div>
           <aside className="image__aside">
             <h1 className="image__title">{this.data.image.name}</h1>
+            {this.data.image.description ?
+              <p>{this.data.image.description}</p>
+            : null}
             <CommentsList comments={this.data.comments} parentId={this.data.image._id}/>
           </aside>
         </div>
