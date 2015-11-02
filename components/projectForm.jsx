@@ -10,7 +10,8 @@ ProjectForm = React.createClass({
     Meteor.call('newProject', {
       name: projectName,
       description: projectDescription,
-      created_at: Date.now()
+      created_at: Date.now(),
+      created_by: Meteor.user()._id
     }, (error, success) => {
       if(success) {
         projectName = '';
@@ -39,7 +40,8 @@ if(Meteor.isServer) {
       check(args, {
         name: String,
         description: String,
-        created_at: Number
+        created_at: Number,
+        created_by: String
       });
 
       return Projects.insert(args);

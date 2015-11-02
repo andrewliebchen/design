@@ -17,7 +17,8 @@ ImageUploader = React.createClass({
           filename: file.name,
           src: url,
           parent: this.props.parentId,
-          created_at: Date.now()
+          created_at: Date.now(),
+          uploaded_by: Meteor.user()._id
         });
       }
     });
@@ -43,7 +44,8 @@ if(Meteor.isServer) {
         filename: String,
         src: String,
         parent: String,
-        created_at: Number
+        created_at: Number,
+        uploaded_by: String
       });
 
       return Images.insert(args);

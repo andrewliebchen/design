@@ -50,12 +50,14 @@ Project = React.createClass({
 
   renderHeader() {
     let {project} = this.props;
+    let createdBy = Meteor.users.findOne(project.created_by);
     return (
       <header className="project__header">
         <h2 className="project__title">
           <a href={`/projects/${project._id}`}>{project.name}</a>
         </h2>
         <p className="project__description">{project.description}</p>
+        {createdBy ? <Avatar user={createdBy}/> : null}
         <ul className="project__actions">
           <li onClick={this.handleEditToggle}>Edit</li>
           <li onClick={this.handleDelete}>Delete</li>
@@ -80,61 +82,3 @@ Project = React.createClass({
     );
   }
 });
-
-SingleProject = React.createClass({
-  mixins: [ReactMeteorData],
-
-  getMeteorData() {
-    return {
-      project: Projects.findOne(),
-      images: Images.find({}, {sort: {created_at: 1}}).fetch(),
-      comments: Comments.find({}, {sort: {created_at: -1}}).fetch()
-    }
-  },
-
-  render() {
-    return (
-      <Project
-        project={this.data.project}
-        images={this.data.images}
-        comments={this.data.comments}/>
-    );
-  }
-});
-
-if(Meteor.isClient) {
-  FlowRouter.route('/projects/:_id', {
-    subscriptions(params) {
-      this.register('singleProject', Meteor.subscribe('singleProject', params._id));
-    },
-
-    action(params) {
-      FlowRouter.subsReady('singleProject', () => {
-        ReactLayout.render(SingleProject);
-      });
-    }
-  });
-}
-
-if(Meteor.isServer) {
-  Meteor.methods({
-    deleteProject(id) {
-      Projects.remove(id);
-    },
-
-    editProject(args) {
-      check(args, {
-        id: String,
-        name: String,
-        description: String
-      });
-
-      return Projects.update(args.id, {
-        $set: {
-          name: args.name,
-          description: args.description
-        }
-      });
-    }
-  });
-}
