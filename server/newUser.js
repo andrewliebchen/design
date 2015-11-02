@@ -1,22 +1,9 @@
-Accounts.config({
-  sendVerificationEmail: true,
-  forbidClientAccountCreation: false
-});
+Accounts.onCreateUser((options, user) => {
+  user.profile = user.profile || {};
 
-Meteor.methods({
-  'newUser': function(user) {
-    let newUserId = Accounts.createUser({
-      username: user.username,
-      email: user.email,
-      password: user.password,
-      profile: {
-        organization: user.organization,
-        name: user.name,
-        imageSrc: user.imageSrc,
-      }
-    });
+  user.profile.name = user.services.google.name;
+  user.profile.avatar_src = user.services.google.picture;
+  user.profile.email = user.services.google.email;
 
-    Accounts.sendVerificationEmail(newUserId);
-    return newUserId;
-  },
+  return user;
 });
