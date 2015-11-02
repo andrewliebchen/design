@@ -9,26 +9,11 @@ AccountsUIWrapper = React.createClass({
   },
 
   render() {
-    return <span ref="container" />;
+    return <span className="session__wrapper" ref="container" />;
   }
 });
 
 Header = React.createClass({
-  getInitialState() {
-    return {
-      menu: false
-    };
-  },
-
-  handleMenuToggle() {
-    this.setState({menu: !this.state.menu});
-  },
-
-  handleSignOut() {
-    Meteor.logout();
-    this.handleMenuToggle();
-  },
-
   render() {
     return (
       <header className="header">

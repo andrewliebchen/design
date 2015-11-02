@@ -97,7 +97,15 @@ button {
 }
 
 .header {
+  @include clearfix;
+}
 
+.header__brand {
+  float: left;
+}
+
+.session__wrapper {
+  float: right;
 }
 
 .projects {
