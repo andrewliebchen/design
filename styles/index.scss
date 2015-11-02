@@ -50,7 +50,6 @@ textarea {
   color: inherit;
   appearance: none;
   border: 2px solid;
-  // border-radius: 3px;
   background-color: transparent;
   padding: 0.25em 0.5em;
   display: block;
@@ -66,7 +65,6 @@ button {
   background-color: $colorBrand;
   color: white;
   font-weight: bold;
-  // border-radius: 5px;
   line-height: 2em;
   border: 0;
   padding: 0 1em;
@@ -87,6 +85,24 @@ button {
     outline: none;
     box-shadow: 0 0 0 3px rgba($colorBrand, 0.2);
     border-color: $colorBrand;
+  }
+}
+
+.avatar {
+  $size: 2em;
+  line-height: $size;
+
+  &__image {
+    float: left;
+    margin-right: 0.5em;
+    max-height: $size;
+    max-width: $size;
+    border-radius: $size / 2;
+    border: 1px solid;
+  }
+
+  &__body {
+    overflow: auto;
   }
 }
 

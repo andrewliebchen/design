@@ -9,6 +9,7 @@ Image = React.createClass({
   },
 
   render() {
+    let uploadedBy = Meteor.users.findOne(this.data.image.uploaded_by);
     return (
       <div className="image">
         <a className="image__close" href="/">✖</a>
@@ -19,6 +20,7 @@ Image = React.createClass({
           </div>
           <aside className="image__aside">
             <h1 className="image__title">{this.data.image.name}</h1>
+            {uploadedBy ? <Avatar user={uploadedBy}/> : null}
             {this.data.image.description ?
               <p>{this.data.image.description}</p>
             : null}
