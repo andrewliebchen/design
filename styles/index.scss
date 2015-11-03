@@ -33,6 +33,10 @@ h2 {
   letter-spacing: 0.02em;
 }
 
+p {
+  margin: 0 0 1em 0;
+}
+
 img {
   max-width: 100%;
   max-height: 100%;
@@ -136,6 +140,21 @@ button {
   }
 }
 
+.project__body {
+  display: flex;
+}
+
+.project__description {
+  flex: 3;
+  // border-right: 2px solid #f7f7f7;
+  padding: 0 2em 2em 0;
+}
+
+.project__aside {
+  flex: 1;
+  // padding-left: 1em;
+}
+
 .project__thumbnails {
   @include prefixer(columns, 4);
   @include prefixer(column-gap, $thumbnailOffset*2);
@@ -237,5 +256,30 @@ button {
 .comment {
   + .comment {
     margin-top: 1em;
+  }
+}
+
+.tab-container {
+  $borderWidth: 3px;
+
+  border-top: $borderWidth solid #f7f7f7;
+  margin-bottom: 1em;
+
+  .tab {
+    display: inline-block;
+    line-height: 2;
+    cursor: pointer;
+    border-top: $borderWidth solid transparent;
+    margin-top: -($borderWidth);
+    font-weight: bold;
+
+    + .tab {
+      margin-left: 1em;
+    }
+  }
+
+  .active-tab {
+    color: $colorBrand;
+    border-color: $colorBrand;
   }
 }
