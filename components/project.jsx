@@ -56,12 +56,18 @@ Project = React.createClass({
         <h2 className="project__title">
           <a href={`/projects/${project._id}`}>{project.name}</a>
         </h2>
-        <p className="project__description">{project.description}</p>
-        {createdBy ? <Avatar user={createdBy}/> : null}
-        <ul className="project__actions">
-          <li onClick={this.handleEditToggle}>Edit</li>
-          <li onClick={this.handleDelete}>Delete</li>
-        </ul>
+        <div className="project__body">
+          <div className="project__description">
+            {project.description}
+          </div>
+          <aside className="project__aside">
+            {createdBy ? <Avatar user={createdBy}/> : null}
+            <ul className="project__actions">
+              <li onClick={this.handleEditToggle}>Edit</li>
+              <li onClick={this.handleDelete}>Delete</li>
+            </ul>
+          </aside>
+        </div>
       </header>
     );
   },
@@ -71,13 +77,21 @@ Project = React.createClass({
     return (
       <div className="project">
         {this.state.editing ? this.renderEditing() : this.renderHeader()}
-        <ImageUploader parentId={project._id}/>
-        <div className="project__thumbnails">
-          {images.length > 0 ? images.map((image, i) => {
-            return <Thumbnail key={i} image={image}/>;
-          }) : <span>No images</span>}
-        </div>
-        <CommentsList comments={comments} parentId={project._id}/>
+        <Tabs
+          defaultTabNum={0}
+          tabNames={['Images','Comments']}>
+          <section>
+            <ImageUploader parentId={project._id}/>
+            <div className="project__thumbnails">
+              {images.length > 0 ? images.map((image, i) => {
+                return <Thumbnail key={i} image={image}/>;
+              }) : <span>No images</span>}
+            </div>
+          </section>
+          <section>
+            <CommentsList comments={comments} parentId={project._id}/>
+          </section>
+        </Tabs>
       </div>
     );
   }
