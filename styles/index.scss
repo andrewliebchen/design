@@ -27,6 +27,18 @@ body {
   line-height: 1.3;
 }
 
+a {
+  color: $colorBrand;
+
+  &:hover {
+    color: lighten($colorBrand, 10%);
+  }
+
+  &:visited {
+    color: desaturate($colorBrand, 20%);
+  }
+}
+
 h1,
 h2 {
   text-transform: uppercase;
@@ -160,6 +172,8 @@ button {
   @include prefixer(column-gap, $thumbnailOffset*2);
   position: relative;
   margin-bottom: 1em;
+  padding: 1em;
+  background-color: #f7f7f7;
 }
 
 .project__thumbnail {
@@ -267,20 +281,23 @@ button {
 
 .tab-container {
   $borderWidth: 3px;
+  z-index: 1;
+  position: relative;
+  margin-bottom: -($borderWidth);
 
-  border-top: $borderWidth solid #f7f7f7;
-  margin-bottom: 1em;
+  // border-bottom: $borderWidth solid #EEE;
+  // margin-bottom: 1em;
 
   .tab {
     display: inline-block;
     line-height: 2;
     cursor: pointer;
-    border-top: $borderWidth solid transparent;
-    margin-top: -($borderWidth);
+    border-bottom: $borderWidth solid transparent;
     font-weight: bold;
+    margin-left: 1em;
 
-    + .tab {
-      margin-left: 1em;
+    &:hover {
+      color: $colorBrand;
     }
   }
 
