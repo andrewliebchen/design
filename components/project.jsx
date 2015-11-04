@@ -7,7 +7,8 @@ Project = React.createClass({
 
   getInitialState() {
     return {
-      editing: false
+      editing: false,
+      uploader: false
     };
   },
 
@@ -33,6 +34,14 @@ Project = React.createClass({
         this.setState({editing: false});
       }
     });
+  },
+
+  handleDragStart() {
+    this.setState({uploader: true});
+  },
+
+  handleDragEnd() {
+    this.setState({uploader: false});
   },
 
   renderEditing() {
@@ -75,13 +84,17 @@ Project = React.createClass({
   render() {
     let {project, images, comments} = this.props;
     return (
-      <div className="project">
+      <div
+        className="project"
+        onDragEnter={this.handleDragStart} 
+        onDragExit={this.handleDragEnd}
+        onDrop={this.handleDragEnd}>
         {this.state.editing ? this.renderEditing() : this.renderHeader()}
         <Tabs
           defaultTabNum={0}
           tabNames={['Images','Comments']}>
           <section>
-            <ImageUploader parentId={project._id}/>
+            {this.state.uploader ? <ImageUploader parentId={project._id}/> : null}
             <div className="project__thumbnails">
               {images.length > 0 ? images.map((image, i) => {
                 return <Thumbnail key={i} image={image}/>;
