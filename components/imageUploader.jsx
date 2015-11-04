@@ -31,7 +31,9 @@ ImageUploader = React.createClass({
         activeClassName="is-active"
         onDrop={this.handleImageUpload}
         multiple={false}
-        accept="image/*"/>
+        accept="image/*">
+        <strong className="image-uploader__message">Drop image to add to this project</strong>
+      </Dropzone>
     );
   }
 });
