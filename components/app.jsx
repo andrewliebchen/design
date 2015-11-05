@@ -7,7 +7,7 @@ App = React.createClass({
     return {
       projects: Projects.find({}, {sort: {created_at: -1}}).fetch(),
       images: Images.find({}, {sort: {created_at: 1}}).fetch(),
-      comments: Comments.find({}, {sort: {created_at: -1}}).fetch()
+      comments: Comments.find({}, {sort: {created_at: 1}}).fetch()
     }
   },
 
