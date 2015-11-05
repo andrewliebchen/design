@@ -6,11 +6,14 @@ const Comment = React.createClass({
   render() {
     return (
       <div className="comment">
-        <ul className="comment__meta">
-          <li><strong>Andrew Liebchen</strong></li>
-          <li><small>{moment(this.props.comment.created_at).fromNow()}</small></li>
-        </ul>
-        <p>{this.props.comment.comment}</p>
+        <img className="comment__avatar avatar__image" src={Meteor.user().profile.avatar_src}/>
+        <div className="comment__body">
+          <h4>Andrew Liebchen</h4>
+          <p>{this.props.comment.comment}</p>
+          <footer className="comment__footer">
+            <small>{moment(this.props.comment.created_at).fromNow()}</small>
+          </footer>
+        </div>
       </div>
     );
   }
@@ -38,8 +41,11 @@ const NewComment = React.createClass({
 
   render() {
     return (
-      <div>
-        <input onKeyUp={this.handleKeyUp}/>
+      <div className="comment comment__new">
+        <img className="comment__avatar avatar__image" src={Meteor.user().profile.avatar_src}/>
+        <div className="comment__body">
+          <input onKeyUp={this.handleKeyUp}/>
+        </div>
       </div>
     );
   }
