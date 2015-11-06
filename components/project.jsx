@@ -15,7 +15,6 @@ Project = React.createClass({
   },
 
   handleDelete() {
-    console.log(this.props.project._id);
     Meteor.call('deleteProject', this.props.project._id);
   },
 

@@ -1,5 +1,7 @@
-Meteor.publish('projects', () => {
-  return Projects.find();
+Meteor.publish('projects', (id) => {
+  check(id, String);
+
+  return Projects.find({parent: id});
 });
 
 Meteor.publish('images', (id) => {
