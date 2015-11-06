@@ -1,6 +1,4 @@
-const _ = lodash;
-
-App = React.createClass({
+ProjectsList = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
@@ -34,7 +32,7 @@ if(Meteor.isClient) {
 
     action() {
       FlowRouter.subsReady('projects', () => {
-        ReactLayout.render(App);
+        ReactLayout.render(ProjectsList);
       });
     }
   });
