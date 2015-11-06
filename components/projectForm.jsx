@@ -11,7 +11,8 @@ ProjectForm = React.createClass({
       name: projectName,
       description: projectDescription,
       created_at: Date.now(),
-      created_by: Meteor.user()._id
+      created_by: Meteor.user()._id,
+      parent: Meteor.user()._id
     }, (error, success) => {
       if(success) {
         projectName = '';
@@ -41,7 +42,8 @@ if(Meteor.isServer) {
         name: String,
         description: String,
         created_at: Number,
-        created_by: String
+        created_by: String,
+        parent: String
       });
 
       return Projects.insert(args);
