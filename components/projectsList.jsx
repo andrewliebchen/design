@@ -2,15 +2,21 @@ ProjectsList = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
+    let projects = Meteor.subscribe('projects', Meteor.userId());
+
     return {
+      loading: !projects.ready(),
       projects: Projects.find({}, {sort: {created_at: -1}}).fetch()
     }
   },
 
   render() {
+    if (this.data.loading) {
+      return <div>Loading...</div>;
+    }
+    
     return (
-      <div className="projects wrapper">
-        <Header/>
+      <div className="projects">
         {this.data.projects.map((project, i) => {
           return (
             <Project
@@ -23,17 +29,3 @@ ProjectsList = React.createClass({
     );
   }
 });
-
-if(Meteor.isClient) {
-  FlowRouter.route('/', {
-    subscriptions() {
-      this.register('projects', Meteor.subscribe('projects', Meteor.userId()));
-    },
-
-    action() {
-      FlowRouter.subsReady('projects', () => {
-        ReactLayout.render(ProjectsList);
-      });
-    }
-  });
-}
