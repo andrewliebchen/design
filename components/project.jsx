@@ -1,8 +1,6 @@
 Project = React.createClass({
   propTypes: {
-    project: React.PropTypes.object.isRequired,
-    images: React.PropTypes.array,
-    comment: React.PropTypes.array
+    project: React.PropTypes.object.isRequired
   },
 
   getInitialState() {
@@ -82,11 +80,11 @@ Project = React.createClass({
   },
 
   render() {
-    let {project, images, comments} = this.props;
+    let {project} = this.props;
     return (
       <div
         className="project"
-        onDragEnter={this.handleDragStart} 
+        onDragEnter={this.handleDragStart}
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
         {this.state.editing ? this.renderEditing() : this.renderHeader()}
@@ -95,14 +93,10 @@ Project = React.createClass({
           tabNames={['Images','Comments']}>
           <section>
             {this.state.uploader ? <ImageUploader parentId={project._id}/> : null}
-            <div className="project__thumbnails">
-              {images.length > 0 ? images.map((image, i) => {
-                return <Thumbnail key={i} image={image}/>;
-              }) : <span>No images</span>}
-            </div>
+            <Thumbnails parentId={project._id}/>
           </section>
           <section>
-            <CommentsList comments={comments} parentId={project._id}/>
+            <CommentsList parentId={project._id}/>
           </section>
         </Tabs>
       </div>

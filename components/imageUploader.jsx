@@ -18,7 +18,8 @@ ImageUploader = React.createClass({
           src: url,
           parent: this.props.parentId,
           created_at: Date.now(),
-          uploaded_by: Meteor.user()._id
+          uploaded_by: Meteor.user()._id,
+          owner: Meteor.user()._id
         });
       }
     });

@@ -1,9 +1,17 @@
 Meteor.publish('projects', () => {
-  return [
-    Projects.find(),
-    Images.find(),
-    Comments.find()
-  ];
+  return Projects.find();
+});
+
+Meteor.publish('images', (id) => {
+  check(id, String);
+
+  return Images.find({parent: id});
+});
+
+Meteor.publish('comments', (id) => {
+  check(id, String);
+
+  return Comments.find({parent: id});
 });
 
 Meteor.publish('singleProject', (id) => {
