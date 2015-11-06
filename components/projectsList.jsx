@@ -27,7 +27,7 @@ ProjectsList = React.createClass({
 if(Meteor.isClient) {
   FlowRouter.route('/', {
     subscriptions() {
-      this.register('projects', Meteor.subscribe('projects'));
+      this.register('projects', Meteor.subscribe('projects', Meteor.userId()));
     },
 
     action() {
