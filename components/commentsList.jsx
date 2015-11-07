@@ -2,7 +2,8 @@ CommentsList = React.createClass({
   mixins: [ReactMeteorData],
 
   propTypes: {
-    parentId: React.PropTypes.string
+    parentId: React.PropTypes.string,
+    addPin: React.PropTypes.func
   },
 
   getMeteorData() {
@@ -24,9 +25,9 @@ CommentsList = React.createClass({
     return (
       <div className="comments">
         {this.data.comments ? this.data.comments.map((comment, i) => {
-          return <SingleComment key={i} comment={comment}/>;
+          return <SingleComment key={i} comment={comment} addPin={this.props.addPin}/>;
         }) : <span>No comments</span>}
-        <NewComment parentId={this.props.parentId}/>
+        <NewComment parentId={this.props.parentId} addPin={this.props.addPin}/>
       </div>
     );
   }
