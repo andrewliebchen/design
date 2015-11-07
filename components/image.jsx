@@ -3,9 +3,12 @@ Image = React.createClass({
 
   getMeteorData() {
     return {
-      image: Images.findOne(),
-      comments: Comments.find({}, {sort: {created_at: -1}}).fetch()
+      image: Images.findOne()
     };
+  },
+
+  handleAddPin() {
+    console.log("pin");
   },
 
   render() {
@@ -15,7 +18,10 @@ Image = React.createClass({
         <a className="image__close" href="/">✖</a>
         <div className="image__container">
           <div className="image__main">
-            <img src={this.data.image.src}/>
+            <span className="image__pin-container">
+              <img src={this.data.image.src}/>
+              <Pins parentId={this.data.image._id}/>
+            </span>
             {/*<ImageUploader parentId={this.data.image._id}/>*/}
           </div>
           <aside className="image__aside">
@@ -24,7 +30,7 @@ Image = React.createClass({
             {this.data.image.description ?
               <p>{this.data.image.description}</p>
             : null}
-            <CommentsList comments={this.data.comments} parentId={this.data.image._id}/>
+            <CommentsList parentId={this.data.image._id} addPin={this.handleAddPin}/>
           </aside>
         </div>
       </div>

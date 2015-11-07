@@ -34,6 +34,7 @@ body {
 
 a {
   color: $colorBrand;
+  text-decoration: underline;
 
   &:hover {
     color: lighten($colorBrand, 10%);
@@ -217,12 +218,16 @@ button {
 
 .image {
   background-color: $colorGrayDark;
-  color: $colorGray;
   height: 100vh;
   width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
+
+  &,
+  a {
+    color: $colorGray;
+  }
 }
 
 .image__close {
@@ -239,14 +244,6 @@ button {
 .image__main {
   flex: 3;
   position: relative;
-
-  img {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-  }
 }
 
 .image__aside {
@@ -284,10 +281,14 @@ button {
 
 .comment {
   @include clearfix;
-  padding: 1em;
+  padding: 1em 0;
 
-  + .comment {
-    border-top: 2px solid white;
+  .project & {
+    padding: 1em;
+
+    + .comment {
+      border-top: 2px solid white;
+    }
   }
 }
 
@@ -301,8 +302,11 @@ button {
 }
 
 .comment__new {
-  background-color: white;
-  border: 5px solid $colorGray;
+
+  .project & {
+    background-color: white;
+    border: 5px solid $colorGray;
+  }
 }
 
 .tab-container {
@@ -327,5 +331,34 @@ button {
   .active-tab {
     color: $colorBrand;
     border-color: $colorBrand;
+  }
+}
+
+.image__pin-container {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.pins {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.pin {
+  $size: 1em;
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
+  background-color: $colorBrand;
+  position: absolute;
+
+  .comment & {
+    position: static;
   }
 }
