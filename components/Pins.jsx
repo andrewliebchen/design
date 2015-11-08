@@ -1,3 +1,19 @@
+Pin = React.createClass({
+  propTypes: {
+    x: React.PropTypes.number,
+    y: React.PropTypes.number
+  },
+
+  render() {
+    let style = {
+      top: `${this.props.y}px`,
+      left: `${this.props.x}px`
+    };
+
+    return <div className="pin" style={style}/>;
+  }
+});
+
 Pins = React.createClass({
   mixins: [ReactMeteorData],
 
@@ -11,23 +27,54 @@ Pins = React.createClass({
 
     return {
       loading: !comments.ready(),
-      pins: Comments.find({parent: this.props.parentId, pin: {$exists: true}}).fetch()
+      pins: Comments.find({parent: this.props.parentId, position: {$exists: true}}).fetch()
     };
   },
 
-  render() {
-    console.log(this.data.pins)
-    return (
-      <div className="pins">
-        {this.data.pins.map((pin, i) => {
-          let style = {
-            top: `${pin.y}%`,
-            left: `${pin.x}%`
-          };
+  handleAddPin(event) {
+    if(Session.get('pinning')) {
+      let commentId = Session.get('pinning');
+      let targetOffset = $(event.target).offset();
+      let targetOffsetY = targetOffset.top + document.body.scrollTop;
+      let yPos = event.clientY - targetOffsetY;
+      let xPos = event.clientX - targetOffset.left;
 
-          return <div className="pin" key={i} style={style}/>;
+      Meteor.call('addPin', {
+        commentId: commentId,
+        xPos: xPos,
+        yPos: yPos
+      });
+    }
+  },
+
+  render() {
+    return (
+      <div className="pins" onClick={this.handleAddPin}>
+        {this.data.pins.map((pin, i) => {
+          return <Pin key={i} x={pin.position.x} y={pin.position.y}/>
         })}
       </div>
     );
   }
 });
+
+if(Meteor.isServer) {
+  Meteor.methods({
+    addPin(args) {
+      check(args, {
+        commentId: String,
+        xPos: Number,
+        yPos: Number
+      });
+
+      Comments.update(args.commentId, {
+        $set: {
+          position: {
+            x: args.xPos,
+            y: args.yPos
+          }
+        }
+      });
+    }
+  });
+}

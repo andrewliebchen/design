@@ -1,7 +1,7 @@
 NewComment = React.createClass({
   propTypes: {
     parentId: React.PropTypes.string.isRequired,
-    addPin: React.PropTypes.func
+    pin: React.PropTypes.bool
   },
 
   handleKeyUp(event) {
@@ -26,7 +26,6 @@ NewComment = React.createClass({
         <div className="comment__body">
           <input onKeyUp={this.handleKeyUp}/>
         </div>
-        {this.props.addPin ? <a onClick={this.props.addPin}>Pin this comment</a> : null}
       </div>
     );
   }
