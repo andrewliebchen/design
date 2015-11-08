@@ -357,8 +357,10 @@ button {
   border-radius: $size / 2;
   background-color: $colorBrand;
   position: absolute;
+  transform: translate3d(-50%, -50%, 0);
 
   .comment & {
     position: static;
+    transform: translate3d(0, 0, 0);
   }
 }

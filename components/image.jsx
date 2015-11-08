@@ -1,14 +1,15 @@
+if(Meteor.isClient) {
+  Session.setDefault('pinning', false);
+}
+
 Image = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
     return {
-      image: Images.findOne()
+      image: Images.findOne(),
+      pinning: false
     };
-  },
-
-  handleAddPin() {
-    console.log("pin");
   },
 
   render() {
@@ -30,7 +31,7 @@ Image = React.createClass({
             {this.data.image.description ?
               <p>{this.data.image.description}</p>
             : null}
-            <CommentsList parentId={this.data.image._id} addPin={this.handleAddPin}/>
+            <CommentsList parentId={this.data.image._id} canPin/>
           </aside>
         </div>
       </div>

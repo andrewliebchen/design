@@ -22,7 +22,7 @@ Comments = {
   comment: string,
   created_at: string,
   parent: string,
-  pin: {
+  position: {
     x: number,
     y: number
   }
