@@ -33,6 +33,7 @@ body {
 }
 
 a {
+  cursor: pointer;
   color: $colorBrand;
   text-decoration: underline;
 
@@ -223,6 +224,7 @@ button {
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
 
   &,
   a {
@@ -236,19 +238,17 @@ button {
   right: 1em;
 }
 
-.image__container {
-  display: flex;
-  height: 100vh;
-}
 
 .image__main {
   flex: 3;
+  padding: 1em;
   position: relative;
 }
 
 .image__aside {
   flex: 1;
   padding: 0 1em;
+  background-color: darken($colorGray, 80%);
 }
 
 .image-uploader {
@@ -334,8 +334,8 @@ button {
   }
 }
 
-.image__pin-container {
-  display: block;
+.image__container {
+  width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -362,5 +362,19 @@ button {
   .comment & {
     position: static;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+.pin__toggle {
+  $size: 2em;
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
+  border: 3px solid $colorBrand;
+  display: inline-block;
+  user-select: none;
+
+  &.show-pins {
+    background-color: $colorBrand;
   }
 }
