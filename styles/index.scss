@@ -241,7 +241,6 @@ button {
 
 .image__main {
   flex: 3;
-  padding: 1em;
   position: relative;
 }
 
@@ -249,6 +248,10 @@ button {
   flex: 1;
   padding: 0 1em;
   background-color: darken($colorGray, 80%);
+}
+
+.image__header {
+  padding: 1em;
 }
 
 .image-uploader {
