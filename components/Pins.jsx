@@ -43,13 +43,19 @@ Pins = React.createClass({
         commentId: commentId,
         xPos: xPos,
         yPos: yPos
+      }, (err, success) => {
+        if(success) {
+          Session.set('pinning', null);
+        }
       });
     }
   },
 
   render() {
     return (
-      <div className="pins" onClick={this.handleAddPin}>
+      <div
+        className="pins"
+        onClick={this.handleAddPin}>
         {this.data.pins.map((pin, i) => {
           return <Pin key={i} x={pin.position.x} y={pin.position.y}/>
         })}
@@ -67,7 +73,7 @@ if(Meteor.isServer) {
         yPos: Number
       });
 
-      Comments.update(args.commentId, {
+      return Comments.update(args.commentId, {
         $set: {
           position: {
             x: args.xPos,

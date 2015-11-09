@@ -1,0 +1,24 @@
+.tab-container {
+  $borderWidth: 3px;
+  z-index: 1;
+  position: relative;
+  margin-bottom: -($borderWidth);
+
+  .tab {
+    display: inline-block;
+    line-height: 2;
+    cursor: pointer;
+    border-bottom: $borderWidth solid transparent;
+    font-weight: bold;
+    margin-left: 1em;
+
+    &:hover {
+      color: $colorBrand;
+    }
+  }
+
+  .active-tab {
+    color: $colorBrand;
+    border-color: $colorBrand;
+  }
+}
