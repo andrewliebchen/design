@@ -1,0 +1,59 @@
+.project {
+  position: relative;
+
+  + .project {
+    margin-top: 4em;
+  }
+}
+
+.project__body {
+  display: flex;
+}
+
+.project__description {
+  flex: 3;
+  padding: 0 2em 2em 0;
+}
+
+.project__aside {
+  flex: 1;
+  // padding-left: 1em;
+}
+
+.project__thumbnails {
+  @include prefixer(columns, 4);
+  @include prefixer(column-gap, $thumbnailOffset*2);
+  position: relative;
+  margin-bottom: 1em;
+  padding: 1em;
+  background-color: $colorGray;
+}
+
+.project__thumbnail {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: $thumbnailOffset;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.project__thumbnail__actions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5em;
+  background-color: rgba($colorBrand, 0.5);
+  color: white;
+
+  a {
+    color: inherit;
+  }
+}

@@ -1,0 +1,35 @@
+.comments {
+  .project & {
+    background-color: $colorGray;
+  }
+}
+
+.comment {
+  @include clearfix;
+  padding: 1em 0;
+
+  .project & {
+    padding: 1em;
+
+    + .comment {
+      border-top: 2px solid white;
+    }
+  }
+}
+
+.comment__avatar {
+  float: left;
+  margin-right: 1em;
+}
+
+.comment__body {
+  overflow: auto;
+}
+
+.comment__new {
+
+  .project & {
+    background-color: white;
+    border: 5px solid $colorGray;
+  }
+}

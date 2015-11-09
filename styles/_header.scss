@@ -1,0 +1,7 @@
+.header {
+  @include clearfix;
+}
+
+.header__brand {
+  float: left;
+}

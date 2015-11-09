@@ -1,0 +1,19 @@
+$colorBrand: blue;
+$colorGray: #f5f8fa;
+$colorGrayDark: darken($colorGray, 85%);
+
+$thumbnailOffset: 0.25em;
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+@mixin prefixer($property, $value) {
+     -moz-#{$property}: $value;
+  -webkit-#{$property}: $value;
+          #{$property}: $value;
+}
