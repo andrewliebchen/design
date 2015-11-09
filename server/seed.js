@@ -24,7 +24,8 @@ Comments = {
   parent: string,
   position: {
     x: number,
-    y: number
+    y: number,
+    type: neutral
   }
 }
 */
