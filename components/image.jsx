@@ -26,11 +26,11 @@ Image = React.createClass({
     return (
       <div className="image">
         <div className="image__main">
-          <header className="image__header">
-            <a className={classnames('pin__toggle', {'show-pins': this.state.showPins})}
-              onClick={this.handleShowPinToggle}/>
-          </header>
           <div className="image__container">
+            <header className="image__header">
+              <a className={classnames('pin__toggle', {'show-pins': this.state.showPins})}
+                onClick={this.handleShowPinToggle}/>
+            </header>
             <img src={this.data.image.src}/>
             {this.state.showPins ? <Pins parentId={this.data.image._id}/> : null}
           </div>
