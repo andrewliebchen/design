@@ -11,7 +11,6 @@ ImageUploader = React.createClass({
       if (error) {
         console.error('Error uploading', uploader.xhr.response);
       } else {
-        // Will have to check if file exists first
         Meteor.call('newImage', {
           name: file.name,
           filename: file.name,
@@ -50,7 +49,20 @@ if(Meteor.isServer) {
         uploaded_by: String
       });
 
-      return Images.insert(args);
+      let imageWithSameFileName = Images.find({
+        filename: args.filename,
+        parent: args.parent
+      }).fetch();
+      if(imageWithSameFileName.length > 0) {
+        return Images.update(imageWithSameFileName[0]._id, {
+          $set: {
+            src: args.src,
+            updated_at: Date.now()
+          }
+        });
+      } else {
+        return Images.insert(args);
+      }
     }
   });
 }
