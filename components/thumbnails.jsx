@@ -1,3 +1,5 @@
+// How to force update of thumbnails on upload?
+
 Thumbnails = React.createClass({
   mixins: [ReactMeteorData],
 
