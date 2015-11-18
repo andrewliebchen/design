@@ -10,6 +10,6 @@ Slingshot.createDirective('fileUploads', Slingshot.S3Storage, {
     return true;
   },
   key(file) {
-    return file.name;
+    return `${file.name}_${Date.now()}`;
   }
 });

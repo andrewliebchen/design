@@ -17,6 +17,7 @@ Thumbnails = React.createClass({
   },
 
   render() {
+    console.log(this.data.images);
     if (this.data.loading) {
       return <div>Loading...</div>
     }
