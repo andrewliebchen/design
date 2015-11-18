@@ -1,7 +1,3 @@
-if(Meteor.isClient) {
-  Session.setDefault('pinning', false);
-}
-
 Image = React.createClass({
   mixins: [ReactMeteorData],
 
