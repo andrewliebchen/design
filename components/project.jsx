@@ -87,17 +87,8 @@ Project = React.createClass({
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
         {this.state.editing ? this.renderEditing() : this.renderHeader()}
-        <Tabs
-          defaultTabNum={0}
-          tabNames={['Images','Comments']}>
-          <section>
-            {this.state.uploader ? <ImageUploader parentId={project._id}/> : null}
-            <Thumbnails parentId={project._id}/>
-          </section>
-          <section>
-            <CommentsList parentId={project._id}/>
-          </section>
-        </Tabs>
+        <ProjectChildren parentId={project._id}/>
+        {this.state.uploader ? <ImageUploader parentId={parentId}/> : null}
       </div>
     );
   }
