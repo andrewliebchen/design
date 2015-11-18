@@ -6,8 +6,10 @@ Image = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
+    let parentId = FlowRouter.getParam(':_id');
     return {
-      image: Images.findOne()
+      image: Images.findOne(),
+      comments: Comments.find({}, {sort: {created_at: 1}}).fetch()
     };
   },
 
@@ -42,10 +44,9 @@ Image = React.createClass({
           {this.data.image.description ?
             <p>{this.data.image.description}</p>
           : null}
-          <CommentsList parentId={this.data.image._id} canPin/>
+          <CommentsList comments={this.data.comments} parentId={this.data.image._id} canPin/>
         </aside>
         <a className="image__close" href="/">✖</a>
-
       </div>
     );
   }
