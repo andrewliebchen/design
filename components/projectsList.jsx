@@ -14,7 +14,7 @@ ProjectsList = React.createClass({
     if (this.data.loading) {
       return <div>Loading...</div>;
     }
-    
+
     return (
       <div className="projects">
         {this.data.projects.map((project, i) => {
