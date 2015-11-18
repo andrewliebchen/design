@@ -9,12 +9,20 @@
 .pin {
   $size: 1em;
   $margin: -($size / 2);
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
   width: $size;
   height: $size;
   border-radius: $size / 2;
   background-color: $colorBrand;
   position: absolute;
   margin: $margin 0 0 $margin;
+
+  &:hover,
+  &.is-hovered {
+    transform-origin: 50% 50%;
+    transform: scale(1.5);
+  }
 
   .comment & {
     position: static;
