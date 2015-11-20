@@ -1,0 +1,48 @@
+.thumbnail {
+  cursor: zoom-in;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+  + .thumbnail {
+    margin-top: $thumbnailOffset / 2;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($colorBrand, 0.5);
+    content: "";
+    opacity: 0;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.thumbnail__actions {
+  color: white;
+  display: none;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+
+  a {
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .thumbnail:hover & {
+    display: block;
+  }
+}

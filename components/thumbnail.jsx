@@ -9,6 +9,10 @@ Thumbnail = React.createClass({
     }
   },
 
+  handleImageClick() {
+    FlowRouter.go(`/images/${this.props.image._id}`);
+  },
+
   handleImageDelete() {
     Meteor.call('deleteImage', this.props.image._id);
   },
@@ -20,13 +24,10 @@ Thumbnail = React.createClass({
   render() {
     let {image} = this.props;
     return (
-      <div className="project__thumbnail" onMouseEnter={this.toggleActions} onMouseLeave={this.toggleActions}>
-        {this.state.actions ?
-          <div className="project__thumbnail__actions">
-            <span onClick={this.handleImageDelete}>Delete</span>
-            <a href={`/images/${image._id}`}>View</a>
-          </div>
-        : null}
+      <div className="thumbnail" onClick={this.handleImageClick}>
+        <div className="thumbnail__actions">
+          <a onClick={this.handleImageDelete}>Delete</a>
+        </div>
         <img src={image.src}/>
       </div>
     );
