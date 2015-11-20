@@ -1,5 +1,6 @@
 .tab-container {
   $borderWidth: 3px;
+  @extend %container;
   z-index: 1;
   position: relative;
   margin-bottom: -($borderWidth);

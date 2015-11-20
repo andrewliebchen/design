@@ -24,11 +24,13 @@ ProjectContent = React.createClass({
           `Images ${this.data.images.length}`,
           `Comments ${this.data.comments.length}`
         ]}>
-        <section className="project__content-pane">
+        <section className="project__content-pane slice">
           <Thumbnails images={this.data.images}/>
         </section>
-        <section className="project__content-pane">
-          <CommentsList comments={this.data.comments} parentId={parentId}/>
+        <section className="project__content-pane slice">
+          <div className="container">
+            <CommentsList comments={this.data.comments} parentId={parentId}/>
+          </div>
         </section>
       </Tabs>
     );
