@@ -1,8 +1,9 @@
 $colorBrand: blue;
-$colorGray: #f5f8fa;
-$colorGrayDark: darken($colorGray, 85%);
+$colorGray: #f7f7f7;
+$colorGrayDark: #444;
 
-$thumbnailOffset: 0.25em;
+$maxWidth: 70em;
+$thumbnailOffset: 0.5em;
 
 @mixin clearfix {
   &::after {

@@ -24,7 +24,6 @@ ProjectsList = React.createClass({
               project={project}/>
           );
         })}
-        <NewProject/>
       </div>
     );
   }

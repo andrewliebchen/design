@@ -116,7 +116,7 @@ button {
 }
 
 .wrapper {
-  max-width: 60em;
+  max-width: $maxWidth;
   margin: auto;
   padding: 1em 2em 2em;
 }

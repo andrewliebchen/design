@@ -17,7 +17,6 @@ SingleComment = React.createClass({
           {this.props.canPin ?
             this.props.comment.position ? <Pin/> : <a onClick={this.handleAddPin}>Pin this comment</a>
           : null}
-
           <p>{this.props.comment.comment}</p>
           <footer className="comment__footer">
             <small>{moment(this.props.comment.created_at).fromNow()}</small>
