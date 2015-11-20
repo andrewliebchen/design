@@ -26,35 +26,3 @@
   @include prefixer(column-gap, $thumbnailOffset);
   position: relative;
 }
-
-.project__thumbnail {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  width: 100%;
-
-  + .project__thumbnail {
-    margin-top: $thumbnailOffset / 2;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-}
-
-.project__thumbnail__actions {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.5em;
-  background-color: rgba($colorBrand, 0.5);
-  color: white;
-
-  a {
-    color: inherit;
-  }
-}
