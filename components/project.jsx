@@ -87,7 +87,7 @@ Project = React.createClass({
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
         {this.state.editing ? this.renderEditing() : this.renderHeader()}
-        <ProjectChildren parentId={project._id}/>
+        <ProjectContent parentId={project._id}/>
         {this.state.uploader ? <ImageUploader parentId={parentId}/> : null}
       </div>
     );

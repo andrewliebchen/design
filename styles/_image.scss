@@ -1,5 +1,5 @@
 .image {
-  background-color: $colorGrayDark;
+  background-color: darken($colorGrayDark, 10%);
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -39,7 +39,7 @@
 .image__aside {
   flex: 1;
   padding: 0 1em;
-  background-color: darken($colorGray, 80%);
+  background-color: $colorGrayDark;
   overflow-y: auto;
   overflow-x: hidden;
 }

@@ -17,16 +17,18 @@
 
 .project__aside {
   flex: 1;
-  // padding-left: 1em;
+}
+
+.project__content-pane {
+  margin: 0 -1em 1em;
+  padding: 1em;
+  background-color: $colorGray;
 }
 
 .project__thumbnails {
   @include prefixer(columns, 4);
-  @include prefixer(column-gap, $thumbnailOffset*2);
+  @include prefixer(column-gap, $thumbnailOffset);
   position: relative;
-  margin-bottom: 1em;
-  padding: 1em;
-  background-color: $colorGray;
 }
 
 .project__thumbnail {
@@ -34,7 +36,10 @@
   display: inline-block;
   position: relative;
   width: 100%;
-  margin-bottom: $thumbnailOffset;
+
+  + .project__thumbnail {
+    margin-top: $thumbnailOffset / 2;
+  }
 
   img {
     width: 100%;

@@ -4,7 +4,7 @@ Meteor.publish('projects', (id) => {
   return Projects.find({parent: id});
 });
 
-Meteor.publish('projectChildren', (id) => {
+Meteor.publish('projectContent', (id) => {
   check(id, String);
 
   return [

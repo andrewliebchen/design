@@ -18,7 +18,10 @@ Header = React.createClass({
     return (
       <header className="header">
         <a className="header__brand" href="/">Design</a>
-        <AccountsUIWrapper/>
+        <div className="header__actions">
+          <AccountsUIWrapper/>
+          <NewProject/>
+        </div>
       </header>
     );
   }

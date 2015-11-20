@@ -1,4 +1,4 @@
-ProjectChildren = React.createClass({
+ProjectContent = React.createClass({
   mixins: [ReactMeteorData],
 
   propTypes: {
@@ -6,10 +6,10 @@ ProjectChildren = React.createClass({
   },
 
   getMeteorData() {
-    let projectChildren = Meteor.subscribe('projectChildren', this.props.parentId);
+    let projectContent = Meteor.subscribe('projectContent', this.props.parentId);
 
     return {
-      loading: !projectChildren.ready(),
+      loading: !projectContent.ready(),
       images: Images.find({parent: this.props.parentId}, {sort: {created_at: 1}}).fetch(),
       comments: Comments.find({parent: this.props.parentId}, {sort: {created_at: 1}}).fetch()
     }
@@ -24,10 +24,10 @@ ProjectChildren = React.createClass({
           `Images ${this.data.images.length}`,
           `Comments ${this.data.comments.length}`
         ]}>
-        <section>
+        <section className="project__content-pane">
           <Thumbnails images={this.data.images}/>
         </section>
-        <section>
+        <section className="project__content-pane">
           <CommentsList comments={this.data.comments} parentId={parentId}/>
         </section>
       </Tabs>

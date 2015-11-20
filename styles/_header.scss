@@ -4,8 +4,19 @@
 
 .header__brand {
   float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.header__actions {
+  float: right;
 }
 
 .session__wrapper {
-  float: right;
+  display: inline-block;
+}
+
+.new-project {
+  display: inline-block;
 }
