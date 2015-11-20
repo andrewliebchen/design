@@ -1,0 +1,10 @@
+.slice {
+  @include clearfix;
+  padding: 0 1em;
+}
+
+%container,
+.container {
+  max-width: $containerWidth;
+  margin: auto;
+}

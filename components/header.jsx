@@ -16,11 +16,13 @@ AccountsUIWrapper = React.createClass({
 Header = React.createClass({
   render() {
     return (
-      <header className="header">
-        <a className="header__brand" href="/">Design</a>
-        <div className="header__actions">
-          <AccountsUIWrapper/>
-          <NewProject/>
+      <header className="header slice">
+        <div className="container">
+          <a className="header__brand" href="/">Design</a>
+          <div className="header__actions">
+            <AccountsUIWrapper/>
+            <NewProject/>
+          </div>
         </div>
       </header>
     );

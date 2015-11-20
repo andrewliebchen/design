@@ -1,12 +1,15 @@
 .header {
-  @include clearfix;
+  background-color: $colorBrand;
+  padding: 0.5em 0;
+  color: white;
 }
 
-.header__brand {
+a.header__brand {
   float: left;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.01em;
+  color: white;
 }
 
 .header__actions {

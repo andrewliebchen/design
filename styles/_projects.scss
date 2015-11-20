@@ -1,9 +1,6 @@
 .project {
   position: relative;
-
-  + .project {
-    margin-top: 4em;
-  }
+  margin-top: 4em;
 }
 
 .project__body {
@@ -20,13 +17,12 @@
 }
 
 .project__content-pane {
-  margin: 0 -1em 1em;
   padding: 1em;
   background-color: $colorGray;
 }
 
 .project__thumbnails {
-  @include prefixer(columns, 4);
+  @include prefixer(columns, 3);
   @include prefixer(column-gap, $thumbnailOffset);
   position: relative;
 }

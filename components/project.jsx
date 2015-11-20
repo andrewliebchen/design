@@ -86,7 +86,11 @@ Project = React.createClass({
         onDragEnter={this.handleDragStart}
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
-        {this.state.editing ? this.renderEditing() : this.renderHeader()}
+        <div className="slice">
+          <div className="container">
+            {this.state.editing ? this.renderEditing() : this.renderHeader()}
+          </div>
+        </div>
         <ProjectContent parentId={project._id}/>
         {this.state.uploader ? <ImageUploader parentId={parentId}/> : null}
       </div>
