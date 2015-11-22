@@ -1,15 +1,27 @@
-// How to force update of thumbnails on upload?
-
 Thumbnails = React.createClass({
+  mixins: [ReactMeteorData],
+
   propTypes: {
-    images: React.PropTypes.array.isRequired
+    parentId: React.PropTypes.string.isRequired
+  },
+
+  getMeteorData() {
+    let thumbnails = Meteor.subscribe('thumbnails', this.props.parentId);
+
+    return {
+      loading: !thumbnails.ready(),
+      images: Images.find({parent: this.props.parentId}, {sort: {created_at: 1}}).fetch(),
+    }
   },
 
   render() {
-    let {images} = this.props;
+    if (this.data.loading) {
+      return <div>Loading...</div>;
+    }
+    
     return (
       <div className="project__thumbnails">
-        {images.length > 0 ? images.map((image, i) => {
+        {this.data.images.length > 0 ? this.data.images.map((image, i) => {
           return <Thumbnail key={i} image={image}/>;
         }) : <span>No images</span>}
       </div>

@@ -6,9 +6,11 @@
 
 html,
 body {
+  $checkerboardSize: 1.5em;
+  @include checkerboard($colorGray, white, 1.5em);
   font-family: "work sans", "helvetica neue", helvetica, arial, sans-serif;
   font-size: 16px;
-  line-height: 1.3;
+  line-height: 1.5;
   color: $colorGrayDark;
 }
 
@@ -112,5 +114,30 @@ button {
 
   &__body {
     overflow: auto;
+  }
+}
+
+.block {
+  height: $blockSize;
+  width: $blockSize;
+  display: inline-block;
+  line-height: $blockSize;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover,
+  &.is-selected {
+    background-color: $colorGrayMid;
+  }
+
+  &.is-selected {
+    cursor: default;
+  }
+
+  &.brand {
+    background-color: $colorBrand;
+    color: white;
+    border: 0;
+    fill: white;
   }
 }

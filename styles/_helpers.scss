@@ -1,9 +1,13 @@
 $colorBrand: blue;
-$colorGray: #f7f7f7;
-$colorGrayDark: #444;
+$colorGray: #f5f8fa;
+$colorGrayMid: darken($colorGray, 10%);
+$colorGrayDark: darken($colorGray, 70%);
 
 $containerWidth: 60em;
-$thumbnailOffset: 0.5em;
+$blockSize: 4em;
+$panelWidth: 1/3 * 100vw;
+
+$panelTransition: transform 0.15s ease-in-out;
 
 @mixin clearfix {
   &::after {
@@ -18,3 +22,11 @@ $thumbnailOffset: 0.5em;
   -webkit-#{$property}: $value;
           #{$property}: $value;
 }
+
+@mixin checkerboard($color1, $color2, $size) {
+  $gradient: linear-gradient(45deg, $color1 25%, transparent 25%, transparent 75%, $color1 75%, $color1);
+  background-image: $gradient, $gradient;
+  background-color: $color2;
+  background-size: $size $size;
+  background-position: 0 0, $size/2 $size/2;
+};

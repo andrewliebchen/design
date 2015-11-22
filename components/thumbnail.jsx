@@ -24,9 +24,12 @@ Thumbnail = React.createClass({
   render() {
     let {image} = this.props;
     return (
-      <div className="thumbnail" onClick={this.handleImageClick}>
-        <div className="thumbnail__actions">
-          <a onClick={this.handleImageDelete}>Delete</a>
+      <div className="thumbnail">
+        <div className="thumbnail__overlay" onClick={this.handleImageClick}>
+          <span className="thumbnail__overlay__label">View Image</span>
+          <div className="thumbnail__actions">
+            <a onClick={this.handleImageDelete}>Delete</a>
+          </div>
         </div>
         <img src={image.src}/>
       </div>

@@ -4,13 +4,10 @@ Meteor.publish('projects', (id) => {
   return Projects.find({parent: id});
 });
 
-Meteor.publish('projectContent', (id) => {
+Meteor.publish('thumbnails', (id) => {
   check(id, String);
 
-  return [
-    Images.find({parent: id}),
-    Comments.find({parent: id})
-  ];
+  return Images.find({parent: id});
 });
 
 Meteor.publish('singleProject', (id) => {

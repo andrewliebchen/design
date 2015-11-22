@@ -1,0 +1,38 @@
+.panel__container {
+  transition: $panelTransition;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: $panelWidth;
+  background-color: white;
+  z-index: 99;
+}
+
+.panel__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.panel__content {
+  padding: 1em;
+  position: absolute;
+  top: $blockSize;
+  bottom: 4.75em;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: $colorGray;
+}
+
+.panel__background {
+  @include checkerboard(rgba($colorGrayMid, 0.1), rgba($colorGrayDark, 0.6), 1.5em);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 98;
+}
