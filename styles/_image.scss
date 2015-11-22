@@ -1,11 +1,10 @@
 .image {
-  background-color: darken($colorGrayDark, 10%);
+  @include checkerboard($colorGrayDark, darken($colorGrayDark, 3%), 1.5em);
   height: 100vh;
   width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
 
   &,
   a {
@@ -13,38 +12,40 @@
   }
 }
 
-.image__close {
+.image__wrapper {
+  display: flex;
   position: absolute;
-  top: 1em;
-  right: 1em;
+  top: $blockSize;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .image__container {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  flex: 2;
+  position: relative;
 
   img {
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
   }
 }
 
-.image__main {
-  flex: 3;
+.image__sidebar {
+  flex: 1;
+  background-color: $colorGrayDark;
   position: relative;
 }
 
-.image__aside {
-  flex: 1;
-  padding: 0 1em;
-  background-color: $colorGrayDark;
-  overflow-y: auto;
+.image__sidebar__content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 4.75em;
   overflow-x: hidden;
-}
-
-.image__header {
+  overflow-y: auto;
   padding: 1em;
-  user-select: none;
 }

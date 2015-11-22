@@ -19,9 +19,9 @@ ProjectsList = React.createClass({
       <div className="projects">
         {this.data.projects.map((project, i) => {
           return (
-            <Project
-              key={i}
-              project={project}/>
+            <div key={i}>
+              <a href={`/projects/${project._id}`}>{project.name}</a>
+            </div>
           );
         })}
       </div>

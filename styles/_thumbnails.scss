@@ -4,30 +4,42 @@
   position: relative;
   width: 100%;
 
-  + .thumbnail {
-    margin-top: $thumbnailOffset / 2;
-  }
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba($colorBrand, 0.5);
-    content: "";
-    opacity: 0;
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
-
   img {
     width: 100%;
     height: auto;
     display: block;
   }
+}
+
+.thumbnail__overlay {
+  @include checkerboard(rgba($colorBrand, 0.2), rgba($colorBrand, 0.5), 1.5em);
+  bottom: 0;
+  color: $colorGray;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+
+  .thumbnail:hover & {
+    opacity: 1;
+  }
+}
+
+.thumbnail__overlay__label {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.01em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  transform: translate3d(-50%, -50%, 0);
+  border: 3px solid;
+  color: inherit;
+  padding: 0.5em 1em;
 }
 
 .thumbnail__actions {

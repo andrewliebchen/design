@@ -1,25 +1,22 @@
 .header {
-  background-color: $colorBrand;
-  padding: 0.5em 0;
-  color: white;
+  line-height: $blockSize;
+  display: flex;
+  align-content: stretch;
+  background-color: $colorGray;
+  position: relative;
 }
 
-a.header__brand {
-  float: left;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: white;
-}
-
-.header__actions {
-  float: right;
-}
-
-.session__wrapper {
+.header__title {
   display: inline-block;
+  margin: 0;
+  flex: 1;
+  padding-left: 1em;
 }
 
-.new-project {
-  display: inline-block;
+.project__header {
+  background-color: $colorGray;
+}
+
+.image__header {
+  background-color: darken($colorGrayDark, 6%);
 }
