@@ -1,0 +1,43 @@
+$loadingSize: 4em;
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.loading {
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: $loadingSize;
+}
+
+.loading-element {
+  animation: pulse 0.4s ease-in-out alternate infinite;
+  background-color: $colorGrayMid;
+  float: left;
+  height: $loadingSize / 2;
+  width: $loadingSize / 2;
+
+  &__1 {
+    animation-delay: 0.1s;
+    background-color: darken($colorGrayMid, 10%);
+  }
+
+  &__2 {
+    animation-delay: 0.15s;
+    background-color: darken($colorGrayMid, 10%);
+  }
+
+  &__3 {
+    animation-delay: 0.2s;
+    background-color: $colorGrayMid;
+  }
+}
