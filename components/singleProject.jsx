@@ -49,7 +49,9 @@ SingleProject = React.createClass({
           <a className="block brand" href="/">💅</a>
           <h2 className="header__title">{project.name}</h2>
           <PanelNav onClick={this.handlePanelOpen}/>
-          <a className="add-project block brand">+</a>
+          <a className="add-project block brand">
+            <Icon type="plus"/>
+          </a>
         </header>
         <Thumbnails parentId={projectId}/>
         {this.state.uploader ? <ImageUploader parentId={projectId}/> : null}
