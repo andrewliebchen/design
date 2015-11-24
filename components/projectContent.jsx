@@ -17,6 +17,11 @@ ProjectContent = React.createClass({
 
   render() {
     let {parentId} = this.props;
+    
+    if (this.data.loading) {
+      return <Loading/>;
+    }
+
     return (
       <Tabs
         defaultTabNum={0}

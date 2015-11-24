@@ -16,9 +16,9 @@ Thumbnails = React.createClass({
 
   render() {
     if (this.data.loading) {
-      return <div>Loading...</div>;
+      return <Loading/>;
     }
-    
+
     return (
       <div className="project__thumbnails">
         {this.data.images.length > 0 ? this.data.images.map((image, i) => {

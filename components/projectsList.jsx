@@ -12,7 +12,7 @@ ProjectsList = React.createClass({
 
   render() {
     if (this.data.loading) {
-      return <div>Loading...</div>;
+      return <Loading/>;
     }
 
     return (
