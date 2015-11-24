@@ -52,10 +52,6 @@ Pins = React.createClass({
   },
 
   render() {
-    if (this.data.loading) {
-      return <Loading/>;
-    }
-    
     return (
       <div
         className="pins"

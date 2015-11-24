@@ -1,6 +1,6 @@
 const _ = lodash;
 const contentTypes = ['comments', 'settings'];
-const contentLabels = ['💭', '⚙']
+const contentLabels = [<Icon type="comments"/>, <Icon type="settings"/>]
 
 PanelNav = React.createClass({
   propTypes: {

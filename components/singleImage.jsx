@@ -34,8 +34,12 @@ Image = React.createClass({
               onClick={this.handleShowPinToggle}/>
           </div>
           <h2 className="header__title">{image.name}</h2>
-          <a className={`block${this.state.sidebar ? ' is-selected' : null}`} onClick={this.handleSidebarToggle}>💭</a>
-          <a className="block" href={`../projects/${image.parent}`}>╳</a>
+          <a className={`block${this.state.sidebar ? ' is-selected' : ''}`} onClick={this.handleSidebarToggle}>
+            <Icon type="comments"/>
+          </a>
+          <a className="block" href={`../projects/${image.parent}`}>
+            <Icon type="close"/>
+          </a>
         </header>
         <div className="image__wrapper">
           <div className="image__container">

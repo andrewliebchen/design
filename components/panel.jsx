@@ -12,7 +12,9 @@ Panel = React.createClass({
         <aside className="panel__container">
           <header className="panel__header">
             <PanelNav onClick={open} selected={selected}/>
-            <a className="panel__close block" onClick={close}>👉</a>
+            <a className="panel__close block" onClick={close}>
+              <Icon type="close"/>
+            </a>
           </header>
           {this.props.children}
         </aside>

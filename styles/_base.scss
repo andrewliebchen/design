@@ -124,6 +124,8 @@ button {
   line-height: $blockSize;
   text-align: center;
   text-decoration: none;
+  overflow: hidden;
+  fill: $colorGrayDark;
 
   &:hover,
   &.is-selected {
@@ -139,5 +141,9 @@ button {
     color: white;
     border: 0;
     fill: white;
+  }
+
+  svg {
+    margin: 1em;
   }
 }
