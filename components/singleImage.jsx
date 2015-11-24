@@ -29,9 +29,10 @@ Image = React.createClass({
     return (
       <div className="image">
         <header className="header image__header">
-          <a
-            className={classnames('pin__toggle', {'show-pins': this.state.pins})}
-            onClick={this.handleShowPinToggle}/>
+          <div className="block">
+            <a className={classnames('pin__toggle', {'show-pins': this.state.pins})}
+              onClick={this.handleShowPinToggle}/>
+          </div>
           <h2 className="header__title">{image.name}</h2>
           <a className={`block${this.state.sidebar ? ' is-selected' : null}`} onClick={this.handleSidebarToggle}>💭</a>
           <a className="block" href={`../projects/${image.parent}`}>╳</a>
