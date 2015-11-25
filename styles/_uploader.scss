@@ -1,21 +1,29 @@
 .image-uploader {
-  border: 2px dashed;
-  position: absolute;
+  position: fixed;
   z-index: 1;
-  top: -1em;
-  left: -1em;
-  bottom: -1em;
-  right: -1em;
-  background-color: rgba(white, 0.7);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba($colorBrand, 0.7);
   padding: 3em;
   text-align: center;
-  color: $colorBrand;
+  color: $colorGray;
 }
 
 .image-uploader__message {
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   font-size: 1.5em;
+}
+
+.image-uploader__close {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  fill: $colorGray;
 }
