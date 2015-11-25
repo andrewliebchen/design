@@ -4,7 +4,6 @@ App = React.createClass({
       <div className="wrapper">
         {Meteor.user() ?
           <span>
-            <Header/>
             <ProjectsList/>
           </span>
         :

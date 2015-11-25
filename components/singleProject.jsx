@@ -105,7 +105,7 @@ if(Meteor.isServer) {
     editProjectName(args) {
       check(args, {
         id: String,
-        name: String,
+        name: String
       });
 
       return Projects.update(args.id, {
