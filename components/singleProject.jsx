@@ -1,3 +1,5 @@
+const CSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 SingleProject = React.createClass({
   mixins: [ReactMeteorData],
 
@@ -32,7 +34,8 @@ SingleProject = React.createClass({
     this.setState({uploader: true});
   },
 
-  handleDragEnd() {
+  handleDragEnd(event) {
+    event.stopPropagation();
     this.setState({uploader: false});
   },
 
@@ -54,7 +57,7 @@ SingleProject = React.createClass({
           </a>
         </header>
         <Thumbnails parentId={projectId}/>
-        {this.state.uploader ? <ImageUploader parentId={projectId}/> : null}
+        {this.state.uploader ? <ImageUploader parentId={projectId} close={this.handleDragEnd}/> : null}
         {this.state.panel ?
           <Panel
             open={this.handlePanelOpen}

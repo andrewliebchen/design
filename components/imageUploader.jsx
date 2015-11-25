@@ -1,6 +1,7 @@
 ImageUploader = React.createClass({
   propTypes: {
-    parentId: React.PropTypes.string.isRequired
+    parentId: React.PropTypes.string.isRequired,
+    close: React.PropTypes.func
   },
 
   handleImageUpload(files) {
@@ -31,6 +32,9 @@ ImageUploader = React.createClass({
         onDrop={this.handleImageUpload}
         multiple={false}
         accept="image/*">
+        <a className="image-uploader__close" onClick={this.props.close}>
+          <Icon type="close"/>
+        </a>
         <strong className="image-uploader__message">Drop image to add to this project</strong>
       </Dropzone>
     );
