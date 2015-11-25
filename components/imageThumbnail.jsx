@@ -24,7 +24,7 @@ Thumbnail = React.createClass({
   render() {
     let {image} = this.props;
     return (
-      <div className="thumbnail">
+      <div className="thumbnail thumbnail_image">
         <div className="thumbnail__overlay" onClick={this.handleImageClick}>
           <span className="thumbnail__overlay__label">View Image</span>
           <div className="thumbnail__actions">

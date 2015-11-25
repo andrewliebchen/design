@@ -20,7 +20,7 @@ Thumbnails = React.createClass({
     }
 
     return (
-      <div className="project__thumbnails">
+      <div className="thumbnails thumbnails_image">
         {this.data.images.length > 0 ? this.data.images.map((image, i) => {
           return <Thumbnail key={i} image={image}/>;
         }) : <span>No images</span>}

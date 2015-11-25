@@ -17,12 +17,29 @@ ProjectsList = React.createClass({
 
     return (
       <div className="projects">
-        {this.data.projects.map((project, i) => {
-          return (
-            <ProjectThumbnail project={project} key={i}/>
-          );
-        })}
+        <header className="header project__header">
+          <a className="block brand" href="/">💅</a>
+          <h2 className="header__title">Projects</h2>
+          <a className="add-project block brand">
+            <Icon type="plus"/>
+          </a>
+        </header>
+        <div className="thumbnails thumbnails_project">
+          {this.data.projects.map((project, i) => {
+            return (
+              <ProjectThumbnail project={project} key={i}/>
+            );
+          })}
+        </div>
       </div>
     );
   }
 });
+
+if(Meteor.isClient) {
+  FlowRouter.route('/', {
+    action() {
+      ReactLayout.render(ProjectsList);
+    }
+  });
+}
