@@ -18,10 +18,6 @@ SingleProject = React.createClass({
     };
   },
 
-  handleDelete() {
-    Meteor.call('deleteProject', this.props.project._id);
-  },
-
   handlePanelOpen(panelName) {
     this.setState({panel: panelName});
   },
@@ -80,7 +76,7 @@ SingleProject = React.createClass({
                   parentId={projectId}/>
               : null}
               {this.state.panel === 'settings' ?
-                <SettingsPanel/>
+                <SettingsPanel project={project}/>
               : null}
             </div>
           </Panel>
@@ -106,10 +102,6 @@ if(Meteor.isClient) {
 
 if(Meteor.isServer) {
   Meteor.methods({
-    deleteProject(id) {
-      Projects.remove(id);
-    },
-
     editProjectName(args) {
       check(args, {
         id: String,
