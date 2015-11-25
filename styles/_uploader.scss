@@ -5,25 +5,25 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba($colorBrand, 0.7);
+  background-color: rgba($colorBrand, 0.9);
   padding: 3em;
   text-align: center;
   color: $colorGray;
 }
 
 .image-uploader__message {
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .image-uploader__close {
   position: absolute;
-  top: 2em;
-  right: 2em;
+  top: 1em;
+  right: 1em;
   fill: $colorGray;
 }
