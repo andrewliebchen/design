@@ -6,30 +6,16 @@ InlineEdit = React.createClass({
     onChange: React.PropTypes.func
   },
 
-  getInitialState() {
-    return {
-      editing: false
-    };
-  },
-
-  handleToggleEdit() {
-    this.setState({editing: !this.state.editing});
-  },
-
   render(){
-    if(this.state.editing) {
-      return(
-        <span
-          className="content-editable"
-          onInput={this.emitChange}
-          onBlur={this.emitChange}
-          contentEditable={this.state.editing}
-          autoFocus
-          dangerouslySetInnerHTML={{__html: this.props.html}}/>
-      )
-    }
-
-    return <span>{this.props.html} <a onClick={this.handleToggleEdit}>edit</a></span>;
+    return(
+      <span
+        className="inline-edit"
+        onInput={this.emitChange}
+        onBlur={this.emitChange}
+        contentEditable
+        autoFocus
+        dangerouslySetInnerHTML={{__html: this.props.html}}/>
+    );
   },
 
   shouldComponentUpdate(nextProps){

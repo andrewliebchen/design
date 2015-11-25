@@ -17,6 +17,7 @@ body {
 a {
   cursor: pointer;
   color: $colorBrand;
+  fill: $colorBrand;
   text-decoration: underline;
 
   &:hover {
@@ -25,6 +26,11 @@ a {
 
   &:visited {
     color: desaturate($colorBrand, 20%);
+  }
+
+  svg {
+    position: relative;
+    top: 2px;
   }
 }
 
@@ -145,5 +151,15 @@ button {
 
   svg {
     margin: 1em;
+  }
+}
+
+.inline-edit {
+  transition: all 0.1s ease-in-out;
+
+  &:focus {
+    border-bottom: 2px solid $colorBrand;
+    background-color: rgba($colorBrand, 0.1);
+    outline: 0;
   }
 }
