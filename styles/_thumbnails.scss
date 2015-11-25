@@ -53,6 +53,10 @@
   a {
     color: inherit;
     cursor: pointer;
+
+    svg {
+      fill: $colorGray;
+    }
   }
 
   .thumbnail:hover & {

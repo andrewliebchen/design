@@ -93,6 +93,14 @@ button {
   &:active {
     background-color: darken($colorBrand, 10%);
   }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.negative {
+    background-color: $colorNegative;
+  }
 }
 
 input,
