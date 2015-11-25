@@ -19,12 +19,16 @@
   padding: 1em;
   position: absolute;
   top: $blockSize;
-  bottom: 4.75em;
+  bottom: 0;
   left: 0;
   right: 0;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: $colorGray;
+
+  &_comment {
+    bottom: 4.75em;
+  }
 }
 
 .panel__background {

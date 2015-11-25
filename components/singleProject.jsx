@@ -63,16 +63,16 @@ SingleProject = React.createClass({
             open={this.handlePanelOpen}
             close={this.handlePanelClose}
             selected={this.state.panel}>
-            <div className="panel__content">
+            <div>
               {this.state.panel === 'comments' ?
-                <span>
-                  <div className="project__description">
-                    {project.description}
-                  </div>
-                  <CommentsList comments={comments} parentId={projectId}/>
-                </span>
+                <CommentsPanel
+                  description={project.description}
+                  comments={comments}
+                  parentId={projectId}/>
               : null}
-              {this.state.panel === 'settings' ? 'Settings' : null}
+              {this.state.panel === 'settings' ?
+                <SettingsPanel/>
+              : null}
             </div>
           </Panel>
         : null}
