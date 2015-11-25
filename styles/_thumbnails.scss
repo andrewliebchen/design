@@ -1,3 +1,18 @@
+.thumbnails {
+  @include prefixer(columns, 3);
+  @include prefixer(column-gap, 0);
+  position: relative;
+  overflow: hidden;
+
+  &.thumbnails_project {
+
+  }
+
+  &.thumbnails_image {
+
+  }
+}
+
 .thumbnail {
   cursor: zoom-in;
   display: inline-block;
@@ -8,6 +23,14 @@
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  &.thumbnail_project {
+
+  }
+
+  &.thumnbnail_image {
+
   }
 }
 
@@ -61,5 +84,35 @@
 
   .thumbnail:hover & {
     display: block;
+  }
+}
+
+.thumbnail__no-image {
+  $width: 1/3 * 100vw;
+  min-width: $width;
+  min-height: $width * 3 / 4;
+  width: 100%;
+  background-color: $colorGrayMid;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    fill: $colorGray;
+  }
+}
+
+.thumbnail__title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3em 0.5em 0.5em;
+  margin: 0;
+  background-image: linear-gradient(to top, $colorGrayMid, rgba($colorGrayMid, 0));
+
+  .thumbnail:hover & {
+    opacity: 0;
   }
 }
