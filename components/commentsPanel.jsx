@@ -1,7 +1,7 @@
 CommentsPanel = React.createClass({
   propTypes: {
     description: React.PropTypes.string,
-    comments: React.PropTypes.object,
+    comments: React.PropTypes.array,
     parentId: React.PropTypes.string
   },
 
@@ -10,7 +10,7 @@ CommentsPanel = React.createClass({
     return (
       <div className="panel__content panel__content_comments">
         <div className="project__description">
-          {description}
+          <InlineEdit html={description} onChange={this.handleEditTitle}/>
         </div>
         <CommentsList comments={comments} parentId={parentId}/>
       </div>

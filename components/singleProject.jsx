@@ -39,6 +39,10 @@ SingleProject = React.createClass({
     this.setState({uploader: false});
   },
 
+  handleEditTitle(event) {
+    console.log(event.target.value);
+  },
+
   render() {
     let {project, comments} = this.data;
     let projectId = project._id;
@@ -50,7 +54,9 @@ SingleProject = React.createClass({
         onDrop={this.handleDragEnd}>
         <header className="header project__header">
           <a className="block brand" href="/">💅</a>
-          <h2 className="header__title">{project.name}</h2>
+          <h2 className="header__title">
+            <InlineEdit html={project.name} onChange={this.handleEditTitle}/>
+          </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
           <a className="add-project block brand" onClick={this.handleDragStart}>
             <Icon type="plus"/>
