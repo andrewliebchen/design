@@ -39,8 +39,11 @@ SingleProject = React.createClass({
     this.setState({uploader: false});
   },
 
-  handleEditTitle(event) {
-    console.log(event.target.value);
+  handleEditName(event) {
+    Meteor.call('editProjectName', {
+      id: this.data.project._id,
+      name: event.target.value
+    });
   },
 
   render() {
@@ -55,7 +58,7 @@ SingleProject = React.createClass({
         <header className="header project__header">
           <a className="block brand" href="/">💅</a>
           <h2 className="header__title">
-            <InlineEdit html={project.name} onChange={this.handleEditTitle}/>
+            <InlineEdit html={project.name} onChange={this.handleEditName}/>
           </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
           <a className="add-project block brand" onClick={this.handleDragStart}>
@@ -107,17 +110,15 @@ if(Meteor.isServer) {
       Projects.remove(id);
     },
 
-    editProject(args) {
+    editProjectName(args) {
       check(args, {
         id: String,
         name: String,
-        description: String
       });
 
       return Projects.update(args.id, {
         $set: {
-          name: args.name,
-          description: args.description
+          name: args.name
         }
       });
     }
