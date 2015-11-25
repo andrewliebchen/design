@@ -20,9 +20,7 @@ ProjectsList = React.createClass({
         <header className="header project__header">
           <a className="block brand" href="/">💅</a>
           <h2 className="header__title">Projects</h2>
-          <a className="add-project block brand">
-            <Icon type="plus"/>
-          </a>
+          <NewProject/>
         </header>
         <div className="thumbnails thumbnails_project">
           {this.data.projects.map((project, i) => {
