@@ -28,3 +28,9 @@ Meteor.publish('singleImage', (id) => {
     Comments.find({parent: id})
   ];
 });
+
+Meteor.publish('person', (id) => {
+  check(id, String);
+
+  return Meteor.users.find({_id: id});
+});

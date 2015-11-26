@@ -1,6 +1,6 @@
 Layout = React.createClass({
   propTypes: {
-    content: React.PropTypes.func.isRequired
+    content: React.PropTypes.object.isRequired
   },
 
   render() {

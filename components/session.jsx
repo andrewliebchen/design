@@ -13,7 +13,7 @@ const SessionMenu = React.createClass({
           <Icon type="home"/>
           <span>Home</span>
         </a>
-        <a className="session__menu__item">
+        <a className="session__menu__item" href="/settings">
           <Icon type="person"/>
           <span>Account Settings</span>
         </a>
