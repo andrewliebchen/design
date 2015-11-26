@@ -37,7 +37,9 @@ ProjectsList = React.createClass({
 if(Meteor.isClient) {
   FlowRouter.route('/', {
     action() {
-      ReactLayout.render(ProjectsList);
+      ReactLayout.render(Layout, {
+        content: <ProjectsList/>
+      });
     }
   });
 }

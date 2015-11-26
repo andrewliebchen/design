@@ -94,7 +94,9 @@ if(Meteor.isClient) {
 
     action(params) {
       FlowRouter.subsReady('singleProject', () => {
-        ReactLayout.render(SingleProject);
+        ReactLayout.render(Layout, {
+          content: <SingleProject/>
+        });
       });
     }
   });
