@@ -52,7 +52,7 @@ SingleProject = React.createClass({
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
         <header className="header project__header">
-          <a className="block brand" href="/">💅</a>
+          <Session/>
           <h2 className="header__title">
             <InlineEdit html={project.name} onChange={this.handleEditName}/>
           </h2>

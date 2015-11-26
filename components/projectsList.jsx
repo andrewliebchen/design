@@ -18,7 +18,7 @@ ProjectsList = React.createClass({
     return (
       <div className="projects">
         <header className="header project__header">
-          <a className="block brand" href="/">💅</a>
+          <Session/>
           <h2 className="header__title">Projects</h2>
           <NewProject/>
         </header>

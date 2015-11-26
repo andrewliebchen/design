@@ -11,10 +11,12 @@ NewProject = React.createClass({
 
   render() {
     return (
-      <a className="add-project block brand" onClick={this.handleToggleForm}>
-        <Icon type="plus"/>
+      <div className="new-project">
+        <a className="block brand" onClick={this.handleToggleForm}>
+          <Icon type="plus"/>
+        </a>
         {this.state.form ? <ProjectForm/> : null}
-      </a>
+      </div>
     );
   }
 });
