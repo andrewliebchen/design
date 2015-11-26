@@ -70,7 +70,9 @@ if(Meteor.isClient) {
 
     action(params) {
       FlowRouter.subsReady('singleImage', () => {
-        ReactLayout.render(Image);
+        ReactLayout.render(Layout, {
+          content: <Image/>
+        });
       });
     }
   });
