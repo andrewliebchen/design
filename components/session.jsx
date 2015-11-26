@@ -1,19 +1,8 @@
-const AccountsUIWrapper = React.createClass({
-  componentDidMount() {
-    this.view = Blaze.render(Blaze.Template.loginButtons,
-      React.findDOMNode(this.refs.container));
-  },
-
-  componentWillUnmount() {
-    Blaze.remove(this.view);
-  },
-
-  render() {
-    return <span className="session__wrapper" ref="container" />;
-  }
-});
-
 const SessionMenu = React.createClass({
+  handleLogout() {
+    Meteor.logout();
+  },
+
   render() {
     return (
       <div className="session__menu">
@@ -28,7 +17,7 @@ const SessionMenu = React.createClass({
           <Icon type="plus"/>
           <span>Account Settings</span>
         </a>
-        <a className="session__menu__item">
+        <a className="session__menu__item" onClick={this.handleLogout}>
           <Icon type="plus"/>
           <span>Logout</span>
         </a>
