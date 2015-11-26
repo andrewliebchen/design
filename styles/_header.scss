@@ -1,9 +1,13 @@
+$headerShadow: 0 0 3px rgba(black, 0.2), 0 0 10px rgba(black, 0.1), 0 0 20px rgba(black, 0.1);
+
 .header {
   line-height: $blockSize;
   display: flex;
   align-content: stretch;
   background-color: $colorGray;
   position: relative;
+  // box-shadow: $headerShadow;
+  z-index: 99;
 }
 
 .header__title {
@@ -11,4 +15,52 @@
   margin: 0;
   flex: 1;
   padding-left: 1em;
+}
+
+.session {
+  display: inline-block;
+  @include prefixer(user-select, none);
+}
+
+.session__menu {
+  position: absolute;
+  z-index: 98;
+  top: $blockSize;
+  left: $blockSize;
+  background-color: $colorBrand;
+  padding: 0.5em;
+  color: $colorGray;
+  line-height: initial;
+  fill: $colorGray;
+  min-width: 10em;
+}
+
+.session__menu__item.session__menu__item {
+  color: inherit;
+  fill: inherit;
+  text-decoration: none;
+  padding: 0.5em 1em 0.5em 0.5em;
+  display: block;
+
+  &:hover {
+    color: inherit;
+    background-color: lighten($colorBrand, 15%);
+  }
+
+  svg {
+    float: left;
+    margin-right: 0.5em;
+    position: relative;
+    top: -1px
+  }
+
+  span {
+    line-height: 2;
+    overflow: auto;
+  }
+}
+
+.new-project {
+  display: inline-block;
+  height: $blockSize;
 }
