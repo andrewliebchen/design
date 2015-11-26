@@ -14,11 +14,11 @@ const SessionMenu = React.createClass({
           <span>Home</span>
         </a>
         <a className="session__menu__item">
-          <Icon type="plus"/>
+          <Icon type="person"/>
           <span>Account Settings</span>
         </a>
         <a className="session__menu__item" onClick={this.handleLogout}>
-          <Icon type="plus"/>
+          <Icon type="logout"/>
           <span>Logout</span>
         </a>
         {/*<AccountsUIWrapper/>*/}
