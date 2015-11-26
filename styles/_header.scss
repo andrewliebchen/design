@@ -35,17 +35,10 @@ $headerShadow: 0 0 3px rgba(black, 0.2), 0 0 10px rgba(black, 0.1), 0 0 20px rgb
   min-width: 10em;
 }
 
-.session__menu__item.session__menu__item {
-  color: inherit;
-  fill: inherit;
+.session__menu__item {
   text-decoration: none;
   padding: 0.5em 1em 0.5em 0.5em;
   display: block;
-
-  &:hover {
-    color: inherit;
-    background-color: lighten($colorBrand, 15%);
-  }
 
   svg {
     float: left;
@@ -57,6 +50,16 @@ $headerShadow: 0 0 3px rgba(black, 0.2), 0 0 10px rgba(black, 0.1), 0 0 20px rgb
   span {
     line-height: 2;
     overflow: auto;
+  }
+}
+
+a.session__menu__item {
+  color: inherit;
+  fill: inherit;
+  
+  &:hover {
+    color: inherit;
+    background-color: lighten($colorBrand, 15%);
   }
 }
 
