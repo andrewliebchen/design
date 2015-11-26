@@ -1,4 +1,6 @@
 ProjectThumbnail = React.createClass({
+  mixins: [DeleteProjectMixin],
+
   propTypes: {
     project: React.PropTypes.object.isRequired
   },
@@ -14,6 +16,7 @@ ProjectThumbnail = React.createClass({
         <div className="thumbnail__overlay" onClick={this.handleProjectClick}>
           <span className="thumbnail__overlay__label">View Project</span>
           <div className="thumbnail__actions">
+            <a onClick={this.handleDeleteProject}><Icon type="trash"/></a>
           </div>
         </div>
         {project.cover_image ?
