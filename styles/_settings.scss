@@ -19,14 +19,14 @@ $tabBorderWidth: 4px;
   @include prefixer(user-select, none);
   line-height: 4;
   background-color: white;
-  padding: 0 1em;
+  display: flex;
   border-bottom: $tabBorderWidth solid $colorGrayMid;
 }
 
 .tab {
   @include uppercase;
-  display: inline-block;
-  margin-right: 1em;
+  flex: 1;
+  text-align: center;
   cursor: pointer;
   border-bottom: $tabBorderWidth solid transparent;
   margin-bottom: -($tabBorderWidth);
