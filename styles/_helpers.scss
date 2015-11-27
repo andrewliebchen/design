@@ -31,3 +31,12 @@ $panelTransition: transform 0.15s ease-in-out;
   background-size: $size $size;
   background-position: 0 0, $size/2 $size/2;
 };
+
+@mixin uppercase($bold: true) {
+  @if $bold {
+    font-weight: bold;
+  }
+
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}

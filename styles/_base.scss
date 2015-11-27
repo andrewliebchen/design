@@ -4,6 +4,19 @@
   margin: 0;
 }
 
+@mixin selection {
+  background-color: $colorBrand;
+  color: white;
+}
+
+::-moz-selection {
+  @include selection;
+}
+
+::selection {
+  @include selection;
+}
+
 html,
 body {
   $checkerboardSize: 1.5em;
@@ -36,8 +49,7 @@ a {
 
 h1,
 h2 {
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  @include uppercase;
   margin-bottom: 1em;
 }
 
@@ -54,63 +66,6 @@ img {
   max-width: 100%;
   max-height: 100%;
   display: block;
-}
-
-label {
-  font-size: 0.75em;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-
-input,
-textarea {
-  color: inherit;
-  appearance: none;
-  border: 2px solid;
-  background-color: transparent;
-  padding: 0.25em 0.5em;
-  display: block;
-  width: 100%;
-}
-
-input {
-  line-height: 2em;
-}
-
-button {
-  appearance: none;
-  background-color: $colorBrand;
-  color: white;
-  font-weight: bold;
-  line-height: 2em;
-  border: 0;
-  padding: 0 1em;
-
-  &:hover {
-    background-color: lighten($colorBrand, 10%);
-  }
-
-  &:active {
-    background-color: darken($colorBrand, 10%);
-  }
-
-  &.full-width {
-    width: 100%;
-  }
-
-  &.negative {
-    background-color: $colorNegative;
-  }
-}
-
-input,
-textarea,
-button {
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba($colorBrand, 0.2);
-    border-color: $colorBrand;
-  }
 }
 
 .avatar {

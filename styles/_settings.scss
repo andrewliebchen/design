@@ -1,0 +1,42 @@
+$tabBorderWidth: 4px;
+
+.settings {
+
+}
+
+.settings__content {
+  background-color: $colorGray;
+  width: 40em;
+  margin: 2em auto;
+  border: 1px solid $colorGrayMid;
+}
+
+.settings__pane {
+  padding: 1em;
+}
+
+.tab-container {
+  @include prefixer(user-select, none);
+  line-height: 4;
+  background-color: white;
+  padding: 0 1em;
+  border-bottom: $tabBorderWidth solid $colorGrayMid;
+}
+
+.tab {
+  @include uppercase;
+  display: inline-block;
+  margin-right: 1em;
+  cursor: pointer;
+  border-bottom: $tabBorderWidth solid transparent;
+  margin-bottom: -($tabBorderWidth);
+
+  &:hover {
+    color: $colorBrand;
+  }
+}
+
+.active-tab {
+  border-color: $colorBrand;
+  color: $colorBrand;
+}

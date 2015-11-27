@@ -29,7 +29,7 @@ Meteor.publish('singleImage', (id) => {
   ];
 });
 
-Meteor.publish('person', (id) => {
+Meteor.publish('settings', (id) => {
   check(id, String);
 
   return Meteor.users.find({_id: id});
