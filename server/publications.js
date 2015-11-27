@@ -32,5 +32,14 @@ Meteor.publish('singleImage', (id) => {
 Meteor.publish('settings', (id) => {
   check(id, String);
 
-  return Meteor.users.find({_id: id});
+  return [
+    Meteor.users.find({_id: id}),
+    Teams.find({_id: Meteor.users.findOne(id).profile.team})
+  ];
+});
+
+Meteor.publish('teamMembers', (id) => {
+  check(id, String);
+
+  return Meteor.users.find({'profile.team': id});
 });

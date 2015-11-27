@@ -28,6 +28,11 @@ Comments = {
     type: neutral
   }
 }
+
+Teams = {
+  name: string,
+  admin: string
+}
 */
 
 const _ = lodash;
