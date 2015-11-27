@@ -2,7 +2,7 @@ ProjectsList = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    let projects = Meteor.subscribe('projects', Meteor.userId());
+    let projects = Meteor.subscribe('projects', Meteor.user().profile.team);
 
     return {
       loading: !projects.ready(),

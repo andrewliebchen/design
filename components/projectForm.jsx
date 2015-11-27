@@ -12,11 +12,11 @@ ProjectForm = React.createClass({
       description: projectDescription,
       created_at: Date.now(),
       created_by: Meteor.user()._id,
-      parent: Meteor.user()._id
+      parent: Meteor.user().profile.team
     }, (error, success) => {
       if(success) {
-        projectName = '';
-        projectDescription = '';
+        React.findDOMNode(this.refs.name).value = '';
+        React.findDOMNode(this.refs.description).value = '';
       }
     });
   },
@@ -24,11 +24,15 @@ ProjectForm = React.createClass({
   render() {
     let {project} = this.props;
     return (
-      <div>
-        <label>Name</label>
-        <input type="text" ref="name"/>
-        <label>Description</label>
-        <textarea ref="description"/>
+      <div className="new-project__form">
+        <div className="form-group">
+          <label>Name</label>
+          <input type="text" ref="name" required/>
+        </div>
+        <div className="form-group">
+          <label>Description</label>
+          <textarea ref="description"/>
+        </div>
         <button onClick={this.handleCreateProject}>Save</button>
       </div>
     );
