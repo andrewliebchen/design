@@ -68,3 +68,12 @@ a.session__menu__item {
   display: inline-block;
   height: $blockSize;
 }
+
+.new-project__form {
+  position: absolute;
+  top: $blockSize;
+  right: $blockSize;
+  background-color: $colorBrand;
+  width: 30em;
+  padding: 1em;
+}
