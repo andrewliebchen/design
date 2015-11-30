@@ -37,7 +37,7 @@
 }
 
 .panel__background {
-  @include checkerboard(rgba($colorGrayMid, 0.1), rgba($colorGrayDark, 0.6), 1.5em);
+  @include checkerboard(rgba($colorBrand, 0.3), rgba($colorBrand, 0.8), 1.5em);
   position: fixed;
   top: 0;
   bottom: 0;
