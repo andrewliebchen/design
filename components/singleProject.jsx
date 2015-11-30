@@ -77,9 +77,6 @@ Project = React.createClass({
             </div>
           </Panel>
         : null}
-        <a className="block brand large floater" onClick={this.handleDragStart}>
-          <Icon type="plus"/>
-        </a>
       </div>
     );
   }

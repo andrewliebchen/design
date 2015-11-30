@@ -36,7 +36,7 @@
 }
 
 .thumbnail__overlay {
-  @include checkerboard(rgba($colorBrand, 0.2), rgba($colorBrand, 0.5), 1.5em);
+  @include checkerboard(rgba($colorBrand, 0.1), rgba($colorBrand, 0.5), 1.5em);
   bottom: 0;
   color: $colorGray;
   left: 0;
