@@ -4,14 +4,9 @@ Meteor.publish('project', (id) => {
   return [
     Projects.find({_id: id}),
     Images.find({parent: id}),
-    Comments.find({parent: id})
+    Comments.find({parent: id}),
+    Meteor.users.find() // Probably need to only get users for this project?
   ];
-});
-
-Meteor.publish('thumbnails', (id) => {
-  check(id, String);
-
-  return Images.find({parent: id});
 });
 
 Meteor.publish('singleImage', (id) => {
@@ -21,19 +16,4 @@ Meteor.publish('singleImage', (id) => {
     Images.find({_id: id}),
     Comments.find({parent: id})
   ];
-});
-
-Meteor.publish('settings', (id) => {
-  check(id, String);
-
-  return [
-    Meteor.users.find({_id: id}),
-    Teams.find({_id: Meteor.users.findOne(id).profile.team})
-  ];
-});
-
-Meteor.publish('teamMembers', (id) => {
-  check(id, String);
-
-  return Meteor.users.find({'profile.team': id});
 });

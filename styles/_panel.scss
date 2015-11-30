@@ -9,22 +9,27 @@
   z-index: 99;
 }
 
+.panel__header {
+  padding: 1em;
+}
+
 .panel__close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1em;
+  right: 1em;
 }
 
 .panel__content {
   padding: 1em;
   position: absolute;
-  top: $blockSize;
-  bottom: 0;
+  top: 5em;
+  bottom: 5em;
   left: 0;
   right: 0;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: $colorGray;
+  color: $colorGrayDark;
 
   &_comment {
     bottom: 4.75em;
