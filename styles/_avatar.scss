@@ -1,0 +1,30 @@
+@mixin avatar($size) {
+  line-height: $size;
+
+  .avatar__image {
+    max-height: $size;
+    max-width: $size;
+    border-radius: $size / 2;
+  }
+}
+
+.avatar {
+  @include avatar(2em); // Default size
+
+  &.small {
+    @include avatar(1em);
+  }
+
+  &.large {
+    @include avatar($blockSize);
+  }
+}
+
+.avatar__image {
+  float: left;
+  margin-right: 0.5em;
+}
+
+.avatar__body {
+  overflow: auto;
+}

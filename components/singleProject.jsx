@@ -51,16 +51,12 @@ SingleProject = React.createClass({
         onDragEnter={this.handleDragStart}
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
-        <header className="header project__header">
-          <Session/>
+        <Header>
           <h2 className="header__title">
             <InlineEdit html={project.name} onChange={this.handleEditName}/>
           </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
-          <a className="add-project block brand" onClick={this.handleDragStart}>
-            <Icon type="plus"/>
-          </a>
-        </header>
+        </Header>
         <Thumbnails parentId={projectId}/>
         {this.state.uploader ? <ImageUploader parentId={projectId} close={this.handleDragEnd}/> : null}
         {this.state.panel ?
@@ -81,6 +77,9 @@ SingleProject = React.createClass({
             </div>
           </Panel>
         : null}
+        <a className="block brand large floater" onClick={this.handleDragStart}>
+          <Icon type="plus"/>
+        </a>
       </div>
     );
   }
