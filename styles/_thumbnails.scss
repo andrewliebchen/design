@@ -1,6 +1,6 @@
 .thumbnails {
   @include prefixer(columns, 3);
-  @include prefixer(column-gap, 0);
+  @include prefixer(column-gap, 1em);
   padding: 1em;
   position: relative;
   overflow: hidden;
@@ -19,19 +19,17 @@
   display: inline-block;
   position: relative;
   width: 100%;
+  margin-bottom: 0.5em;
+  border: 1px solid black;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 
   img {
     width: 100%;
     height: auto;
     display: block;
-  }
-
-  &.thumbnail_project {
-
-  }
-
-  &.thumnbnail_image {
-
   }
 }
 
@@ -62,9 +60,9 @@
   left: 50%;
   display: inline-block;
   transform: translate3d(-50%, -50%, 0);
-  border: 3px solid;
-  color: inherit;
+  color: $colorBrand;
   padding: 0.5em 1em;
+  background-color: $colorGray;
 }
 
 .thumbnail__actions {
@@ -74,12 +72,17 @@
   top: 1em;
   right: 1em;
 
-  a {
-    color: inherit;
+  .block {
     cursor: pointer;
 
     svg {
-      fill: $colorGray;
+      fill: $colorBrand;
+    }
+
+    &:hover {
+      svg {
+        fill: $colorGray;
+      }
     }
   }
 
