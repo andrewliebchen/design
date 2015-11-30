@@ -1,16 +1,4 @@
-Meteor.publish('projects', (id) => {
-  check(id, String);
-
-  return Projects.find({parent: id});
-});
-
-Meteor.publish('thumbnails', (id) => {
-  check(id, String);
-
-  return Images.find({parent: id});
-});
-
-Meteor.publish('singleProject', (id) => {
+Meteor.publish('project', (id) => {
   check(id, String);
 
   return [
@@ -18,6 +6,12 @@ Meteor.publish('singleProject', (id) => {
     Images.find({parent: id}),
     Comments.find({parent: id})
   ];
+});
+
+Meteor.publish('thumbnails', (id) => {
+  check(id, String);
+
+  return Images.find({parent: id});
 });
 
 Meteor.publish('singleImage', (id) => {

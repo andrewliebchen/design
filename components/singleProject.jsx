@@ -1,6 +1,6 @@
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-SingleProject = React.createClass({
+Project = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
@@ -86,15 +86,15 @@ SingleProject = React.createClass({
 });
 
 if(Meteor.isClient) {
-  FlowRouter.route('/projects/:_id', {
+  FlowRouter.route('/:_id', {
     subscriptions(params) {
-      this.register('singleProject', Meteor.subscribe('singleProject', params._id));
+      this.register('project', Meteor.subscribe('project', params._id));
     },
 
     action(params) {
-      FlowRouter.subsReady('singleProject', () => {
+      FlowRouter.subsReady('project', () => {
         ReactLayout.render(Layout, {
-          content: <SingleProject/>
+          content: <Project/>
         });
       });
     }
