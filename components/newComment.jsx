@@ -9,6 +9,7 @@ NewComment = React.createClass({
       Meteor.call('newComment', {
         comment: event.target.value,
         created_at: Date.now(),
+        created_by: Meteor.user()._id,
         parent: this.props.parentId
       }, (error, success) => {
         if(error) {
@@ -22,7 +23,7 @@ NewComment = React.createClass({
   render() {
     return (
       <div className="comment comment__new">
-        <img className="comment__avatar avatar__image" src={Meteor.user().profile.avatar_src}/>
+        <Avatar user={Meteor.user()} imageOnly/>
         <div className="comment__body">
           <input onKeyUp={this.handleKeyUp}/>
         </div>
@@ -37,6 +38,7 @@ if(Meteor.isServer) {
       check(args, {
         comment: String,
         created_at: Number,
+        created_by: String,
         parent: String
       });
 

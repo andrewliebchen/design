@@ -9,17 +9,19 @@ SingleComment = React.createClass({
   },
 
   render() {
+    let {comment, canPin} = this.props;
+    let commenter = Meteor.users.findOne(this.props.comment.created_by);
     return (
       <div className="comment">
-        <img className="comment__avatar avatar__image" src={Meteor.user().profile.avatar_src}/>
+        <Avatar user={commenter} imageOnly/>
         <div className="comment__body">
-          <h4>Andrew Liebchen</h4>
-          {this.props.canPin ?
-            this.props.comment.position ? <Pin/> : <a onClick={this.handleAddPin}>Pin this comment</a>
+          <h4>{commenter.profile.name}</h4>
+          {canPin ?
+            comment.position ? <Pin/> : <a onClick={this.handleAddPin}>Pin this comment</a>
           : null}
-          <p>{this.props.comment.comment}</p>
+          <p>{comment.comment}</p>
           <footer className="comment__footer">
-            <small>{moment(this.props.comment.created_at).fromNow()}</small>
+            <small>{moment(comment.created_at).fromNow()}</small>
           </footer>
         </div>
       </div>
