@@ -26,7 +26,7 @@ Thumbnail = React.createClass({
     return (
       <div className="thumbnail thumbnail_image">
         <div className="thumbnail__overlay" onClick={this.handleImageClick}>
-          <span className="thumbnail__overlay__label">View Image</span>
+          <Icon type="expand" size={5} className="thumbnail__overlay__label"/>
           <div className="thumbnail__actions">
             <a className="block" onClick={this.handleCoverImage}>
               <Icon type="pin"/>
