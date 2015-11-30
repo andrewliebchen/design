@@ -10,6 +10,7 @@ $headerShadow: 0 0 3px rgba($colorGrayDark, 0.2), 0 0 10px rgba($colorGrayDark, 
   box-shadow: $headerShadow;
   z-index: 99;
   padding: 1em;
+  border-bottom: 1px solid black;
 
   .avatar {
     position: absolute;

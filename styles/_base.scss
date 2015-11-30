@@ -20,7 +20,7 @@
 html,
 body {
   $checkerboardSize: 1.5em;
-  @include checkerboard($colorGrayDark, darken($colorGrayDark, 2%), 1.5em);
+  @include checkerboard($colorGrayDark, darken($colorGrayDark, 1%), 1.5em);
   font-family: "work sans", "helvetica neue", helvetica, arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
@@ -66,47 +66,6 @@ img {
   max-width: 100%;
   max-height: 100%;
   display: block;
-}
-
-.block {
-  height: $blockSize;
-  width: $blockSize;
-  display: inline-block;
-  line-height: $blockSize;
-  text-align: center;
-  text-decoration: none;
-  fill: $colorGrayDark;
-  background-color: $colorGrayMid;
-  border-radius: $blockSize / 2;
-  position: relative;
-
-  &:hover,
-  &.is-selected {
-    background-color: $colorBrand;
-    fill: $colorGray;
-  }
-
-  &.is-selected {
-    cursor: default;
-  }
-
-  &.brand {
-    background-color: $colorBrand;
-    color: white;
-    border: 0;
-    fill: white;
-  }
-
-  + .block {
-    margin-left: 0.5em;
-  }
-
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-  }
 }
 
 .inline-edit {

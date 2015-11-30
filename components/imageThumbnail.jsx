@@ -28,8 +28,12 @@ Thumbnail = React.createClass({
         <div className="thumbnail__overlay" onClick={this.handleImageClick}>
           <span className="thumbnail__overlay__label">View Image</span>
           <div className="thumbnail__actions">
-            <a onClick={this.handleCoverImage}><Icon type="pin"/></a>
-            <a onClick={this.handleImageDelete}><Icon type="trash"/></a>
+            <a className="block" onClick={this.handleCoverImage}>
+              <Icon type="pin"/>
+            </a>
+            <a className="block" onClick={this.handleImageDelete}>
+              <Icon type="trash"/>
+            </a>
           </div>
         </div>
         <img src={image.src}/>
