@@ -43,7 +43,7 @@ Project = React.createClass({
   },
 
   render() {
-    let {project, comments} = this.data;
+    let {project, comments, images} = this.data;
     let projectId = project._id;
     return (
       <div
@@ -57,7 +57,11 @@ Project = React.createClass({
           </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
         </Header>
-        <Thumbnails parentId={projectId}/>
+        <div className="thumbnails">
+          {images.length > 0 ? images.map((image, i) => {
+            return <Thumbnail key={i} image={image}/>;
+          }) : <span>No images</span>}
+        </div>
         {this.state.uploader ? <ImageUploader parentId={projectId} close={this.handleDragEnd}/> : null}
         {this.state.panel ?
           <Panel
