@@ -26,9 +26,18 @@
 
   &.brand {
     background-color: $colorBrand;
-    color: white;
+    color: $colorGray;
     border: 0;
-    fill: white;
+    fill: $colorGray;
+  }
+
+  &.delete {
+    fill: $colorNegative;
+
+    &:hover {
+      background-color: $colorNegative;
+      fill: $colorGray;
+    }
   }
 
   &.small {
