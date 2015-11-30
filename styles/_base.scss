@@ -68,24 +68,6 @@ img {
   display: block;
 }
 
-.avatar {
-  $size: 2em;
-  line-height: $size;
-
-  &__image {
-    float: left;
-    margin-right: 0.5em;
-    max-height: $size;
-    max-width: $size;
-    border-radius: $size / 2;
-    border: 1px solid;
-  }
-
-  &__body {
-    overflow: auto;
-  }
-}
-
 .block {
   height: $blockSize;
   width: $blockSize;
@@ -94,10 +76,14 @@ img {
   text-align: center;
   text-decoration: none;
   fill: $colorGrayDark;
+  background-color: $colorGrayMid;
+  border-radius: $blockSize / 2;
+  position: relative;
 
   &:hover,
   &.is-selected {
-    background-color: $colorGrayMid;
+    background-color: $colorBrand;
+    fill: $colorGray;
   }
 
   &.is-selected {
@@ -111,8 +97,25 @@ img {
     fill: white;
   }
 
+  &.large {
+    font-size: 1.5em;
+  }
+
+  &.floater {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+  }
+
+  + .block {
+    margin-left: 0.5em;
+  }
+
   svg {
-    margin: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
   }
 }
 

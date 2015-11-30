@@ -1,4 +1,4 @@
-$headerShadow: 0 0 3px rgba(black, 0.2), 0 0 10px rgba(black, 0.1), 0 0 20px rgba(black, 0.1);
+$headerShadow: 0 0 3px rgba($colorGrayDark, 0.2), 0 0 10px rgba($colorGrayDark, 0.1), 0 0 20px rgba($colorGrayDark, 0.1);
 
 .header {
   line-height: $blockSize;
@@ -6,9 +6,13 @@ $headerShadow: 0 0 3px rgba(black, 0.2), 0 0 10px rgba(black, 0.1), 0 0 20px rgb
   align-content: stretch;
   background-color: $colorGray;
   position: relative;
-  // box-shadow: $headerShadow;
+  box-shadow: $headerShadow;
   z-index: 99;
-  box-shadow: inset 0 -1px 0 $colorGrayMid;
+  padding: 1em;
+
+  .avatar {
+    margin-left: 0.5em;
+  }
 }
 
 .header__title {
@@ -16,64 +20,4 @@ $headerShadow: 0 0 3px rgba(black, 0.2), 0 0 10px rgba(black, 0.1), 0 0 20px rgb
   margin: 0;
   flex: 1;
   padding-left: 1em;
-}
-
-.session {
-  display: inline-block;
-  @include prefixer(user-select, none);
-}
-
-.session__menu {
-  position: absolute;
-  z-index: 98;
-  top: $blockSize;
-  left: $blockSize;
-  background-color: $colorBrand;
-  padding: 0.5em;
-  color: $colorGray;
-  line-height: initial;
-  fill: $colorGray;
-  min-width: 10em;
-}
-
-.session__menu__item {
-  text-decoration: none;
-  padding: 0.5em 1em 0.5em 0.5em;
-  display: block;
-
-  svg {
-    float: left;
-    margin-right: 0.5em;
-    position: relative;
-    top: -1px
-  }
-
-  span {
-    line-height: 2;
-    overflow: auto;
-  }
-}
-
-a.session__menu__item {
-  color: inherit;
-  fill: inherit;
-
-  &:hover {
-    color: inherit;
-    background-color: lighten($colorBrand, 15%);
-  }
-}
-
-.new-project {
-  display: inline-block;
-  height: $blockSize;
-}
-
-.new-project__form {
-  position: absolute;
-  top: $blockSize;
-  right: $blockSize;
-  background-color: $colorBrand;
-  width: 30em;
-  padding: 1em;
 }

@@ -17,11 +17,9 @@ ProjectsList = React.createClass({
 
     return (
       <div className="projects">
-        <header className="header project__header">
-          <Session/>
+        <Header>
           <h2 className="header__title">Projects</h2>
-          <NewProject/>
-        </header>
+        </Header>
         <div className="thumbnails thumbnails_project">
           {this.data.projects.map((project, i) => {
             return (
@@ -29,6 +27,7 @@ ProjectsList = React.createClass({
             );
           })}
         </div>
+        <NewProject/>
       </div>
     );
   }

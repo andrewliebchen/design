@@ -12,7 +12,7 @@ NewProject = React.createClass({
   render() {
     return (
       <div className="new-project">
-        <a className="block brand" onClick={this.handleToggleForm}>
+        <a className="block brand large floater" onClick={this.handleToggleForm}>
           <Icon type="plus"/>
         </a>
         {this.state.form ? <ProjectForm/> : null}

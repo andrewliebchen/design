@@ -1,6 +1,7 @@
 .thumbnails {
   @include prefixer(columns, 3);
   @include prefixer(column-gap, 0);
+  padding: 1em;
   position: relative;
   overflow: hidden;
 
