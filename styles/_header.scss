@@ -5,19 +5,28 @@ $headerShadow: 0 0 3px rgba($colorGrayDark, 0.2), 0 0 10px rgba($colorGrayDark, 
   display: flex;
   align-content: stretch;
   background-color: $colorGray;
+  color: $colorGrayDark;
   position: relative;
   box-shadow: $headerShadow;
   z-index: 99;
   padding: 1em;
 
   .avatar {
-    margin-left: 0.5em;
+    position: absolute;
+    right: 1em;
+  }
+
+  .panel-nav {
+    position: absolute;
+    right: 5em;
   }
 }
 
 .header__title {
   display: inline-block;
   margin: 0;
-  flex: 1;
-  padding-left: 1em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
