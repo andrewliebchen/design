@@ -7,33 +7,25 @@ Thumbnail = React.createClass({
     FlowRouter.go(`/images/${this.props.image._id}`);
   },
 
-  handleCoverImage(event) {
+  handleImageDelete(event) {
     event.stopPropagation();
-    Meteor.call('coverImage', {
-      src: this.props.image.src,
-      projectId: this.props.image.parent
-    }, (err, success) => {
-      err ? console.warn(err) : null;
-    });
-  },
-
-  handleImageDelete() {
-    Meteor.call('deleteImage', this.props.image._id);
+    if (window.confirm('Do you really want to delete this image?')) {
+      Meteor.call('deleteImage', this.props.image._id);
+    }
   },
 
   render() {
     let {image} = this.props;
     return (
-      <div className="thumbnail thumbnail_image">
+      <div className="thumbnail">
         <div className="thumbnail__overlay" onClick={this.handleImageClick}>
           <Icon type="expand" size={5} className="thumbnail__overlay__label"/>
           <div className="thumbnail__actions">
-            <a className="block" onClick={this.handleCoverImage}>
-              <Icon type="pin"/>
-            </a>
-            <a className="block" onClick={this.handleImageDelete}>
-              <Icon type="trash"/>
-            </a>
+            <Icon
+              type="trash"
+              className="thumbnail__action delete block"
+              onClick={this.handleImageDelete}
+              size={1}/>
           </div>
         </div>
         <img src={image.src}/>
@@ -47,19 +39,6 @@ if(Meteor.isServer) {
     deleteImage(id) {
       check(id, String);
       Images.remove(id);
-    },
-
-    coverImage(args) {
-      check(args, {
-        src: String,
-        projectId: String
-      });
-
-      return Projects.update(args.projectId, {
-        $set: {
-          cover_image: args.src
-        }
-      });
     }
   });
 }
