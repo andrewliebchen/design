@@ -9,7 +9,7 @@ Meteor.publish('project', (id) => {
   ];
 });
 
-Meteor.publish('singleImage', (id) => {
+Meteor.publish('image', (id) => {
   check(id, String);
 
   return [
