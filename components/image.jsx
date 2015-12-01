@@ -10,12 +10,13 @@ Image = React.createClass({
 
   getInitialState() {
     return {
-      sidebar: false
+      sidebar: FlowRouter.getQueryParam('show') === 'comments'
     };
   },
 
   handleSidebarToggle() {
     this.setState({sidebar: !this.state.sidebar});
+    FlowRouter.setQueryParams({show: this.state.sidebar ? null : 'comments'});
   },
 
   render() {
