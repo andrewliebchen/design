@@ -48,7 +48,8 @@ button {
 button {
   appearance: none;
   background-color: $colorBrand;
-  color: white;
+  color: $colorGray;
+  fill: $colorGray;
   font-weight: bold;
   line-height: 3em;
   border: 0;
@@ -73,6 +74,11 @@ button {
   &:disabled {
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  svg {
+    position: relative;
+    top: 0.3em;
   }
 }
 
