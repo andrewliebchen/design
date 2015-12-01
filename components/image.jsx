@@ -22,7 +22,7 @@ Image = React.createClass({
   render() {
     let {comments, image} = this.data;
     return (
-      <div className="image">
+      <div className="image wrapper">
         <header className="header">
           <h2 className="header__title">{image.name}</h2>
           <a className="block" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
@@ -59,14 +59,12 @@ Image = React.createClass({
 if(Meteor.isClient) {
   FlowRouter.route('/images/:_id', {
     subscriptions(params) {
-      this.register('singleImage', Meteor.subscribe('singleImage', params._id));
+      this.register('image', Meteor.subscribe('image', params._id));
     },
 
     action(params) {
-      FlowRouter.subsReady('singleImage', () => {
-        ReactLayout.render(Layout, {
-          content: <Image/>
-        });
+      FlowRouter.subsReady('image', () => {
+        ReactLayout.render(Image);
       });
     }
   });

@@ -50,7 +50,7 @@ Project = React.createClass({
     let projectId = project._id;
     return (
       <div
-        className="project"
+        className="project wrapper"
         onDragEnter={this.handleDragStart}
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
@@ -99,9 +99,7 @@ if(Meteor.isClient) {
 
     action(params) {
       FlowRouter.subsReady('project', () => {
-        ReactLayout.render(Layout, {
-          content: <Project/>
-        });
+        ReactLayout.render(Project);
       });
     }
   });
