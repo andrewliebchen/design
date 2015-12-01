@@ -15,13 +15,18 @@ SingleComment = React.createClass({
       <div className="comment">
         <Avatar user={commenter} imageOnly/>
         <div className="comment__body">
-          <h4>{commenter.profile.name}</h4>
-          {canPin ?
-            comment.position ? <Pin/> : <a onClick={this.handleAddPin}>Pin this comment</a>
-          : null}
+          <header className="comment__header">
+            <h4>{commenter.profile.name}</h4>
+            <small>{moment(comment.created_at).fromNow()}</small>
+          </header>
           <p>{comment.comment}</p>
           <footer className="comment__footer">
-            <small>{moment(comment.created_at).fromNow()}</small>
+            {canPin ?
+              comment.position ?
+                <Pin/>
+              :
+                <a onClick={this.handleAddPin}>Pin this comment</a>
+            : null}
           </footer>
         </div>
       </div>

@@ -26,13 +26,18 @@ Image = React.createClass({
           <h2 className="header__title">{image.name}</h2>
           <a className="block" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
           <nav className="panel-nav">
-            <Icon type="comments" className={`block action${this.state.sidebar ? ' is-selected' : ''}`} onClick={this.handleSidebarToggle}/>
+            <Icon
+              type="comments"
+              className={`block action${this.state.sidebar ? ' is-selected' : ''}`}
+              onClick={this.handleSidebarToggle}/>
           </nav>
         </header>
         <div className="image__wrapper">
           <div className="image__container">
             <img src={image.src}/>
-            {this.state.sidebar ? <Pins parentId={image._id}/> : null}
+            {this.state.sidebar ?
+              <Pins parentId={image._id}/>
+            : null}
           </div>
           {this.state.sidebar ?
             <aside className="image__sidebar">

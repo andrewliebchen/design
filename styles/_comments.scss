@@ -10,9 +10,16 @@
   }
 }
 
-.comment__avatar {
-  float: left;
-  margin-right: 1em;
+.comment__header {
+  @include clearfix;
+
+  h4 {
+    float: left;
+  }
+
+  small {
+    float: right;
+  }
 }
 
 .comment__body {
