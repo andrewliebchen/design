@@ -51,12 +51,14 @@ Project = React.createClass({
         onDragEnter={this.handleDragStart}
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
-        <Header>
+        <header className="header">
+          <a className="block brand" href="/">D</a>
           <h2 className="header__title">
             <InlineEdit html={project.name} onChange={this.handleEditName}/>
           </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
-        </Header>
+          <Avatar user={Meteor.user()} size="large" imageOnly/>
+        </header>
         <div className="thumbnails">
           {images.length > 0 ? images.map((image, i) => {
             return <Thumbnail key={i} image={image}/>;

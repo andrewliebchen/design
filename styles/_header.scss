@@ -18,6 +18,12 @@
     position: absolute;
     right: 5em;
   }
+
+  .image & {
+    .panel-nav {
+      right: 2em;
+    }
+  }
 }
 
 .header__title {
