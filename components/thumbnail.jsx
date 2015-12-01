@@ -23,7 +23,7 @@ Thumbnail = React.createClass({
           <div className="thumbnail__actions">
             <Icon
               type="trash"
-              className="thumbnail__action delete block"
+              className="action delete block"
               onClick={this.handleImageDelete}
               size={1}/>
           </div>

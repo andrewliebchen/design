@@ -10,13 +10,8 @@ Image = React.createClass({
 
   getInitialState() {
     return {
-      pins: true,
-      sidebar: true
+      sidebar: false
     };
-  },
-
-  handleShowPinToggle() {
-    this.setState({pins: !this.state.pins});
   },
 
   handleSidebarToggle() {
@@ -25,26 +20,19 @@ Image = React.createClass({
 
   render() {
     let {comments, image} = this.data;
-    let uploadedBy = Meteor.users.findOne(image.uploaded_by);
     return (
       <div className="image">
-        <header className="header image__header">
-          <div className="block">
-            <a className={classnames('pin__toggle', {'show-pins': this.state.pins})}
-              onClick={this.handleShowPinToggle}/>
-          </div>
+        <header className="header">
           <h2 className="header__title">{image.name}</h2>
-          <a className={`block${this.state.sidebar ? ' is-selected' : ''}`} onClick={this.handleSidebarToggle}>
-            <Icon type="comments"/>
-          </a>
-          <a className="block" href={`../projects/${image.parent}`}>
-            <Icon type="close"/>
-          </a>
+          <a className="block" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
+          <nav className="panel-nav">
+            <Icon type="comments" className={`block action${this.state.sidebar ? ' is-selected' : ''}`} onClick={this.handleSidebarToggle}/>
+          </nav>
         </header>
         <div className="image__wrapper">
           <div className="image__container">
             <img src={image.src}/>
-            {this.state.pins ? <Pins parentId={image._id}/> : null}
+            {this.state.sidebar ? <Pins parentId={image._id}/> : null}
           </div>
           {this.state.sidebar ?
             <aside className="image__sidebar">
