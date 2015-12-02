@@ -55,7 +55,9 @@ Project = React.createClass({
         onDragExit={this.handleDragEnd}
         onDrop={this.handleDragEnd}>
         <header className="header">
-          <a className="block brand" href="/">D</a>
+          <a className="header__brand" href="/">
+            <Brand/>
+          </a>
           <h2 className="header__title">
             <InlineEdit html={project.name} onChange={this.handleEditName}/>
           </h2>

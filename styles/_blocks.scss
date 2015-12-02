@@ -24,13 +24,6 @@
     cursor: default;
   }
 
-  &.brand {
-    background-color: $colorBrand;
-    color: $colorGray;
-    border: 0;
-    fill: $colorGray;
-  }
-
   &.delete {
     fill: $colorNegative;
 
