@@ -35,6 +35,7 @@ a {
 
   &:hover {
     color: lighten($colorBrand, 10%);
+    fill: lighten($colorBrand, 10%);
   }
 
   &:visited {
