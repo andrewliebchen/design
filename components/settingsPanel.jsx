@@ -32,7 +32,7 @@ SettingsPanel = React.createClass({
           <h3>Share this project</h3>
           <p>Anyone with this project's URL will be able to view the project. Share with care!</p>
           <div className="input-group">
-            <input type="text" id="url" readOnly defaultValue={`http://localhost:3000/${this.props.project._id}`}/>
+            <input type="text" id="url" readOnly defaultValue={`${Meteor.settings.public.site_url}/${this.props.project._id}`}/>
             <button id="copyClick" data-clipboard-target="#url">Copy</button>
             <CSSTransitionGroup transitionName="copyLabel">
               {this.state.copyLabel ? <div className="copy-label">{this.state.copyLabel}</div> : null}
