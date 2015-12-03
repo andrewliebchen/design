@@ -1,0 +1,36 @@
+.copy-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $colorBrand;
+  color: $colorGray;
+  text-align: center;
+  z-index: 1;
+  font-weight: bold;
+  line-height: 3em;
+}
+
+
+.copyLabel-enter {
+  opacity: 0.01;
+  transform: scale(0.5);
+
+  &.copyLabel-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.2s $ease-in-out-back;
+  }
+}
+
+.copyLabel-leave {
+  opacity: 1;
+  transform: scale(1);
+
+  &.copyLabel-leave-active {
+    opacity: 0.01;
+    transform: scale(0.5);
+    transition: all 0.2s $ease-in-out-back;
+  }
+}

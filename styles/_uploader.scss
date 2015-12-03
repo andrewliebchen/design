@@ -39,7 +39,7 @@
   &.uploader-enter-active {
     opacity: 1;
     transform: scale(1);
-    transition: all 0.25s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    transition: all 0.25s $ease-in-out-back;
   }
 }
 
@@ -50,6 +50,6 @@
   &.uploader-leave-active {
     opacity: 0.01;
     transform: scale(1.5);
-    transition: all 0.3s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    transition: all 0.3s $ease-in-out-back;
   }
 }
