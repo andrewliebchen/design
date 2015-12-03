@@ -78,7 +78,6 @@ Project = React.createClass({
             <button onClick={this.handleUploaderOpen}>Drag or click to upload</button>
           </div>
         }
-        {this.state.uploader ? <ImageUploader parentId={projectId} close={this.handleUploaderClose}/> : null}
         {this.state.panel ?
           <Panel
             open={this.handlePanelOpen}
@@ -97,6 +96,11 @@ Project = React.createClass({
             </div>
           </Panel>
         : null}
+        <CSSTransitionGroup transitionName="uploader">
+          {this.state.uploader ?
+            <ImageUploader parentId={projectId} close={this.handleUploaderClose}/>
+          : null}
+        </CSSTransitionGroup>
       </div>
     );
   }

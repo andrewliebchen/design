@@ -1,11 +1,11 @@
 .image-uploader {
+  @include checkerboard(rgba($colorBrand, 0.5), rgba($colorBrand, 0.98), 1.5em);
   position: fixed;
   z-index: 99;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba($colorBrand, 0.9);
+  top: 0.5em;
+  left: 0.5em;
+  bottom: 0.5em;
+  right: 0.5em;
   padding: 3em;
   text-align: center;
   color: $colorGray;
@@ -24,11 +24,32 @@
   position: absolute;
   top: 1em;
   right: 1em;
-  background-color: $colorGray;
-  fill: $colorBrand;
+  fill: $colorGray;
+  cursor: pointer;
 
   &:hover {
-    background-color: $colorGrayMid;
-    fill: $colorBrand;
+    fill: $colorGrayMid;
+  }
+}
+
+.uploader-enter {
+  opacity: 0.01;
+  transform: scale(0.75);
+
+  &.uploader-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.25s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  }
+}
+
+.uploader-leave {
+  opacity: 1;
+  transform: scale(1);
+
+  &.uploader-leave-active {
+    opacity: 0.01;
+    transform: scale(1.5);
+    transition: all 0.3s cubic-bezier(0.680, -0.550, 0.265, 1.550);
   }
 }

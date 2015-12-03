@@ -34,7 +34,7 @@ ImageUploader = React.createClass({
         accept="image/*">
         <Icon
           type="close"
-          className="image-uploader__close block action"
+          className="image-uploader__close"
           onClick={this.props.close}/>
         <strong className="image-uploader__message">
           Drop or click to add an image
