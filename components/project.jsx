@@ -64,7 +64,6 @@ Project = React.createClass({
               onChange={this.handleEditName}/>
           </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
-          <Avatar user={Meteor.user()} size="large" imageOnly/>
         </header>
         {images.length > 0 ?
           <div className="thumbnails">
@@ -94,6 +93,9 @@ Project = React.createClass({
               : null}
               {this.state.panel === 'settings' ?
                 <SettingsPanel project={project}/>
+              : null}
+              {this.state.panel === 'account' ?
+                <AccountPanel/>
               : null}
             </div>
           </Panel>

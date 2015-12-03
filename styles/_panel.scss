@@ -55,10 +55,10 @@ $panelTiming: 0.2s;
   overflow-y: auto;
   background-color: $colorGray;
   color: $colorGrayDark;
+}
 
-  &_comment {
-    bottom: 4.75em;
-  }
+.panel__content_comments {
+  bottom: 5em;
 }
 
 .panel__background {

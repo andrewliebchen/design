@@ -6,31 +6,20 @@
   color: $colorGrayDark;
   position: relative;
   z-index: 9;
-  padding: 1em 2em;
+  padding: 1em $offset;
   border-bottom: 1px solid black;
   height: 5em;
 
-  .avatar {
-    position: absolute;
-    right: 1em;
-  }
-
   .panel-nav {
     position: absolute;
-    right: 4.75em;
-  }
-
-  .image & {
-    .panel-nav {
-      right: 2em;
-    }
+    right: $offset;
   }
 }
 
 .header__brand {
   fill: $colorBrand;
   position: absolute;
-  left: 2em;
+  left: $offset;
   top: 0.5em;
   z-index: 1;
 }
