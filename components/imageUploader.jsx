@@ -32,10 +32,13 @@ ImageUploader = React.createClass({
         onDrop={this.handleImageUpload}
         multiple={false}
         accept="image/*">
-        <a className="image-uploader__close" onClick={this.props.close}>
-          <Icon type="close"/>
-        </a>
-        <strong className="image-uploader__message">Drop or click to add an image</strong>
+        <Icon
+          type="close"
+          className="image-uploader__close block action"
+          onClick={this.props.close}/>
+        <strong className="image-uploader__message">
+          Drop or click to add an image
+        </strong>
       </Dropzone>
     );
   }

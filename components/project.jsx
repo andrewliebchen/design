@@ -29,11 +29,11 @@ Project = React.createClass({
     FlowRouter.setQueryParams({show: null});
   },
 
-  handleDragStart() {
+  handleUploaderOpen() {
     this.setState({uploader: true});
   },
 
-  handleDragEnd(event) {
+  handleUploaderClose(event) {
     event.stopPropagation();
     this.setState({uploader: false});
   },
@@ -51,25 +51,34 @@ Project = React.createClass({
     return (
       <div
         className="project wrapper"
-        onDragEnter={this.handleDragStart}
-        onDragExit={this.handleDragEnd}
-        onDrop={this.handleDragEnd}>
+        onDragEnter={this.handleUploaderOpen}
+        onDragExit={this.handleUploaderClose}
+        onDrop={this.handleUploaderClose}>
         <header className="header">
           <a className="header__brand" href="/">
             <Brand/>
           </a>
           <h2 className="header__title">
-            <InlineEdit html={project.name} onChange={this.handleEditName}/>
+            <InlineEdit
+              html={project.name === 'undefined' ? 'Add a title' : project.name}
+              onChange={this.handleEditName}/>
           </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
           <Avatar user={Meteor.user()} size="large" imageOnly/>
         </header>
-        <div className="thumbnails">
-          {images.length > 0 ? images.map((image, i) => {
-            return <Thumbnail key={i} image={image}/>;
-          }) : <span>No images</span>}
-        </div>
-        {this.state.uploader ? <ImageUploader parentId={projectId} close={this.handleDragEnd}/> : null}
+        {images.length > 0 ?
+          <div className="thumbnails">
+            {images.map((image, i) => {
+              return <Thumbnail key={i} image={image}/>;
+            })}
+          </div>
+        :
+          <div className="no-content">
+            <h2>Let's get this show on the road</h2>
+            <button onClick={this.handleUploaderOpen}>Drag or click to upload</button>
+          </div>
+        }
+        {this.state.uploader ? <ImageUploader parentId={projectId} close={this.handleUploaderClose}/> : null}
         {this.state.panel ?
           <Panel
             open={this.handlePanelOpen}
