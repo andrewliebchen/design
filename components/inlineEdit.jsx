@@ -7,6 +7,13 @@ InlineEdit = React.createClass({
   },
 
   render(){
+    let html;
+    if(this.props.html === undefined || this.props.html === null) {
+      html = 'Click to add';
+    } else {
+      html = this.props.html;
+    }
+
     return(
       <span
         className="inline-edit"
@@ -14,7 +21,7 @@ InlineEdit = React.createClass({
         onBlur={this.emitChange}
         contentEditable
         autoFocus
-        dangerouslySetInnerHTML={{__html: this.props.html}}/>
+        dangerouslySetInnerHTML={{__html: html }}/>
     );
   },
 
