@@ -17,7 +17,8 @@ CommentsPanel = React.createClass({
     return (
       <div className="panel__content panel__content_comments">
         <div className="project__description">
-          <InlineEdit html={description ? description : 'Click to add a description'} onChange={this.handleEditDescription}/>
+          <h3>Description</h3>
+          <InlineEdit html={description} onChange={this.handleEditDescription}/>
         </div>
         <CommentsList comments={comments} parentId={parentId}/>
       </div>

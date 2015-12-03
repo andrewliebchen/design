@@ -60,7 +60,7 @@ Project = React.createClass({
           </a>
           <h2 className="header__title">
             <InlineEdit
-              html={project.name === 'undefined' ? 'Add a title' : project.name}
+              html={project.name}
               onChange={this.handleEditName}/>
           </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
