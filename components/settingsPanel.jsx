@@ -1,4 +1,12 @@
+const CSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 SettingsPanel = React.createClass({
+  getInitialState() {
+    return {
+      copyLabel: false
+    };
+  },
+
   handleDeleteProject(event) {
     event.stopPropagation();
 
@@ -7,12 +15,37 @@ SettingsPanel = React.createClass({
     }
   },
 
+  componentDidMount() {
+    let clipboard = new Clipboard('#copyClick');
+
+    clipboard.on('success', (event) => {
+      this.setState({copyLabel: 'Copied to your clipboard!'});
+      setTimeout(() => {this.setState({copyLabel: false})}, 2500);
+      event.clearSelection();
+    });
+  },
+
   render() {
     return (
       <div className="panel__content">
-        <button className="full-width negative" onClick={this.handleDeleteProject}>
-          <Icon type="trash" size={1.5}/> Delete Project
-        </button>
+        <div className="form-group">
+          <h3>Share this project</h3>
+          <p>Anyone with this project's URL will be able to view the project. Share with care!</p>
+          <div className="input-group">
+            <input type="text" id="url" readOnly defaultValue={`http://localhost:3000/${this.props.project._id}`}/>
+            <button id="copyClick" data-clipboard-target="#url">Copy</button>
+            <CSSTransitionGroup transitionName="copyLabel">
+              {this.state.copyLabel ? <div className="copy-label">{this.state.copyLabel}</div> : null}
+            </CSSTransitionGroup>
+          </div>
+        </div>
+        <div className="form-group">
+          <h3>Danger zone!</h3>
+          <p>Careful, this action can't be undone.</p>
+          <button className="full-width negative" onClick={this.handleDeleteProject}>
+            <Icon type="trash" size={1.5}/> Delete Project
+          </button>
+        </div>
       </div>
     );
   }

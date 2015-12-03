@@ -87,3 +87,13 @@ button {
   margin-bottom: 1em;
   color: $colorBrand;
 }
+
+.input-group {
+  display: flex;
+  position: relative;
+
+  input {
+    width: auto;
+    flex: 1;
+  }
+}

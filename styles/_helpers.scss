@@ -12,6 +12,8 @@ $blockSizeSmall: 2em;
 
 $panelTransition: transform 0.15s ease-in-out;
 
+$ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
 @mixin clearfix {
   &::after {
     clear: both;
