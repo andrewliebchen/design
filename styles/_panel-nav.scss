@@ -4,5 +4,10 @@
 }
 
 .panel-nav__item {
+  display: inline-block;
+  cursor: pointer;
 
+  + .panel-nav__item {
+    margin-left: 0.5em;
+  }
 }

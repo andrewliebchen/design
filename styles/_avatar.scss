@@ -22,6 +22,16 @@
 
 .avatar__image {
   float: left;
+  overflow: hidden;
+
+  .is-selected &,
+  .panel-nav__item:hover & {
+    background-color: $colorBrand;
+
+    img {
+      opacity: 0.2;
+    }
+  }
 }
 
 .avatar__body {

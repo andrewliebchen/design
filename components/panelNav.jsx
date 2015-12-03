@@ -5,7 +5,7 @@ const contentLabels = [<Icon type="comments"/>, <Icon type="settings"/>]
 PanelNav = React.createClass({
   propTypes: {
     onClick: React.PropTypes.func,
-    selected: React.PropTypes.oneOf(contentTypes)
+    selected: React.PropTypes.oneOf(['comments', 'settings', 'account'])
   },
 
   render() {
@@ -22,6 +22,12 @@ PanelNav = React.createClass({
             </a>
           );
         })}
+        <Avatar
+          user={Meteor.user()}
+          className={`panel-nav__item ${selected === 'account' ? 'is-selected' : ''}`}
+          size="large"
+          imageOnly
+          handleClick={onClick.bind(null, 'account')}/>
       </nav>
     );
   }
