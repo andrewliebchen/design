@@ -16,7 +16,7 @@ PanelNav = React.createClass({
           return (
             <a
               key={i}
-              className={`panel-nav__item block ${selected === content ? 'is-selected' : null}`}
+              className={`panel-nav__item block ${selected === content ? 'is-selected' : ''}`}
               onClick={onClick.bind(null, content)}>
               {contentLabels[i]}
             </a>

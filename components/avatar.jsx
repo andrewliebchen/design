@@ -6,12 +6,13 @@ Avatar = React.createClass({
   },
 
   render() {
+    let {size, imageOnly} = this.props;
     let user = this.props.user.profile;
     let avatarSrc = user.avatar_src;
     return (
-      <div className={`avatar ${this.props.size}`}>
+      <div className={`avatar ${size ? size : ''}`}>
         {avatarSrc ? <img src={avatarSrc} className="avatar__image"/> : null}
-        {!this.props.imageOnly ?
+        {!imageOnly ?
           <strong className="avatar__body">
             {user.name}
           </strong>
