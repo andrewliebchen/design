@@ -74,8 +74,10 @@ Project = React.createClass({
           </div>
         :
           <div className="project__no-content">
-            <h2>Let's get this show on the road</h2>
-            <button onClick={this.handleUploaderOpen}>Drag or click to upload</button>
+            <h3>Let's get this show on the road...</h3>
+            <button onClick={this.handleUploaderOpen}>
+              Drag an image or click to upload
+            </button>
           </div>
         }
         {this.state.panel ?

@@ -1,4 +1,29 @@
+$panelTiming: 0.2s;
+
+@keyframes panelContainer {
+  0% {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes panelBackground {
+  0% {
+    opacity: 0;
+    transform: translate3d(50%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .panel__container {
+  animation: panelContainer $panelTiming ease-in-out;
   transition: $panelTransition;
   position: fixed;
   top: 0;
@@ -38,6 +63,7 @@
 
 .panel__background {
   @include checkerboard(rgba($colorBrand, 0.3), rgba($colorBrand, 0.8), 1.5em);
+  animation: panelBackground $panelTiming ease-in-out;
   position: fixed;
   top: 0;
   bottom: 0;
