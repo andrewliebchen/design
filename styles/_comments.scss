@@ -42,4 +42,24 @@
     background-color: darken($colorGrayDark, 3%);
     color: $colorGrayDark;
   }
+
+  .avatar {
+    position: absolute;
+    top: 1.5em;
+    left: 1.5em;
+  }
+
+  input {
+    padding-left: 3em;
+  }
+}
+
+.comments__no-content {
+  @include uppercase;
+  color: $colorGrayMid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate3d(-50%, -50%, 0);
 }

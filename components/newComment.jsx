@@ -23,10 +23,8 @@ NewComment = React.createClass({
   render() {
     return (
       <div className="comment comment__new">
+        <input onKeyUp={this.handleKeyUp}/>
         <Avatar user={Meteor.user()} imageOnly/>
-        <div className="comment__body">
-          <input onKeyUp={this.handleKeyUp}/>
-        </div>
       </div>
     );
   }
