@@ -4,6 +4,16 @@
   border-radius: $size / 2;
 }
 
+@keyframes badge {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 .block {
   @include block-size($blockSize);
   display: inline-block;
@@ -55,16 +65,18 @@
 
 .block__badge {
   $size: 2em;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate3d(25%, -25%, 0);
-  height: $size;
-  width: $size;
+  $margin: -($size * 0.25);
+  animation: badge 0.3s $ease-in-out-back;
   background-color: $colorGrayDark;
-  color: $colorGray;
-  text-align: center;
-  line-height: $size;
-  font-size: 0.75em;
   border-radius: $size / 2;
+  color: $colorGray;
+  font-size: 0.75em;
+  height: $size;
+  line-height: $size;
+  margin: $margin $margin 0 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: $size;
 }

@@ -17,7 +17,7 @@ PanelNav = React.createClass({
               className={`panel-nav__item block ${selected === content ? 'is-selected' : ''}`}
               onClick={onClick.bind(null, content)}>
               <Icon type={content}/>
-              {content === 'comments' ?
+              {content === 'comments' && commentCount > 0 ?
                 <strong className="block__badge">{commentCount}</strong>
               : null}
             </a>
