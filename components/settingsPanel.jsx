@@ -40,6 +40,11 @@ SettingsPanel = React.createClass({
           </div>
         </div>
         <div className="form-group">
+          <h3>Export project</h3>
+          <p>We'd like to think that OhEmGee can do all the things, sometimes you just need to download your project. The download will include all project content, including images and comments.</p>
+          <button className="full-width">Download project</button>
+        </div>
+        <div className="form-group">
           <h3>Danger zone!</h3>
           <p>Careful, this action can't be undone.</p>
           <button className="full-width negative" onClick={this.handleDeleteProject}>
