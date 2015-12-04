@@ -10,17 +10,22 @@ Image = React.createClass({
 
   getInitialState() {
     return {
-      sidebar: FlowRouter.getQueryParam('show') === 'comments'
+      panel: FlowRouter.getQueryParam('show') === 'comments'
     };
   },
 
-  handleSidebarToggle() {
-    this.setState({sidebar: !this.state.sidebar});
-    FlowRouter.setQueryParams({show: this.state.sidebar ? null : 'comments'});
+  handlePanelToggle() {
+    this.setState({panel: !this.state.panel});
+    FlowRouter.setQueryParams({show: this.state.panel ? null : 'comments'});
   },
 
   render() {
     let {comments, image} = this.data;
+    let containerClassName = classnames({
+      "container": true,
+      "has-panel": this.state.panel
+    });
+    
     return (
       <div className="image wrapper">
         <header className="header">
@@ -29,19 +34,19 @@ Image = React.createClass({
           <nav className="panel-nav">
             <Icon
               type="comments"
-              className={`block action${this.state.sidebar ? ' is-selected' : ''}`}
-              onClick={this.handleSidebarToggle}/>
+              className={`block action${this.state.panel ? ' is-selected' : ''}`}
+              onClick={this.handlePanelToggle}/>
           </nav>
         </header>
-        <div className="image__wrapper">
-          <div className="image__container">
-            <img src={image.src}/>
-            {this.state.sidebar ?
+        <div className={containerClassName}>
+          <div className="main image__main">
+            <img className="image__img" src={image.src}/>
+            {this.state.panel ?
               <Pins parentId={image._id}/>
             : null}
           </div>
-          {this.state.sidebar ?
-            <aside className="image__sidebar">
+          {this.state.panel ?
+            <aside className="image__sidebar panel">
               <div className="image__sidebar__content">
                 {image.description ?
                   <p>{image.description}</p>

@@ -26,7 +26,7 @@
 }
 
 .header__title {
-  display: inline-block;
+  @include ellipsis;
   margin: auto;
   text-align: center;
   width: 50%;
