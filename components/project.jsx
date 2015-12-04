@@ -47,7 +47,8 @@ Project = React.createClass({
                         onChange={this.handleEditName}/>}>
           <PanelNav
             contentTypes={['comments', 'settings']}
-            onClick={this.handlePanelOpen}/>
+            onClick={this.handlePanelOpen}
+            commentCount={comments.length}/>
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main>
@@ -74,7 +75,8 @@ Project = React.createClass({
               nav={<PanelNav
                     contentTypes={['comments', 'settings']}
                     onClick={this.handlePanelOpen}
-                    selected={this.state.panel}/>}>
+                    selected={this.state.panel}
+                    commentCount={comments.length}/>}>
               <span>
                 {this.state.panel === 'comments' ?
                   <CommentsPanel

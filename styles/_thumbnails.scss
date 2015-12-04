@@ -90,6 +90,10 @@
         fill: $colorGray;
       }
     }
+
+    + .block {
+      margin-left: 0.5em;
+    }
   }
 
   .thumbnail:hover & {

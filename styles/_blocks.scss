@@ -52,3 +52,19 @@
     transform: translate3d(-50%, -50%, 0);
   }
 }
+
+.block__badge {
+  $size: 2em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate3d(25%, -25%, 0);
+  height: $size;
+  width: $size;
+  background-color: $colorGrayDark;
+  color: $colorGray;
+  text-align: center;
+  line-height: $size;
+  font-size: 0.75em;
+  border-radius: $size / 2;
+}

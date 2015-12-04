@@ -4,8 +4,7 @@ Meteor.publish('project', (id) => {
   return [
     Projects.find({_id: id}),
     Images.find({parent: id}),
-    Comments.find({parent: id}),
-    Meteor.users.find() // Probably need to only get users for this project?
+    Comments.find({parent: id})
   ];
 });
 

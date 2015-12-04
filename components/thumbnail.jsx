@@ -3,8 +3,19 @@ Thumbnail = React.createClass({
     image: React.PropTypes.object.isRequired
   },
 
+  getInitialState() {
+    return {
+      imageUrl: `/images/${this.props.image._id}`
+    };
+  },
+
   handleImageClick() {
-    FlowRouter.go(`/images/${this.props.image._id}`);
+    FlowRouter.go(this.state.imageUrl);
+  },
+
+  handleCommentClick(event) {
+    event.stopPropagation();
+    FlowRouter.go(`${this.state.imageUrl}?show=comments`);
   },
 
   handleImageDelete(event) {
@@ -21,6 +32,11 @@ Thumbnail = React.createClass({
         <div className="thumbnail__overlay" onClick={this.handleImageClick}>
           <Icon type="expand" size={5} className="thumbnail__overlay__label"/>
           <div className="thumbnail__actions">
+            <Icon
+              type="comments"
+              className="action block"
+              onClick={this.handleCommentClick}
+              size={1}/>
             <Icon
               type="trash"
               className="action delete block"
