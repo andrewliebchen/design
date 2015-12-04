@@ -7,34 +7,24 @@
   left: 0;
 }
 
-.image__wrapper {
-  display: flex;
+.image__main {
   position: absolute;
   top: 5em;
-  right: 0;
   left: 0;
   bottom: 0;
-}
+  width: 100vw;
 
-.image__container {
-  flex: 1;
-  position: relative;
-  margin: 1em;
-
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    border: 1px solid black;
+  .has-panel & {
+    width: 100vw - $panelWidth;
   }
 }
 
-.image__sidebar {
-  width: $panelWidth;
-  background-color: $colorGrayDark;
-  color: $colorGray;
-  box-shadow: -1px 0 0 black;
+.image__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border: 1px solid black;
 }
 
 .image__sidebar__content {

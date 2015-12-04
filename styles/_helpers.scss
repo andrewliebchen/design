@@ -43,3 +43,12 @@ $ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
+
+@mixin ellipsis($width: 100%) {
+  display: inline-block;
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
