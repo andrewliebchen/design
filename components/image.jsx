@@ -4,7 +4,8 @@ Image = React.createClass({
   getMeteorData() {
     return {
       image: Images.findOne(),
-      comments: Comments.find({}, {sort: {created_at: 1}}).fetch()
+      comments: Comments.find({}, {sort: {created_at: 1}}).fetch(),
+      projectName: Projects.findOne().name
     };
   },
 
@@ -31,11 +32,13 @@ Image = React.createClass({
   },
 
   render() {
-    let {comments, image} = this.data;
+    let {comments, image, projectName} = this.data;
     return (
       <div className="image wrapper">
-        <Header title={<span>{image.name}</span>}>
-          <a className="header__back header__left block" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
+        <Header
+          title={<span>{image.name}</span>}
+          parentTitle={projectName}
+          parentLink={`/${image.parent}`}>
           {this.renderPanelNav()}
         </Header>
         <Container hasPanel={this.state.panel}>
