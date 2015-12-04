@@ -17,7 +17,10 @@ Image = React.createClass({
           title={<span>{image.name}</span>}
           parentTitle={projectName}
           parentLink={`/${image.parent}`}>
-          <PanelNav contentTypes={['comments']} onClick={this.handlePanelOpen}/>
+          <PanelNav
+            contentTypes={['comments']}
+            onClick={this.handlePanelOpen}
+            commentCount={comments.length}/>
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main className="image__main">
@@ -34,7 +37,8 @@ Image = React.createClass({
               nav={<PanelNav
                     contentTypes={['comments']}
                     onClick={this.handlePanelOpen}
-                    selected={this.state.panel}/>}>
+                    selected={this.state.panel}
+                    commentCount={comments.length}/>}>
               <span>
                 {this.state.panel === 'comments' ?
                   <CommentsPanel
