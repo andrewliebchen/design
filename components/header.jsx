@@ -1,6 +1,6 @@
 Header = React.createClass({
   propTypes: {
-    title: React.PropTypes.func.isRequired
+    title: React.PropTypes.object.isRequired
   },
 
   render() {
