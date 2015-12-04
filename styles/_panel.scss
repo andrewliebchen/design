@@ -10,28 +10,15 @@ $panelTiming: 0.2s;
   }
 }
 
-@keyframes panelBackground {
-  0% {
-    opacity: 0;
-    transform: translate3d(50%, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 .panel__container {
   animation: panelContainer $panelTiming ease-in-out;
-  transition: $panelTransition;
+  width: $panelWidth;
+  background-color: white;
+  z-index: 99;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: $panelWidth;
-  background-color: white;
-  z-index: 99;
 }
 
 .panel__header {
@@ -59,15 +46,4 @@ $panelTiming: 0.2s;
 
 .panel__content_comments {
   bottom: 5em;
-}
-
-.panel__background {
-  @include checkerboard(rgba($colorBrand, 0.3), rgba($colorBrand, 0.8), 1.5em);
-  animation: panelBackground $panelTiming ease-in-out;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 98;
 }

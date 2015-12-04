@@ -48,6 +48,10 @@ Project = React.createClass({
   render() {
     let {project, comments, images} = this.data;
     let projectId = project._id;
+    let containerClassName = classnames({
+      "container": true,
+      "has-panel": this.state.panel
+    });
     return (
       <div
         className="project wrapper"
@@ -65,41 +69,43 @@ Project = React.createClass({
           </h2>
           <PanelNav onClick={this.handlePanelOpen}/>
         </header>
-        {images.length > 0 ?
-          <div className="thumbnails">
-            {images.map((image, i) => {
-              return <Thumbnail key={i} image={image}/>;
-            })}
-          </div>
-        :
-          <div className="project__no-content">
-            <h3>Let's get this show on the road...</h3>
-            <button onClick={this.handleUploaderOpen}>
-              Drag an image or click to upload
-            </button>
-          </div>
-        }
-        {this.state.panel ?
-          <Panel
-            open={this.handlePanelOpen}
-            close={this.handlePanelClose}
-            selected={this.state.panel}>
-            <div>
-              {this.state.panel === 'comments' ?
-                <CommentsPanel
-                  description={project.description}
-                  comments={comments}
-                  parentId={projectId}/>
-              : null}
-              {this.state.panel === 'settings' ?
-                <SettingsPanel project={project}/>
-              : null}
-              {this.state.panel === 'account' ?
-                <AccountPanel/>
-              : null}
+        <section className={containerClassName}>
+          {images.length > 0 ?
+            <div className="thumbnails main">
+              {images.map((image, i) => {
+                return <Thumbnail key={i} image={image}/>;
+              })}
             </div>
-          </Panel>
-        : null}
+          :
+            <div className="project__no-content">
+              <h3>Let's get this show on the road...</h3>
+              <button onClick={this.handleUploaderOpen}>
+                Drag an image or click to upload
+              </button>
+            </div>
+          }
+          {this.state.panel ?
+            <Panel
+              open={this.handlePanelOpen}
+              close={this.handlePanelClose}
+              selected={this.state.panel}>
+              <div>
+                {this.state.panel === 'comments' ?
+                  <CommentsPanel
+                    description={project.description}
+                    comments={comments}
+                    parentId={projectId}/>
+                : null}
+                {this.state.panel === 'settings' ?
+                  <SettingsPanel project={project}/>
+                : null}
+                {this.state.panel === 'account' ?
+                  <AccountPanel/>
+                : null}
+              </div>
+            </Panel>
+          : null}
+        </section>
         <CSSTransitionGroup transitionName="uploader">
           {this.state.uploader ?
             <ImageUploader parentId={projectId} close={this.handleUploaderClose}/>

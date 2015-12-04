@@ -4,13 +4,11 @@ $colorGrayMid: darken($colorGray, 10%);
 $colorGrayDark: darken($colorGray, 75%);
 $colorNegative: #FF4136;
 
-$containerWidth: 60em;
-$panelWidth: 2/5 * 100vw;
+$offset: 2em;
+$panelWidth: 1/3 * 100vw;
 
 $blockSize: 3em;
 $blockSizeSmall: 2em;
-
-$offset: 2em;
 
 $panelTransition: transform 0.15s ease-in-out;
 $ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);

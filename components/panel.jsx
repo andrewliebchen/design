@@ -18,7 +18,6 @@ Panel = React.createClass({
           </header>
           {this.props.children}
         </aside>
-        <div className="panel__background" onClick={close}/>
       </span>
     );
   }

@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+}
+
+.main {
+  flex: 2;
+  padding: $offset;
+}
+
+.panel {
+  flex: 1;
+}
