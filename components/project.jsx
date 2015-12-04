@@ -7,8 +7,7 @@ Project = React.createClass({
     return {
       project: Projects.findOne(),
       images: Images.find({}, {sort: {created_at: 1}}).fetch(),
-      comments: Comments.find({}, {sort: {created_at: 1}}).fetch(),
-      user: Meteor.user()
+      comments: Comments.find({}, {sort: {created_at: 1}}).fetch()
     }
   },
 
@@ -35,7 +34,7 @@ Project = React.createClass({
   },
 
   render() {
-    let {project, comments, images, user} = this.data;
+    let {project, comments, images} = this.data;
     let projectId = project._id;
     return (
       <div
@@ -86,7 +85,7 @@ Project = React.createClass({
                 {this.state.panel === 'settings' ?
                   <SettingsPanel project={project}/>
                 : null}
-                {this.state.panel === 'account' ? <AccountPanel user={user}/> : null}
+                {this.state.panel === 'account' ? <AccountPanel user={Meteor.user()}/> : null}
               </span>
             </Panel>
           : null}

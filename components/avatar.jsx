@@ -1,6 +1,6 @@
 Avatar = React.createClass({
   propTypes: {
-    user: React.PropTypes.object.isRequired,
+    user: React.PropTypes.object,
     size: React.PropTypes.oneOf(['large', 'small']),
     className: React.PropTypes.string,
     handleClick: React.PropTypes.func,
@@ -8,21 +8,20 @@ Avatar = React.createClass({
   },
 
   render() {
-    let {size, className, handleClick, imageOnly} = this.props;
-    let user = this.props.user.profile;
-    let avatarSrc = user.avatar_src;
+    let {size, className, handleClick, imageOnly, user} = this.props;
+    let avatarSrc = user ? user.profile.avatar_src : null;
     return (
       <div
         className={`avatar ${className ? className : ''} ${size ? size : ''}`}
         onClick={handleClick}>
-        {avatarSrc ?
-          <div className="avatar__image">
-            <img src={avatarSrc}/> 
-          </div>
-        : null}
+        <div className="avatar__image">
+          {avatarSrc ?
+            <img src={avatarSrc}/>
+          : <Icon type="person" className="block action"/>}
+        </div>
         {!imageOnly ?
           <strong className="avatar__body">
-            {user.name}
+            {user.profile.name}
           </strong>
         : null}
       </div>
