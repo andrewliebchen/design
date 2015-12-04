@@ -1,9 +1,13 @@
 .thumbnails {
   @include prefixer(columns, 3);
   @include prefixer(column-gap, 1em);
-  padding: $offset;
   position: relative;
   overflow: hidden;
+
+  .has-panel & {
+    @include prefixer(columns, 2);
+    padding-right: $offset * 2;
+  }
 }
 
 .thumbnail {
