@@ -18,7 +18,9 @@ Project = React.createClass({
   },
 
   handleUploaderOpen() {
-    this.setState({uploader: true});
+    if(!this.state.uploader) {
+      this.setState({uploader: true});
+    }
   },
 
   handleUploaderClose(event) {
@@ -39,8 +41,8 @@ Project = React.createClass({
     return (
       <div
         className="project wrapper"
-        onDragEnter={this.handleUploaderOpen}
-        onDragExit={this.handleUploaderClose}
+        onDragOver={this.handleUploaderOpen}
+        onDragEnd={this.handleUploaderOpen}
         onDrop={this.handleUploaderClose}>
         <Header title={<InlineEdit
                         html={project.name}
@@ -92,11 +94,9 @@ Project = React.createClass({
             </Panel>
           : null}
         </Container>
-        <CSSTransitionGroup transitionName="uploader">
-          {this.state.uploader ?
-            <ImageUploader parentId={projectId} close={this.handleUploaderClose}/>
-          : null}
-        </CSSTransitionGroup>
+        {this.state.uploader ?
+          <ImageUploader key={1} parentId={projectId} close={this.handleUploaderClose}/>
+        : null}
       </div>
     );
   }
