@@ -19,43 +19,47 @@ Image = React.createClass({
     FlowRouter.setQueryParams({show: this.state.panel ? null : 'comments'});
   },
 
+  renderPanelNav() {
+    return (
+      <nav className="panel-nav">
+        <Icon
+          type="comments"
+          className={`block action${this.state.panel ? ' is-selected' : ''}`}
+          onClick={this.handlePanelToggle}/>
+      </nav>
+    )
+  },
+
   render() {
     let {comments, image} = this.data;
-    let containerClassName = classnames({
-      "container": true,
-      "has-panel": this.state.panel
-    });
-    
     return (
       <div className="image wrapper">
         <header className="header">
           <h2 className="header__title">{image.name}</h2>
-          <a className="block" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
-          <nav className="panel-nav">
-            <Icon
-              type="comments"
-              className={`block action${this.state.panel ? ' is-selected' : ''}`}
-              onClick={this.handlePanelToggle}/>
-          </nav>
+          <a className="block header__back" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
+          {this.renderPanelNav()}
         </header>
-        <div className={containerClassName}>
-          <div className="main image__main">
+        <Container hasPanel={this.state.panel}>
+          <Main className="image__main">
             <img className="image__img" src={image.src}/>
             {this.state.panel ?
               <Pins parentId={image._id}/>
             : null}
-          </div>
+          </Main>
           {this.state.panel ?
-            <aside className="image__sidebar panel">
-              <div className="image__sidebar__content">
+            <Panel
+              open={this.handlePanelToggle}
+              close={this.handlePanelToggle}
+              nav={this.renderPanelNav()}>
+              <div className="panel__content">
                 {image.description ?
                   <p>{image.description}</p>
                 : null}
                 <CommentsList comments={comments} parentId={image._id} canPin/>
               </div>
-            </aside>
+            </Panel>
           : null}
-        </div>
+        </Container>
       </div>
     );
   }

@@ -33,15 +33,7 @@
   right: 0;
   padding: 1em;
   width: $panelWidth;
-
-  .panel & {
-    background-color: white;
-  }
-
-  .image & {
-    background-color: darken($colorGrayDark, 3%);
-    color: $colorGrayDark;
-  }
+  background-color: white;
 
   .avatar {
     position: absolute;
