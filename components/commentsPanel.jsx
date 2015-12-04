@@ -2,7 +2,8 @@ CommentsPanel = React.createClass({
   propTypes: {
     description: React.PropTypes.string,
     comments: React.PropTypes.array,
-    parentId: React.PropTypes.string
+    parentId: React.PropTypes.string,
+    canPin: React.PropTypes.bool
   },
 
   handleEditDescription(event) {
@@ -13,14 +14,19 @@ CommentsPanel = React.createClass({
   },
 
   render() {
-    let {description, comments, parentId} = this.props;
+    let {description, comments, parentId, canPin} = this.props;
     return (
       <div className="panel__content panel__content_comments">
         <div className="project__description">
           <h3>Description</h3>
-          <InlineEdit html={description} onChange={this.handleEditDescription}/>
+          <InlineEdit
+            html={description}
+            onChange={this.handleEditDescription}/>
         </div>
-        <CommentsList comments={comments} parentId={parentId}/>
+        <CommentsList
+          comments={comments}
+          parentId={parentId}
+          canPin={canPin}/>
       </div>
     );
   }

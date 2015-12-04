@@ -1,7 +1,7 @@
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 Project = React.createClass({
-  mixins: [ReactMeteorData],
+  mixins: [ReactMeteorData, PanelMixin],
 
   getMeteorData() {
     return {
@@ -12,21 +12,9 @@ Project = React.createClass({
   },
 
   getInitialState() {
-    let urlParams = FlowRouter.getQueryParam('show');
     return {
-      uploader: false,
-      panel: urlParams ? urlParams : false
+      uploader: false
     };
-  },
-
-  handlePanelOpen(panelName) {
-    this.setState({panel: panelName});
-    FlowRouter.setQueryParams({show: panelName});
-  },
-
-  handlePanelClose() {
-    this.setState({panel: null});
-    FlowRouter.setQueryParams({show: null});
   },
 
   handleUploaderOpen() {
@@ -57,7 +45,9 @@ Project = React.createClass({
         <Header title={<InlineEdit
                         html={project.name}
                         onChange={this.handleEditName}/>}>
-          <ProjectPanelNav onClick={this.handlePanelOpen}/>
+          <PanelNav
+            contentTypes={['comments', 'settings']}
+            onClick={this.handlePanelOpen}/>
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main>
@@ -81,10 +71,11 @@ Project = React.createClass({
               open={this.handlePanelOpen}
               close={this.handlePanelClose}
               selected={this.state.panel}
-              nav={<ProjectPanelNav
+              nav={<PanelNav
+                    contentTypes={['comments', 'settings']}
                     onClick={this.handlePanelOpen}
                     selected={this.state.panel}/>}>
-              <div>
+              <span>
                 {this.state.panel === 'comments' ?
                   <CommentsPanel
                     description={project.description}
@@ -94,10 +85,8 @@ Project = React.createClass({
                 {this.state.panel === 'settings' ?
                   <SettingsPanel project={project}/>
                 : null}
-                {this.state.panel === 'account' ?
-                  <AccountPanel/>
-                : null}
-              </div>
+                {this.state.panel === 'account' ? <AccountPanel/> : null}
+              </span>
             </Panel>
           : null}
         </Container>
