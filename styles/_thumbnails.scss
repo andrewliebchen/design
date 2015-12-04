@@ -1,3 +1,15 @@
+@keyframes overlay {
+  0% {
+    transform: scale(0.75);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .thumbnails {
   @include prefixer(columns, 3);
   @include prefixer(column-gap, 1em);
@@ -6,7 +18,7 @@
 
   .has-panel & {
     @include prefixer(columns, 2);
-    padding-right: $offset * 2;
+    padding-right: $offset;
   }
 }
 
@@ -30,11 +42,12 @@
 }
 
 .thumbnail__overlay {
-  @include checkerboard(rgba($colorBrand, 0.1), rgba($colorBrand, 0.5), 1.5em);
+  @include checkerboard(rgba($colorBrand, 0.3), rgba($colorBrand, 0.8), 1.5em);
+  animation: overlay 0.1s $ease-in-out-back;
   bottom: 0;
   color: $colorGray;
   left: 0;
-  opacity: 0;
+  display: none;
   position: absolute;
   right: 0;
   top: 0;
@@ -42,16 +55,20 @@
   fill: $colorGray;
 
   .thumbnail:hover & {
-    opacity: 1;
+    display: block;
   }
 }
 
 .thumbnail__overlay__label {
+  transition: transform 0.1s ease-in-out;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  color: $colorBrand;
+  transform: translate3d(-50%, -50%, 0) scale(1);
+
+  &:hover {
+    transform: translate3d(-50%, -50%, 0) scale(1.25);
+  }
 }
 
 .thumbnail__actions {
