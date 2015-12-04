@@ -19,7 +19,7 @@ SingleComment = React.createClass({
             <h4>{commenter.profile.name}</h4>
             <small>{moment(comment.created_at).fromNow()}</small>
           </header>
-          <p>{comment.comment}</p>
+          <div className="comment__content">{comment.comment}</div>
           <footer className="comment__footer">
             {canPin ?
               comment.position ?
