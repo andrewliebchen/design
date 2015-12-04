@@ -1,5 +1,5 @@
 Image = React.createClass({
-  mixins: [ReactMeteorData],
+  mixins: [ReactMeteorData, PanelMixin],
 
   getMeteorData() {
     return {
@@ -7,28 +7,6 @@ Image = React.createClass({
       comments: Comments.find({}, {sort: {created_at: 1}}).fetch(),
       projectName: Projects.findOne().name
     };
-  },
-
-  getInitialState() {
-    return {
-      panel: FlowRouter.getQueryParam('show') === 'comments'
-    };
-  },
-
-  handlePanelToggle() {
-    this.setState({panel: !this.state.panel});
-    FlowRouter.setQueryParams({show: this.state.panel ? null : 'comments'});
-  },
-
-  renderPanelNav() {
-    return (
-      <nav className="panel-nav">
-        <Icon
-          type="comments"
-          className={`block action${this.state.panel ? ' is-selected' : ''}`}
-          onClick={this.handlePanelToggle}/>
-      </nav>
-    )
   },
 
   render() {
@@ -39,7 +17,7 @@ Image = React.createClass({
           title={<span>{image.name}</span>}
           parentTitle={projectName}
           parentLink={`/${image.parent}`}>
-          {this.renderPanelNav()}
+          <PanelNav contentTypes={['comments']} onClick={this.handlePanelOpen}/>
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main className="image__main">
@@ -50,15 +28,23 @@ Image = React.createClass({
           </Main>
           {this.state.panel ?
             <Panel
-              open={this.handlePanelToggle}
-              close={this.handlePanelToggle}
-              nav={this.renderPanelNav()}>
-              <div className="panel__content">
-                {image.description ?
-                  <p>{image.description}</p>
+              open={this.handlePanelOpen}
+              close={this.handlePanelClose}
+              selected={this.state.panel}
+              nav={<PanelNav
+                    contentTypes={['comments']}
+                    onClick={this.handlePanelOpen}
+                    selected={this.state.panel}/>}>
+              <span>
+                {this.state.panel === 'comments' ?
+                  <CommentsPanel
+                    description={image.description}
+                    comments={comments}
+                    parentId={image._id}
+                    canPin />
                 : null}
-                <CommentsList comments={comments} parentId={image._id} canPin/>
-              </div>
+                {this.state.panel === 'account' ? <AccountPanel/> : null}
+              </span>
             </Panel>
           : null}
         </Container>
