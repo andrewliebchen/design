@@ -2,7 +2,7 @@ const _ = lodash;
 const contentTypes = ['comments', 'settings'];
 const contentLabels = [<Icon type="comments"/>, <Icon type="settings"/>]
 
-PanelNav = React.createClass({
+ProjectPanelNav = React.createClass({
   propTypes: {
     onClick: React.PropTypes.func,
     selected: React.PropTypes.oneOf(['comments', 'settings', 'account'])

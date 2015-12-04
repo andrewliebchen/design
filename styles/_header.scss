@@ -17,12 +17,20 @@
   }
 }
 
-.header__brand {
-  fill: $colorBrand;
+.header__brand,
+.header__back {
   position: absolute;
   left: $offset;
-  top: 0.5em;
   z-index: 1;
+}
+
+.header__brand {
+  fill: $colorBrand;
+  top: 0.5em;
+}
+
+.header__back {
+  top: 1em;
 }
 
 .header__title {

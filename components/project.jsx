@@ -48,10 +48,6 @@ Project = React.createClass({
   render() {
     let {project, comments, images} = this.data;
     let projectId = project._id;
-    let containerClassName = classnames({
-      "container": true,
-      "has-panel": this.state.panel
-    });
     return (
       <div
         className="project wrapper"
@@ -67,28 +63,33 @@ Project = React.createClass({
               html={project.name}
               onChange={this.handleEditName}/>
           </h2>
-          <PanelNav onClick={this.handlePanelOpen}/>
+          <ProjectPanelNav onClick={this.handlePanelOpen}/>
         </header>
-        <section className={containerClassName}>
-          {images.length > 0 ?
-            <div className="thumbnails main">
-              {images.map((image, i) => {
-                return <Thumbnail key={i} image={image}/>;
-              })}
-            </div>
-          :
-            <div className="project__no-content">
-              <h3>Let's get this show on the road...</h3>
-              <button onClick={this.handleUploaderOpen}>
-                Drag an image or click to upload
-              </button>
-            </div>
-          }
+        <Container hasPanel={this.state.panel}>
+          <Main>
+            {images.length > 0 ?
+              <div className="thumbnails">
+                {images.map((image, i) => {
+                  return <Thumbnail key={i} image={image}/>;
+                })}
+              </div>
+            :
+              <div className="project__no-content">
+                <h3>Let's get this show on the road...</h3>
+                <button onClick={this.handleUploaderOpen}>
+                  Drag an image or click to upload
+                </button>
+              </div>
+            }
+          </Main>
           {this.state.panel ?
             <Panel
               open={this.handlePanelOpen}
               close={this.handlePanelClose}
-              selected={this.state.panel}>
+              selected={this.state.panel}
+              nav={<ProjectPanelNav
+                    onClick={this.handlePanelOpen}
+                    selected={this.state.panel}/>}>
               <div>
                 {this.state.panel === 'comments' ?
                   <CommentsPanel
@@ -105,7 +106,7 @@ Project = React.createClass({
               </div>
             </Panel>
           : null}
-        </section>
+        </Container>
         <CSSTransitionGroup transitionName="uploader">
           {this.state.uploader ?
             <ImageUploader parentId={projectId} close={this.handleUploaderClose}/>
