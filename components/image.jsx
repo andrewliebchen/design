@@ -35,7 +35,7 @@ Image = React.createClass({
     return (
       <div className="image wrapper">
         <Header title={<span>{image.name}</span>}>
-          <a className="block header__back" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
+          <a className="header__back header__left block" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
           {this.renderPanelNav()}
         </Header>
         <Container hasPanel={this.state.panel}>
