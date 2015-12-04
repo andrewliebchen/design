@@ -54,17 +54,14 @@ Project = React.createClass({
         onDragEnter={this.handleUploaderOpen}
         onDragExit={this.handleUploaderClose}
         onDrop={this.handleUploaderClose}>
-        <header className="header">
+        <Header title={<InlineEdit
+                        html={project.name}
+                        onChange={this.handleEditName}/>}>
           <a className="header__brand" href="/">
             <Brand/>
           </a>
-          <h2 className="header__title">
-            <InlineEdit
-              html={project.name}
-              onChange={this.handleEditName}/>
-          </h2>
           <ProjectPanelNav onClick={this.handlePanelOpen}/>
-        </header>
+        </Header>
         <Container hasPanel={this.state.panel}>
           <Main>
             {images.length > 0 ?

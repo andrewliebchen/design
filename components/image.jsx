@@ -34,11 +34,10 @@ Image = React.createClass({
     let {comments, image} = this.data;
     return (
       <div className="image wrapper">
-        <header className="header">
-          <h2 className="header__title">{image.name}</h2>
+        <Header title={<span>{image.name}</span>}>
           <a className="block header__back" href={`/${image.parent}`}><Icon type="arrowLeft"/></a>
           {this.renderPanelNav()}
-        </header>
+        </Header>
         <Container hasPanel={this.state.panel}>
           <Main className="image__main">
             <img className="image__img" src={image.src}/>
