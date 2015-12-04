@@ -57,9 +57,6 @@ Project = React.createClass({
         <Header title={<InlineEdit
                         html={project.name}
                         onChange={this.handleEditName}/>}>
-          <a className="header__brand header__left" href="/">
-            <Brand/>
-          </a>
           <ProjectPanelNav onClick={this.handlePanelOpen}/>
         </Header>
         <Container hasPanel={this.state.panel}>

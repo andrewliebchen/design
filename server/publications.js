@@ -14,6 +14,7 @@ Meteor.publish('image', (id) => {
 
   return [
     Images.find({_id: id}),
-    Comments.find({parent: id})
+    Comments.find({parent: id}),
+    Projects.find({_id: Images.findOne(id).parent})
   ];
 });

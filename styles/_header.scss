@@ -17,19 +17,12 @@
   }
 }
 
-.header__left {
-  position: absolute;
-  left: $offset;
-  z-index: 1;
-}
-
 .header__brand {
   fill: $colorBrand;
   top: 0.5em;
-}
-
-.header__back {
-  top: 1em;
+  position: absolute;
+  left: $offset;
+  z-index: 1;
 }
 
 .header__title {
@@ -37,4 +30,10 @@
   margin: auto;
   text-align: center;
   width: 50%;
+}
+
+.header__subtitle {
+  line-height: 1;
+  display: block;
+  margin-bottom: -0.5em;
 }
