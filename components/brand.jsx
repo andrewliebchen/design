@@ -7,7 +7,7 @@ Brand = React.createClass({
 
   render() {
     return (
-      <svg width={`${this.props.size}em`} viewBox="0 0 66.8 92">
+      <svg width={`${this.props.size}em`} viewBox="0 0 66.8 92" className="logo">
       	<path d="M32.1,16.3c0,10.3-6,16.3-16,16.3C6.1,32.5,0,26.6,0,16.3C0,5.9,6.1,0,16.1,0C26.1,0,32.1,5.9,32.1,16.3z M11.4,16.3
       		c0,5.5,1.4,7.9,4.7,7.9c3.3,0,4.6-2.4,4.6-7.9c0-5.5-1.4-7.9-4.6-7.9C12.8,8.4,11.4,10.8,11.4,16.3z"/>
       	<path d="M66.8,0.5V32H55.7V20.3H47V32H35.9V0.5H47v11.6h8.7V0.5H66.8z"/>

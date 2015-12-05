@@ -1,4 +1,6 @@
 AccountPanel = React.createClass({
+  mixins: [AccountActionsMixin],
+
   handleNameUpdate(event) {
     Meteor.call('updateUserName', {
       id: this.props.user._id,
@@ -8,14 +10,6 @@ AccountPanel = React.createClass({
         Session.set('toast', 'Your name has been updated');
       }
     });
-  },
-
-  handleSignOut() {
-    Meteor.logOut();
-  },
-
-  handleSignIn() {
-    Meteor.loginWithGoogle();
   },
 
   handleDeleteAccount() {

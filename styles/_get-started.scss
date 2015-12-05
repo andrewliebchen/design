@@ -1,0 +1,25 @@
+.get-started {
+  padding: 1em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  background-color: $colorGray;
+  color: $colorGrayDark;
+  max-width: 15em;
+  text-align: center;
+}
+
+.get-started__header {
+  margin-bottom: 1em;
+
+  .logo {
+    fill: $colorGrayMid;
+  }
+}
+
+.get-started__content {
+  button {
+    margin-bottom: 0.5em;
+  }
+}
