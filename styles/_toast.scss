@@ -1,0 +1,47 @@
+.toast {
+  background-color: $colorBrand;
+  color: $colorGray;
+  font-weight: bold;
+  left: 5.5em;
+  line-height: 3em;
+  padding: 0 1em;
+  position: absolute;
+  top: 1em;
+  transform-origin: left center;
+
+  &::after {
+    $size: 0.75em;
+    $margin: -($size / 2);
+    background-color: inherit;
+    content: "";
+    height: $size;
+    left: 0;
+    margin: $margin 0 0 $margin;
+    position: absolute;
+    top: 50%;
+    transform: rotate(45deg);
+    width: $size;
+  }
+}
+
+.toast-enter {
+  opacity: 0.01;
+  transform: scale3d(0.5, 0.8, 0);
+
+  &.toast-enter-active {
+    opacity: 1;
+    transform: scale3d(1, 1, 0);
+    transition: all 0.2s $ease-in-out-back;
+  }
+}
+
+.toast-leave {
+  opacity: 1;
+  transform: scale3d(1, 1, 0);
+
+  &.toast-leave-active {
+    opacity: 0.01;
+    transform: scale3d(0.5, 0.8, 0);
+    transition: all 0.2s $ease-in-out-back;
+  }
+}

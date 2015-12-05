@@ -32,24 +32,24 @@
   }
 }
 
-.uploader-enter {
-  opacity: 0.01;
-  transform: scale(0.75);
-
-  &.uploader-enter-active {
-    opacity: 1;
-    transform: scale(1);
-    transition: all 0.25s $ease-in-out-back;
-  }
-}
-
-.uploader-leave {
-  opacity: 1;
-  transform: scale(1);
-
-  &.uploader-leave-active {
-    opacity: 0.01;
-    transform: scale(1.5);
-    transition: all 0.3s $ease-in-out-back;
-  }
-}
+// .uploader-enter {
+//   opacity: 0.01;
+//   transform: scale(0.75);
+//
+//   &.uploader-enter-active {
+//     opacity: 1;
+//     transform: scale(1);
+//     transition: all 0.25s $ease-in-out-back;
+//   }
+// }
+//
+// .uploader-leave {
+//   opacity: 1;
+//   transform: scale(1);
+//
+//   &.uploader-leave-active {
+//     opacity: 0.01;
+//     transform: scale(1.5);
+//     transition: all 0.3s $ease-in-out-back;
+//   }
+// }
