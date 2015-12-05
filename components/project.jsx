@@ -32,6 +32,10 @@ Project = React.createClass({
     Meteor.call('editProjectName', {
       id: this.data.project._id,
       name: event.target.value
+    }, (error, success) => {
+      if(success){
+        Session.set('toast', 'Project name updated...');
+      }
     });
   },
 
