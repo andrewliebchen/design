@@ -3,6 +3,10 @@ AccountPanel = React.createClass({
     Meteor.call('updateUserName', {
       id: this.props.user._id,
       name: event.target.value
+    }, (error, success) => {
+      if(success){
+        Session.set('toast', 'Your name has been updated');
+      }
     });
   },
 

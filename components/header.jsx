@@ -9,6 +9,7 @@ Header = React.createClass({
     let {title, parentTitle, parentLink} = this.props;
     return (
       <header className="header">
+        <Toast/>
         <a className="header__brand header__left" href="/">
           <Brand/>
         </a>
