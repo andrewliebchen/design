@@ -10,6 +10,10 @@ CommentsPanel = React.createClass({
     Meteor.call('editProjectDescription', {
       id: this.props.parentId,
       description: event.target.value
+    }, (error, success) => {
+      if(success){
+        Session.set('toast', 'Description up to date!');
+      }
     });
   },
 
