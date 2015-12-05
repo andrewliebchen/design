@@ -1,14 +1,16 @@
 Home = React.createClass({
-  getInitialState() {
+  mixins: [ReactMeteorData, AccountActionsMixin],
+
+  getMeteorData() {
     return {
-      loading: false
-    };
+      currentUser: Meteor.user()
+    }
   },
 
   handleNewProject() {
-    Meteor.call('newProject', Date.now(), (error, success) => {
-      if(success) {
-        FlowRouter.go(`/${success}`);
+    Meteor.call('newProject', Date.now(), (error, newProjectId) => {
+      if(newProjectId) {
+        FlowRouter.go(`/${newProjectId}`);
       }
     });
   },
@@ -16,14 +18,25 @@ Home = React.createClass({
   render() {
     return (
       <div className="wrapper">
-        {this.state.loading ?
-          <Loading/>
-        :
-          <span>
-            Get started...
-            <button onClick={this.handleNewProject}>Create a project</button>
-          </span>
-        }
+        <div className="get-started">
+          <header className="get-started__header">
+            <Brand size={13}/>
+          </header>
+          {this.data.currentUser ?
+            <div className="get-started__content">
+              <button className="full-width" onClick={this.handleNewProject}>
+                Create a project
+              </button>
+              <a onClick={this.handleSignOut}>Sign out</a>
+            </div>
+          :
+            <div className="get-started__content">
+              <button className="full-width" onClick={this.handleSignIn}>
+                Sign in with Google
+              </button>
+            </div>
+          }
+        </div>
       </div>
     );
   }
