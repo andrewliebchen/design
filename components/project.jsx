@@ -28,17 +28,6 @@ Project = React.createClass({
     this.setState({uploader: false});
   },
 
-  handleEditName(event) {
-    Meteor.call('editProjectName', {
-      id: this.data.project._id,
-      name: event.target.value
-    }, (error, success) => {
-      if(success){
-        Session.set('toast', 'Project name updated...');
-      }
-    });
-  },
-
   render() {
     let {project, comments, images} = this.data;
     let projectId = project._id;
@@ -49,8 +38,10 @@ Project = React.createClass({
         onDragEnd={this.handleUploaderOpen}
         onDrop={this.handleUploaderClose}>
         <Header title={<InlineEdit
-                        html={project.name}
-                        onChange={this.handleEditName}/>}>
+                        defaultValue={project.name}
+                        method="editProjectName"
+                        parentId={this.data.project._id}
+                        toast="Project name updated..."/>}>
           <PanelNav
             contentTypes={['comments', 'settings']}
             onClick={this.handlePanelOpen}
