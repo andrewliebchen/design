@@ -20,6 +20,15 @@ textarea {
   width: 100%;
   border: 0;
 
+  &:hover {
+    background-color: lighten($colorGrayMid, 2%);
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px $colorBrand,;
+    background-color: white;
+  }
+
   &:disabled {
     color: lighten($colorGrayDark, 25%);
     pointer-events: none;
@@ -30,17 +39,6 @@ input {
   line-height: 2em;
 }
 
-input,
-textarea {
-  &:hover {
-    background-color: lighten($colorGrayMid, 2%);
-  }
-
-  &:focus {
-    box-shadow: inset 0 0 0 1px $colorBrand,;
-    background-color: white;
-  }
-}
 
 input,
 textarea,
@@ -101,4 +99,20 @@ button {
     width: auto;
     flex: 1;
   }
+}
+
+.inline-edit {
+  position: relative;
+
+  input,
+  textarea {
+    font-weight: inherit;
+    text-align: inherit;
+  }
+}
+
+.inline-edit__close {
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
 }

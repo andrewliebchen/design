@@ -23,9 +23,9 @@ InlineEdit = React.createClass({
     this.setState({editing: !this.state.editing});
   },
 
-  handleSave() {
-    let inputValue = React.findDOMNode(this.refs.inlineInput).value;
-    if(inputValue !== this.props.defaultValue) {
+  handleSave(event) {
+    let inputValue = event.target.value;
+    if(inputValue !== this.props.defaultValue && event.which === 13) {
       Meteor.call(this.props.method, {
         id: this.props.parentId,
         value: inputValue
@@ -42,24 +42,23 @@ InlineEdit = React.createClass({
     let {defaultValue, type} = this.props;
     if(this.state.editing) {
       return (
-        <span>
+        <span className="inline-edit">
           {type === 'input' ?
             <input
               type="text"
               ref="inlineInput"
               defaultValue={defaultValue}
+              onBlur={this.handleEditToggle}
+              onKeyPress={this.handleSave}
               autoFocus/>
           : null}
           {type === 'textarea' ?
             <textarea
               ref="inlineInput"
               defaultValue={defaultValue}
+              onKeyPress={this.handleSave}
               autoFocus/>
           : null}
-          <a onClick={this.handleEditToggle}>
-            <Icon type="close" size={1}/>
-          </a>
-          <a onClick={this.handleSave}>Save</a>
         </span>
       );
     }
