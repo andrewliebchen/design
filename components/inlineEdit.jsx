@@ -3,7 +3,14 @@ InlineEdit = React.createClass({
     defaultValue: React.PropTypes.string,
     method: React.PropTypes.string,
     parentId: React.PropTypes.string,
-    toast: React.PropTypes.string
+    toast: React.PropTypes.string,
+    type: React.PropTypes.oneOf(['input', 'textarea'])
+  },
+
+  getDefaultProps() {
+    return {
+      type: 'input'
+    };
   },
 
   getInitialState() {
@@ -17,33 +24,47 @@ InlineEdit = React.createClass({
   },
 
   handleSave() {
-    let input = React.findDOMNode(this.refs.inlineInput).value;
-    Meteor.call(this.props.method, {
-      id: this.props.parentId,
-      name: input
-    }, (error, success) => {
-      if(success){
-        Session.set('toast', this.props.toast);
-        this.setState({editing: false});
-      }
-    });
+    let inputValue = React.findDOMNode(this.refs.inlineInput).value;
+    if(inputValue !== this.props.defaultValue) {
+      Meteor.call(this.props.method, {
+        id: this.props.parentId,
+        value: inputValue
+      }, (error, success) => {
+        if(success){
+          Session.set('toast', this.props.toast);
+          this.setState({editing: false});
+        }
+      });
+    }
   },
 
   render() {
+    let {defaultValue, type} = this.props;
     if(this.state.editing) {
       return (
         <span>
-          <input
-            type="text"
-            defaultValue={this.props.defaultValue}
-            autoFocus
-            ref="inlineInput"/>
+          {type === 'input' ?
+            <input
+              type="text"
+              ref="inlineInput"
+              defaultValue={defaultValue}
+              autoFocus/>
+          : null}
+          {type === 'textarea' ?
+            <textarea
+              ref="inlineInput"
+              defaultValue={defaultValue}
+              autoFocus/>
+          : null}
+          <a onClick={this.handleEditToggle}>
+            <Icon type="close" size={1}/>
+          </a>
           <a onClick={this.handleSave}>Save</a>
         </span>
       );
     }
     return (
-      <span onClick={this.handleEditToggle}>{this.props.defaultValue}</span>
+      <span onClick={this.handleEditToggle}>{defaultValue}</span>
     );
   }
 });
