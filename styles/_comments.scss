@@ -58,3 +58,25 @@
   text-align: center;
   transform: translate3d(-50%, -50%, 0);
 }
+
+.comment-enter {
+  opacity: 0.01;
+  transform: scale(0.5);
+
+  &.comment-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.2s $ease-in-out-back;
+  }
+}
+
+.comment-leave {
+  opacity: 1;
+  transform: scale(1);
+
+  &.comment-leave-active {
+    opacity: 0.01;
+    transform: scale(1.5);
+    transition: all 0.1s $ease-in-out-back;
+  }
+}
