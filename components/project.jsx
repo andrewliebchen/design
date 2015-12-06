@@ -116,12 +116,12 @@ if(Meteor.isServer) {
     editProjectName(args) {
       check(args, {
         id: String,
-        name: String
+        value: String
       });
 
       return Projects.update(args.id, {
         $set: {
-          name: args.name
+          name: args.value
         }
       });
     }
