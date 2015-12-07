@@ -73,9 +73,10 @@ img {
 .menu {
   position: absolute;
   padding: 0.5em;
-  background-color: $colorBrand;
+  background-color: $colorGrayDark;
   color: $colorGray;
   min-width: 10em;
+  transform-origin: top center;
 }
 
 .menu__item {
@@ -86,6 +87,35 @@ img {
   font-weight: bold;
 
   &:hover {
-    background-color: lighten($colorBrand, 10%);
+    background-color: $colorBrand;
+  }
+
+  .icon {
+    margin-right: 0.5em;
+    fill: $colorGrayMid;
+    position: relative;
+    top: 0.3em;
+  }
+}
+
+.menu-enter {
+  opacity: 0.01;
+  transform: translateY(-1em) scale3d(1, 0.75, 1);
+
+  &.menu-enter-active {
+    opacity: 1;
+    transform: translateY(0) scale3d(1, 1, 1);
+    transition: all 0.15s $ease-in-out-back;
+  }
+}
+
+.menu-leave {
+  opacity: 1;
+  transform: translateY(0) scale3d(1, 1, 1);
+
+  &.menu-leave-active {
+    opacity: 0.01;
+    transform: translateY(-1em) scale3d(1, 0.75, 1);
+    transition: all 0.2s $ease-in-out-back;
   }
 }
