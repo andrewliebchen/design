@@ -13,7 +13,10 @@ SingleComment = React.createClass({
   },
 
   handleAddPin() {
-    Session.set('pinning', this.props.comment._id);
+    Session.set({
+      'pinning': this.props.comment._id,
+      'toast': 'Click on the image to place your pin...'
+    });
   },
 
   handleDropdownToggle() {

@@ -45,7 +45,10 @@ Pins = React.createClass({
         yPos: yPos
       }, (err, success) => {
         if(success) {
-          Session.set('pinning', null);
+          Session.set({
+            'pinning': null,
+            'toast': null
+          });
         }
       });
     }
