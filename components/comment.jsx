@@ -4,8 +4,36 @@ SingleComment = React.createClass({
     canPin: React.PropTypes.bool
   },
 
+  getInitialState() {
+    return {
+      dropdown: false
+    };
+  },
+
   handleAddPin() {
     Session.set('pinning', this.props.comment._id);
+  },
+
+  handleDropdownToggle() {
+    this.setState({dropdown: !this.state.dropdown});
+  },
+
+  componentDidMount() {
+    window.addEventListener('mousedown', this.pageClick, false);
+  },
+
+  pageClick() {
+    if(!this.clickOnDropdown) {
+      this.setState({dropdown: false});
+    }
+  },
+
+  handleMouseDown() {
+    this.clickOnDropdown = true;
+  },
+
+  handleMouseUp() {
+    this.clickOnDropdown = false;
   },
 
   render() {
@@ -17,7 +45,14 @@ SingleComment = React.createClass({
         <div className="comment__body">
           <header className="comment__header">
             <h4>{commenter.profile.name}</h4>
-            <small>{moment(comment.created_at).fromNow()}</small>
+            <div className="comment__header__meta">
+              <small>{moment(comment.created_at).fromNow()}</small>
+              <Icon
+                type="settings"
+                size={1.25}
+                onClick={this.handleDropdownToggle}
+                className="comment__settings__toggle"/>
+            </div>
           </header>
           <div className="comment__content">{comment.comment}</div>
           <footer className="comment__footer">
@@ -29,6 +64,15 @@ SingleComment = React.createClass({
             : null}
           </footer>
         </div>
+        {this.state.dropdown ?
+          <div
+            className="menu comment__settings__menu"
+            onMouseDown={this.handleMouseDown}
+            omMouseUp={this.handleMouseUp}>
+            <div className="menu__item">Edit</div>
+            <div className="menu__item">Delete</div>
+          </div>
+        : null}
       </div>
     );
   }
