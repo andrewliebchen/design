@@ -3,7 +3,7 @@
 }
 
 .comment {
-  @include clearfix;
+  position: relative;
 
   + .comment {
     margin-top: 1em;
@@ -16,10 +16,27 @@
   h4 {
     float: left;
   }
+}
 
-  small {
-    float: right;
+.comment__header__meta {
+  float: right;
+}
+
+.comment__settings__toggle {
+  position: relative;
+  top: 3px;
+  padding-left: 0.25em;
+  cursor: pointer;
+
+  &:hover {
+    fill: $colorBrand;
   }
+}
+
+.comment__settings__menu {
+  top: 1.5em;
+  right: 0;
+  z-index: 1;
 }
 
 .comment__body {
@@ -28,6 +45,7 @@
 }
 
 .comment__content {
+
 }
 
 .comment__new {

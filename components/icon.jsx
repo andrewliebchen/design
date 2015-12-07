@@ -8,7 +8,11 @@ Icon = React.createClass({
   render() {
     let {type, size, className, onClick} = this.props;
     return (
-      <svg width={`${size}em`} viewBox="0 0 100 100" className={`icon ${className}`} onClick={onClick}>
+      <svg
+        width={`${size}em`}
+        viewBox="0 0 100 100"
+        className={`icon ${className ? className : ''}`} 
+        onClick={onClick}>
         {type === 'arrowLeft' ? <path d="M80.1,40.2H47.6c-0.4,0-0.7-0.2-0.9-0.4c-0.2-0.2-0.4-0.5-0.4-0.9s0.2-0.7,0.4-0.9l10.4-10.8
     			c1.9-1.9,2.9-4.4,2.9-7.1s-1-5.2-2.9-7.1s-4.4-2.9-7.1-2.9c-2.7,0-5.2,1-7,2.9L13.7,41.3c-2.4,2.4-3.7,5.5-3.7,8.8
     			s1.3,6.5,3.7,8.8c0.1,0.1,0.3,0.2,0.4,0.3L43,87c1.9,1.9,4.4,2.9,7.1,2.9c2.7,0,5.2-1,7.1-2.9c1.9-1.9,2.9-4.4,2.9-7.1
