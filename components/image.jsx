@@ -24,10 +24,10 @@ Image = React.createClass({
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main className="image__main">
-            <img className="image__img" src={image.src}/>
-            {this.state.panel ?
-              <Pins parentId={image._id}/>
-            : null}
+            <Pins
+              parentId={image._id}
+              panel={this.state.panel}
+              imageSrc={image.src}/>
           </Main>
           {this.state.panel ?
             <Panel
