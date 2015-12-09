@@ -6,10 +6,23 @@ CommentsPanel = React.createClass({
     canPin: React.PropTypes.bool
   },
 
+  _scrollToBottom() {
+    let scrollContainer = React.findDOMNode(this.refs.scrollContainer);
+    scrollContainer.scrollTop = scrollContainer.scrollHeight;
+  },
+
+  componentDidMount() {
+    this._scrollToBottom();
+  },
+
+  componentDidUpdate() {
+    this._scrollToBottom();
+  },
+
   render() {
     let {description, comments, parentId, canPin} = this.props;
     return (
-      <div className="panel__content panel__content_comments">
+      <div className="panel__content panel__content_comments" ref="scrollContainer">
         <div className="project__description">
           <h3>Description</h3>
           <InlineEdit
