@@ -1,9 +1,18 @@
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 SingleComment = React.createClass({
+  mixins: [ReactMeteorData, PinHoverMixin],
+
   propTypes: {
     comment: React.PropTypes.object.isRequired,
-    canPin: React.PropTypes.bool
+    canPin: React.PropTypes.bool,
+    id: React.PropTypes.string
+  },
+
+  getMeteorData() {
+    return {
+      hovered: Session.get('commentHover') === this.props.id
+    };
   },
 
   getInitialState() {
@@ -14,7 +23,7 @@ SingleComment = React.createClass({
 
   handleAddPin() {
     Session.set({
-      'pinning': this.props.comment._id,
+      'pinning': this.props.id,
       'toast': 'Click on the image to place your pin...'
     });
   },
@@ -43,7 +52,7 @@ SingleComment = React.createClass({
   },
 
   handleCommentDelete() {
-    Meteor.call('deleteComment', this.props.comment._id, (err, success) => {
+    Meteor.call('deleteComment', this.props.id, (err, success) => {
       if(success) {
         Session.set('toast', 'Poof! comment deleted.');
       }
@@ -57,8 +66,18 @@ SingleComment = React.createClass({
   render() {
     let {comment, canPin} = this.props;
     let commenter = Meteor.users.findOne(this.props.comment.created_by);
+    let metaPinClassname = classnames({
+      'pin': true,
+      'comment__pin__toggle': true,
+      'is-unpinned': !comment.position,
+      'is-hovered': this.data.hovered
+    });
+
     return (
-      <div className="comment">
+      <div
+        className={`comment ${this.data.hovered ? 'is-hovered' : ''}`}
+        onMouseOver={this.handleMouseOver}
+        onMouseOut={this.handleMouseOut}>
         <Avatar user={commenter} imageOnly/>
         <div className="comment__body">
           <header className="comment__header">
@@ -70,16 +89,22 @@ SingleComment = React.createClass({
                 size={1.25}
                 onClick={this.handleDropdownToggle}
                 className="comment__settings__toggle"/>
+              <div
+                className={metaPinClassname}/>
             </div>
           </header>
           <div className="comment__content">{comment.comment}</div>
           <footer className="comment__footer">
-            {canPin ?
+            {/*canPin ?
               comment.position ?
-                <Pin/>
+                <a className="comment__pin__toggle">
+                  <Pin/>Edit
+                </a>
               :
-                <a onClick={this.handleAddPin}>Pin this comment</a>
-            : null}
+                <a className="comment__pin__toggle" onClick={this.handleAddPin}>
+                  Pin this comment
+                </a>
+            : null*/}
           </footer>
         </div>
         <CSSTransitionGroup transitionName="menu">

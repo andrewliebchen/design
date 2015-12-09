@@ -14,7 +14,13 @@ CommentsList = React.createClass({
         {comments.length > 0 ?
           <CSSTransitionGroup transitionName="comment">
             {comments.map((comment, i) => {
-              return <SingleComment key={i} comment={comment} canPin={canPin}/>;
+              return (
+                <SingleComment
+                  key={i}
+                  comment={comment}
+                  id={comment._id}
+                  canPin={canPin}/>
+              );
             })}
           </CSSTransitionGroup>
         : <div className="comments__no-content">Doh, no comments yet</div>}

@@ -2,7 +2,12 @@
   position: relative;
 
   + .comment {
-    margin-top: 1em;
+    margin-top: 1.5em;
+  }
+
+  &:hover,
+  &.is-hovered {
+    background-color: white;
   }
 }
 
@@ -18,11 +23,24 @@
   float: right;
 }
 
+.pin.comment__pin__toggle {
+  position: relative;
+  margin: 0 0 0 0.25em;
+  box-shadow: none;
+  top: 3px; // Magic
+  z-index: auto;
+
+  &.is-unpinned {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 2px $colorBrand;
+  }
+}
+
 .comment__settings__toggle {
   position: relative;
-  top: 3px;
-  padding-left: 0.25em;
+  margin-left: 0.25em;
   cursor: pointer;
+  top: 5px; // Magic
 
   &:hover {
     fill: $colorBrand;
@@ -60,6 +78,22 @@
 
   input {
     padding-left: 3em;
+  }
+}
+
+.comment__pin__toggle {
+  $height: 1.5em;
+  padding: 0 0.5em;
+  line-height: $height;
+  display: inline-block;
+  background-color: $colorGrayMid;
+  position: relative;
+  border-radius: $height / 2;
+
+  .pin {
+    margin: 0.25em 0.25em 0 0;
+    box-shadow: none;
+    position: static;
   }
 }
 
