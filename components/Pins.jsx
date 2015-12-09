@@ -19,6 +19,8 @@ Pins = React.createClass({
 
   propTypes: {
     parentId: React.PropTypes.string,
+    panel: React.PropTypes.string,
+    imageSrc: React.PropTypes.string
   },
 
   getMeteorData() {
@@ -26,18 +28,24 @@ Pins = React.createClass({
     let comments = Meteor.subscribe('comments', this.props.parentId);
 
     return {
-      loading: !comments.ready(),
-      pins: Comments.find({parent: this.props.parentId, position: {$exists: true}}).fetch()
+      pins: Comments.find({
+        parent: this.props.parentId,
+        position: {$exists: true}
+      }).fetch()
     };
   },
 
   handleAddPin(event) {
     if(Session.get('pinning')) {
+      let $target = $(event.target);
       let commentId = Session.get('pinning');
-      let targetOffset = $(event.target).offset();
-      let targetOffsetY = targetOffset.top + document.body.scrollTop;
-      let yPos = event.clientY - targetOffsetY;
-      let xPos = event.clientX - targetOffset.left;
+      let targetOffset = $target.offset();
+
+      let targetMarginLeft = parseInt($target.css('margin-left'), 10);
+      let targetMarginTop = parseInt($target.css('margin-top'), 10);
+
+      let xPos = event.clientX - targetOffset.left + targetMarginLeft;
+      let yPos = event.clientY - targetOffset.top + targetMarginTop;
 
       Meteor.call('addPin', {
         commentId: commentId,
@@ -62,6 +70,7 @@ Pins = React.createClass({
         {this.data.pins.map((pin, i) => {
           return <Pin key={i} x={pin.position.x} y={pin.position.y}/>
         })}
+        <img className="image__img" src={this.props.imageSrc}/>
       </div>
     );
   }

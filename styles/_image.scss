@@ -13,6 +13,8 @@
   left: 0;
   bottom: 0;
   width: 100vw;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .has-panel & {
     width: 100vw - $panelWidth;
@@ -20,9 +22,8 @@
 }
 
 .image__img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
   border: 1px solid black;
 }
