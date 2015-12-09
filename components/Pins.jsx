@@ -1,7 +1,16 @@
 Pin = React.createClass({
+  mixins: [ReactMeteorData, PinHoverMixin],
+
   propTypes: {
     x: React.PropTypes.number,
-    y: React.PropTypes.number
+    y: React.PropTypes.number,
+    id: React.PropTypes.string
+  },
+
+  getMeteorData() {
+    return {
+      hovered: Session.get('commentHover') === this.props.id
+    };
   },
 
   render() {
@@ -9,8 +18,18 @@ Pin = React.createClass({
       top: `${this.props.y}%`,
       left: `${this.props.x}%`
     };
+    let className = classnames({
+      'pin': true,
+      'is-hovered': this.data.hovered
+    })
 
-    return <div className="pin" style={style}/>;
+    return (
+      <div
+        className={className}
+        style={style}
+        onMouseOver={this.handleMouseOver}
+        onMouseOut={this.handleMouseOut}/>
+    );
   }
 });
 
@@ -69,10 +88,16 @@ Pins = React.createClass({
     return (
       <div
         className="pins"
-        onClick={this.handleAddPin}>
-        {this.data.pins.map((pin, i) => {
-          return <Pin key={i} x={pin.position.x} y={pin.position.y}/>
-        })}
+        onClick={this.props.panel ? this.handleAddPin : null}>
+        {this.props.panel ? this.data.pins.map((pin, i) => {
+          return (
+            <Pin
+              key={i}
+              x={pin.position.x}
+              y={pin.position.y}
+              id={pin._id}/>
+          );
+        }) : null}
         <img className="image__img" src={this.props.imageSrc}/>
       </div>
     );
