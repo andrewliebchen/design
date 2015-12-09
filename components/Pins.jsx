@@ -6,8 +6,8 @@ Pin = React.createClass({
 
   render() {
     let style = {
-      top: `${this.props.y}px`,
-      left: `${this.props.x}px`
+      top: `${this.props.y}%`,
+      left: `${this.props.x}%`
     };
 
     return <div className="pin" style={style}/>;
@@ -47,10 +47,13 @@ Pins = React.createClass({
       let xPos = event.clientX - targetOffset.left + targetMarginLeft;
       let yPos = event.clientY - targetOffset.top + targetMarginTop;
 
+      let xPosPercent = xPos / ($target.width()  + targetMarginLeft * 2) * 100;
+      let yPosPercent = yPos / ($target.height() + targetMarginTop * 2) * 100;
+
       Meteor.call('addPin', {
         commentId: commentId,
-        xPos: xPos,
-        yPos: yPos
+        xPos: xPosPercent,
+        yPos: yPosPercent
       }, (err, success) => {
         if(success) {
           Session.set({
