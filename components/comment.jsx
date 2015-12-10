@@ -34,7 +34,27 @@ SingleComment = React.createClass({
   },
 
   handlePinType() {
-    console.log('Pin type');
+    let newPinType;
+    switch(this.props.comment.position.type) {
+      case 'good':
+        newPinType = 'bad';
+        break;
+      case 'bad':
+        newPinType = 'pin';
+        break;
+      case 'pin':
+        newPinType = 'good';
+        break;
+    }
+
+    Meteor.call('togglePinType', {
+      id: this.props.comment._id,
+      type: newPinType
+    }, (err, success) => {
+      if(success) {
+        Session.set('toast', 'Pin updated 👍👍👍')
+      }
+    });
   },
 
   handlePinDelete() {
@@ -48,6 +68,19 @@ SingleComment = React.createClass({
   render() {
     let {comment, canPin} = this.props;
     let commenter = Meteor.users.findOne(this.props.comment.created_by);
+    let pinClassName = classnames({
+      'block': true,
+      'tiny': true,
+      'is-selected': true,
+      'is-good': comment.position.type === 'good',
+      'is-bad': comment.position.type === 'bad'
+    });
+    let pinType = comment.position ? classnames({
+      'pin': comment.position.type === 'pin',
+      'happy': comment.position.type === 'good',
+      'frown': comment.position.type === 'bad'
+    }) : null;
+
     return (
       <div
         className={`comment ${this.data.hovered ? 'is-hovered' : ''}`}
@@ -75,11 +108,11 @@ SingleComment = React.createClass({
               {canPin ?
                 comment.position ?
                   <Dropdown
-                    toggle={<a className="block tiny is-selected"><Icon type="pin" size={1}/></a>}
+                    toggle={<a className={pinClassName}><Icon type={pinType} size={1}/></a>}
                     className="comment__meta__item">
                     <span>
                       <div className="menu__item" onClick={this.handlePinType}>
-                        <Icon type="pin" size={1.5}/>Toggle pin type</div>
+                        <Icon type={pinType} size={1.5}/>Toggle pin type</div>
                       <div className="menu__item" onClick={this.handlePinDelete}>
                         <Icon type="trash" size={1.5}/>Remove pin
                       </div>
@@ -108,6 +141,17 @@ if(Meteor.isServer) {
     deleteComment(id) {
       check(id, String);
       return Comments.remove(id);
+    },
+
+    togglePinType(args) {
+      check(args, {
+        id: String,
+        type: String
+      });
+
+      return Comments.update(args.id, {
+        $set: {'position.type': args.type}
+      });
     },
 
     deletePin(id) {
