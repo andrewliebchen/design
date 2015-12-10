@@ -52,7 +52,7 @@ SingleComment = React.createClass({
       type: newPinType
     }, (err, success) => {
       if(success) {
-        Session.set('toast', 'Pin updated 👍👍👍')
+        Session.set('toast', 'Pin updated ;)')
       }
     });
   },
@@ -72,8 +72,8 @@ SingleComment = React.createClass({
       'block': true,
       'tiny': true,
       'is-selected': true,
-      'is-good': comment.position.type === 'good',
-      'is-bad': comment.position.type === 'bad'
+      'is-good': comment.position && comment.position.type === 'good',
+      'is-bad': comment.position && comment.position.type === 'bad'
     });
     let pinType = comment.position ? classnames({
       'pin': comment.position.type === 'pin',
