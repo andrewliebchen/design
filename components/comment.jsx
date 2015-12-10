@@ -33,6 +33,18 @@ SingleComment = React.createClass({
     });
   },
 
+  handlePinType() {
+    console.log('Pin type');
+  },
+
+  handlePinDelete() {
+    Meteor.call('deletePin', this.props.comment._id, (err, success) => {
+      if(success) {
+        Session.set('toast', '...and that pin is outta here!');
+      }
+    });
+  },
+
   render() {
     let {comment, canPin} = this.props;
     let commenter = Meteor.users.findOne(this.props.comment.created_by);
@@ -61,11 +73,24 @@ SingleComment = React.createClass({
                 </span>
               </Dropdown>
               {canPin ?
-                <a
-                  className={`block tiny comment__meta__item ${comment.position ? 'is-selected' : ''}`}
-                  onClick={comment.position ? null : this.handleAddPin}>
-                  <Icon type="pin" size={1}/>
-                </a>
+                comment.position ?
+                  <Dropdown
+                    toggle={<a className="block tiny is-selected"><Icon type="pin" size={1}/></a>}
+                    className="comment__meta__item">
+                    <span>
+                      <div className="menu__item" onClick={this.handlePinType}>
+                        <Icon type="pin" size={1.5}/>Toggle pin type</div>
+                      <div className="menu__item" onClick={this.handlePinDelete}>
+                        <Icon type="trash" size={1.5}/>Remove pin
+                      </div>
+                    </span>
+                  </Dropdown>
+                :
+                  <a
+                    className="block tiny comment__meta__item"
+                    onClick={this.handleAddPin}>
+                    <Icon type="pin" size={1}/>
+                  </a>
               : null}
             </div>
           </header>
@@ -83,6 +108,13 @@ if(Meteor.isServer) {
     deleteComment(id) {
       check(id, String);
       return Comments.remove(id);
+    },
+
+    deletePin(id) {
+      check(id, String);
+      return Comments.update(id, {
+        $unset: {position: ''}
+      });
     }
   });
 }
