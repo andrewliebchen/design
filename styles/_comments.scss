@@ -13,22 +13,23 @@
 }
 
 .comment__header {
-  @include clearfix;
-  padding-bottom: 0.25em;
+  display: flex;
+}
 
-  h4 {
-    float: left;
+.comment__name {
+  flex: 1;
+}
+
+.comment__meta {
+  small {
+    position: relative;
+    top: 1px;
   }
 }
 
-.comment__header__meta {
-  float: right;
-
-  small,
-  .block {
-    float: left;
-    margin-left: 0.25em;
-  }
+.comment__meta__item {
+  float: left;
+  margin-left: 0.25em;
 }
 
 .comment__settings__menu {
