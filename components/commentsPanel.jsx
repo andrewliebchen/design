@@ -22,8 +22,8 @@ CommentsPanel = React.createClass({
   render() {
     let {description, comments, parentId, canPin} = this.props;
     return (
-      <div className="panel__content panel__content_comments" ref="scrollContainer">
-        <div className="project__description">
+      <div className="panel__scroll panel__scroll_comments" ref="scrollContainer">
+        <div className="project__description panel__content">
           <h3>Description</h3>
           <InlineEdit
             defaultValue={description}

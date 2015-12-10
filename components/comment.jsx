@@ -66,13 +66,6 @@ SingleComment = React.createClass({
   render() {
     let {comment, canPin} = this.props;
     let commenter = Meteor.users.findOne(this.props.comment.created_by);
-    let metaPinClassname = classnames({
-      'pin': true,
-      'comment__pin__toggle': true,
-      'is-unpinned': !comment.position,
-      'is-hovered': this.data.hovered
-    });
-
     return (
       <div
         className={`comment ${this.data.hovered ? 'is-hovered' : ''}`}
@@ -84,28 +77,21 @@ SingleComment = React.createClass({
             <h4>{commenter.profile.name}</h4>
             <div className="comment__header__meta">
               <small>{moment(comment.created_at).fromNow()}</small>
-              <Icon
-                type="settings"
-                size={1.25}
-                onClick={this.handleDropdownToggle}
-                className="comment__settings__toggle"/>
-              <div
-                className={metaPinClassname}/>
+              <a className="block tiny" onClick={this.handleDropdownToggle}>
+                <Icon type="settings" size={1}/>
+              </a>
+              {canPin ?
+                <a
+                  className={`block tiny ${comment.position ? 'is-selected' : ''}`}
+                  onClick={comment.position ? null : this.handleAddPin}>
+                  <Icon type="pin" size={1}/>
+                </a>
+              : null}
             </div>
           </header>
-          <div className="comment__content">{comment.comment}</div>
-          <footer className="comment__footer">
-            {/*canPin ?
-              comment.position ?
-                <a className="comment__pin__toggle">
-                  <Pin/>Edit
-                </a>
-              :
-                <a className="comment__pin__toggle" onClick={this.handleAddPin}>
-                  Pin this comment
-                </a>
-            : null*/}
-          </footer>
+          <div className="comment__content">
+            {comment.comment}
+          </div>
         </div>
         <CSSTransitionGroup transitionName="menu">
           {this.state.dropdown ?

@@ -47,6 +47,10 @@
     @include block-size($blockSizeSmall);
   }
 
+  &.tiny {
+    @include block-size(1.5em);
+  }
+
   &.icon {
     padding: 0.5em;
   }

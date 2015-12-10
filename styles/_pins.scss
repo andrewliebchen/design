@@ -7,7 +7,7 @@
   $margin: -($size / 2);
   background-color: $colorBrand;
   border-radius: $size / 2;
-  box-shadow: inset 0 0 0 1px $colorGray, 0 0 0 1px $colorGrayDark;
+  box-shadow: 0 0 0 2px $colorGrayDark;
   cursor: pointer;
   display: inline-block;
   height: $size;
