@@ -20,9 +20,9 @@ AccountPanel = React.createClass({
 
   render() {
     return (
-      <div className="panel__content">
+      <div className="panel__scroll">
         {this.props.user ?
-          <span>
+          <div className="panel__content">
             <h3>Accounts settings</h3>
             <p>Got to put your best foot forward, right?</p>
             <div className="form-group">
@@ -49,15 +49,15 @@ AccountPanel = React.createClass({
                 <Icon type="trash" size={1.5}/> Delete your account
               </button>
             </div>
-          </span>
+          </div>
         :
-          <span>
+          <div className="panel__content">
             <h3>Sign in to OhEmGee</h3>
             <p>Want to comment, create your own projects, and more? You'll need an account. Don't worry, setting one up is just two clicks away...</p>
             <div className="form-group">
               <button className="full-width" onClick={this.handleSignIn}>Sign in with Google</button>
             </div>
-          </span>
+          </div>
         }
       </div>
     );

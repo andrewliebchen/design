@@ -31,8 +31,7 @@ $panelTiming: 0.2s;
   right: 1em;
 }
 
-.panel__content {
-  padding: 1em;
+.panel__scroll {
   position: absolute;
   top: 5em;
   bottom: 0;
@@ -44,6 +43,14 @@ $panelTiming: 0.2s;
   color: $colorGrayDark;
 }
 
-.panel__content_comments {
+.panel__scroll_comments {
   bottom: 5em;
+}
+
+.panel__content {
+  padding: 1em;
+
+  + .panel__content {
+    border-top: 5px solid white;
+  }
 }
