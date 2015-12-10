@@ -34,6 +34,19 @@
     cursor: default;
   }
 
+  &.is-good,
+  &.is-bad {
+    fill: $colorGrayDark;
+  }
+
+  &.is-good {
+    background-color: $colorPositive;
+  }
+
+  &.is-bad {
+    background-color: $colorNegative;
+  }
+
   &.delete {
     fill: $colorNegative;
 
