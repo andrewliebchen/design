@@ -23,6 +23,7 @@
   display: block;
   cursor: pointer;
   font-weight: bold;
+  white-space: nowrap;
 
   &:hover {
     background-color: $colorBrand;
