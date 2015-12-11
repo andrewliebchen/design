@@ -12,7 +12,7 @@
 
 .thumbnails {
   @include prefixer(columns, 3);
-  @include prefixer(column-gap, 1em);
+  @include prefixer(column-gap, 0);
   position: relative;
   overflow: hidden;
 
@@ -24,11 +24,11 @@
 
 .thumbnail {
   cursor: zoom-in;
-  display: inline-block;
+  // display: inline-block;
   position: relative;
   width: 100%;
-  margin-bottom: 0.5em;
-  border: 1px solid black;
+  // margin-bottom: 0.5em;
+  // border: 1px solid $colorGrayDark;
 
   &:last-of-type {
     margin-bottom: 0;

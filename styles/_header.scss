@@ -1,14 +1,14 @@
 .header {
-  line-height: $blockSize;
-  display: flex;
   align-content: stretch;
   background-color: $colorGray;
   color: $colorGrayDark;
-  position: relative;
-  z-index: 9;
-  padding: 1em $offset;
-  border-bottom: 1px solid black;
+  display: flex;
   height: 5em;
+  line-height: $blockSize;
+  padding: 1em $offset;
+  position: relative;
+  user-select: none;
+  z-index: 9;
 
   .panel-nav {
     position: absolute;
@@ -41,4 +41,10 @@
   display: block;
   margin-bottom: -0.4em;
   margin-top: -0.1em;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
