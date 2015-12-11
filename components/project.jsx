@@ -5,6 +5,7 @@ Project = React.createClass({
 
   getMeteorData() {
     return {
+      currentUser: Meteor.user(),
       project: Projects.findOne(),
       images: Images.find({}, {sort: {created_at: 1}}).fetch(),
       comments: Comments.find({}, {sort: {created_at: 1}}).fetch()
@@ -29,7 +30,7 @@ Project = React.createClass({
   },
 
   render() {
-    let {project, comments, images} = this.data;
+    let {currentUser, project, comments, images} = this.data;
     let projectId = project._id;
     return (
       <div
@@ -37,12 +38,14 @@ Project = React.createClass({
         onDragOver={this.handleUploaderOpen}
         onDragEnd={this.handleUploaderOpen}
         onDrop={this.handleUploaderClose}>
-        <Header title={<InlineEdit
-                        defaultValue={project.name}
-                        method="editProjectName"
-                        parentId={this.data.project._id}
-                        toast="Project name updated..."/>}>
+        <Header
+          title={<InlineEdit
+                    defaultValue={project.name}
+                    method="editProjectName"
+                    parentId={projectId}
+                    toast="Project name updated..."/>}>
           <PanelNav
+            currentUser={currentUser}
             contentTypes={['comments', 'settings']}
             onClick={this.handlePanelOpen}
             commentCount={comments.length}/>
@@ -73,18 +76,22 @@ Project = React.createClass({
                     contentTypes={['comments', 'settings']}
                     onClick={this.handlePanelOpen}
                     selected={this.state.panel}
-                    commentCount={comments.length}/>}>
+                    commentCount={comments.length}
+                    currentUser={currentUser}/>}>
               <span>
                 {this.state.panel === 'comments' ?
                   <CommentsPanel
                     description={project.description}
                     comments={comments}
-                    parentId={projectId}/>
+                    parentId={projectId}
+                    currentUser={currentUser}/>
                 : null}
                 {this.state.panel === 'settings' ?
                   <SettingsPanel project={project}/>
                 : null}
-                {this.state.panel === 'account' ? <AccountPanel user={Meteor.user()}/> : null}
+                {this.state.panel === 'account' ?
+                  <AccountPanel currentUser={currentUser}/>
+                : null}
               </span>
             </Panel>
           : null}

@@ -8,8 +8,11 @@ SingleComment = React.createClass({
   },
 
   getMeteorData() {
+    let commenter = Meteor.subscribe('user', this.props.comment.created_by);
     return {
-      hovered: Session.get('commentHover') === this.props.id
+      loading: !commenter.ready(),
+      hovered: Session.get('commentHover') === this.props.id,
+      commenter: Meteor.users.findOne()
     };
   },
 
@@ -22,7 +25,6 @@ SingleComment = React.createClass({
 
   handleCommentEdit() {
     console.log('Edit comment');
-    this.setState({dropdown: false});
   },
 
   handleCommentDelete() {
@@ -67,7 +69,7 @@ SingleComment = React.createClass({
 
   render() {
     let {comment, canPin} = this.props;
-    let commenter = Meteor.users.findOne(this.props.comment.created_by);
+    let {loading, commenter} = this.data;
     let pinClassName = classnames({
       'block': true,
       'tiny': true,
@@ -80,6 +82,10 @@ SingleComment = React.createClass({
       'happy': comment.position.type === 'good',
       'frown': comment.position.type === 'bad'
     }) : null;
+
+    if(loading) {
+      return <Loading/>;
+    }
 
     return (
       <div

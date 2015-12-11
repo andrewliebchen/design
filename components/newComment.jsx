@@ -1,7 +1,10 @@
 NewComment = React.createClass({
+  mixins: [AccountActionsMixin],
+
   propTypes: {
     parentId: React.PropTypes.string.isRequired,
-    pin: React.PropTypes.bool
+    pin: React.PropTypes.bool,
+    currentUser: React.PropTypes.object
   },
 
   handleKeyUp(event) {
@@ -23,8 +26,18 @@ NewComment = React.createClass({
   render() {
     return (
       <div className="comment comment__new">
-        <input onKeyUp={this.handleKeyUp}/>
-        <Avatar user={Meteor.user()} imageOnly/>
+        {this.props.currentUser ?
+          <span>
+            <input onKeyUp={this.handleKeyUp}/>
+            <Avatar user={this.props.currentUser} imageOnly/>
+          </span>
+        :
+          <button
+            className="full-width"
+            onClick={this.handleSignIn}>
+            Sign in with Google to comment
+          </button>
+        }
       </div>
     );
   }

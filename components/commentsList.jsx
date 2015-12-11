@@ -4,11 +4,12 @@ CommentsList = React.createClass({
   propTypes: {
     comments: React.PropTypes.array.isRequired,
     parentId: React.PropTypes.string.isRequired,
+    currentUser: React.PropTypes.object,
     canPin: React.PropTypes.bool
   },
 
   render() {
-    let {comments, parentId, canPin} = this.props;
+    let {comments, parentId, currentUser, canPin} = this.props;
     return (
       <div className="comments">
         {comments.length > 0 ?
@@ -24,7 +25,7 @@ CommentsList = React.createClass({
             })}
           </CSSTransitionGroup>
         : <div className="comments__no-content">Doh, no comments yet</div>}
-        <NewComment parentId={parentId}/>
+        <NewComment parentId={parentId} currentUser={currentUser}/>
       </div>
     );
   }

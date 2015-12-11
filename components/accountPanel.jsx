@@ -1,9 +1,13 @@
 AccountPanel = React.createClass({
   mixins: [AccountActionsMixin],
 
+  propTypes: {
+    currentUser: React.PropTypes.object
+  },
+
   handleNameUpdate(event) {
     Meteor.call('updateUserName', {
-      id: this.props.user._id,
+      id: this.props.currentUser._id,
       name: event.target.value
     }, (error, success) => {
       if(success){
@@ -14,14 +18,15 @@ AccountPanel = React.createClass({
 
   handleDeleteAccount() {
     if (window.confirm('Do you really want to delete your account?')) {
-      Meteor.call('deleteUser', this.props.user._id);
+      Meteor.call('deleteUser', this.props.currentUser._id);
     }
   },
 
   render() {
+    let {currentUser} = this.props;
     return (
       <div className="panel__scroll">
-        {this.props.user ?
+        {currentUser ?
           <div className="panel__content">
             <h3>Accounts settings</h3>
             <p>Got to put your best foot forward, right?</p>
@@ -29,14 +34,14 @@ AccountPanel = React.createClass({
               <label>Name</label>
               <input
                 type="text"
-                defaultValue={this.props.user.profile.name}
+                defaultValue={currentUser.profile.name}
                 onChange={this.handleNameUpdate}/>
             </div>
             <div className="form-group">
               <label>Email</label>
               <input
                 type="text"
-                defaultValue={this.props.user.profile.email}
+                defaultValue={currentUser.profile.email}
                 disabled/>
             </div>
             <div className="form-group">

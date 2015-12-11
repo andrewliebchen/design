@@ -3,6 +3,7 @@ Image = React.createClass({
 
   getMeteorData() {
     return {
+      currentUser: Meteor.user(),
       image: Images.findOne(),
       comments: Comments.find({}, {sort: {created_at: 1}}).fetch(),
       projectName: Projects.findOne().name
@@ -10,7 +11,7 @@ Image = React.createClass({
   },
 
   render() {
-    let {comments, image, projectName} = this.data;
+    let {currentUser, comments, image, projectName} = this.data;
     return (
       <div className="image wrapper">
         <Header
@@ -20,7 +21,8 @@ Image = React.createClass({
           <PanelNav
             contentTypes={['comments']}
             onClick={this.handlePanelOpen}
-            commentCount={comments.length}/>
+            commentCount={comments.length}
+            currentUser={currentUser}/>
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main className="image__main">
@@ -38,16 +40,20 @@ Image = React.createClass({
                     contentTypes={['comments']}
                     onClick={this.handlePanelOpen}
                     selected={this.state.panel}
-                    commentCount={comments.length}/>}>
+                    commentCount={comments.length}
+                    currentUser={currentUser}/>}>
               <span>
                 {this.state.panel === 'comments' ?
                   <CommentsPanel
                     description={image.description}
                     comments={comments}
                     parentId={image._id}
+                    currentUser={currentUser}
                     canPin />
                 : null}
-                {this.state.panel === 'account' ? <AccountPanel/> : null}
+                {this.state.panel === 'account' ?
+                  <AccountPanel currentUser={currentUser}/>
+                : null}
               </span>
             </Panel>
           : null}
