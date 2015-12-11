@@ -1,3 +1,5 @@
+const _ = lodash;
+
 ImageUploader = React.createClass({
   propTypes: {
     parentId: React.PropTypes.string.isRequired,
@@ -5,22 +7,25 @@ ImageUploader = React.createClass({
   },
 
   handleImageUpload(files) {
-    let file = files[0];
-    let uploader = new Slingshot.Upload('fileUploads');
+    _.map(files, (file) => {
+      let uploader = new Slingshot.Upload('fileUploads');
 
-    uploader.send(file, (error, url) => {
-      if (error) {
-        console.error('Error uploading', uploader.xhr.response);
-      } else {
-        Meteor.call('newImage', {
-          name: file.name,
-          filename: file.name,
-          src: url,
-          parent: this.props.parentId,
-          created_at: Date.now(),
-          uploaded_by: Meteor.userId()
-        });
-      }
+      uploader.send(file, (error, url) => {
+        if (error) {
+          console.error('Error uploading', uploader.xhr.response);
+        } else {
+          Meteor.call('newImage', {
+            name: file.name,
+            filename: file.name,
+            src: url,
+            parent: this.props.parentId,
+            created_at: Date.now(),
+            uploaded_by: Meteor.userId()
+          });
+        }
+      });
+
+      return uploader;
     });
   },
 
@@ -30,7 +35,7 @@ ImageUploader = React.createClass({
         className="image-uploader"
         activeClassName="is-active"
         onDrop={this.handleImageUpload}
-        multiple={false}
+        multiple
         accept="image/*">
         <Icon
           type="close"
