@@ -15,7 +15,9 @@ Header = React.createClass({
         </a>
         {parentTitle ?
           <div className="header__title">
-            <a className="header__subtitle" href={parentLink}>{parentTitle}</a>
+            <a className="header__subtitle" href={parentLink}>
+              <Icon type="home" size={1}/>{parentTitle}
+            </a>
             <h2>{title}</h2>
           </div>
         :
