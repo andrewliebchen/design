@@ -15,7 +15,8 @@ InlineEdit = React.createClass({
 
   getInitialState() {
     return {
-      editing: false
+      editing: false,
+      text: this.props.defaultValue
     };
   },
 
@@ -23,16 +24,22 @@ InlineEdit = React.createClass({
     this.setState({editing: !this.state.editing});
   },
 
+  handleOnChange(event) {
+    this.setState({text: event.target.value});
+  },
+
   handleSave(event) {
-    let inputValue = event.target.value;
-    if(inputValue !== this.props.defaultValue && event.which === 13) {
+    if(event.which === 13) {
       Meteor.call(this.props.method, {
         id: this.props.parentId,
-        value: inputValue
+        value: this.state.text
       }, (error, success) => {
         if(success){
           Session.set('toast', this.props.toast);
-          this.setState({editing: false});
+          this.setState({
+            editing: false,
+            text: ''
+          });
         }
       });
     }
@@ -47,7 +54,8 @@ InlineEdit = React.createClass({
             <input
               type="text"
               ref="inlineInput"
-              defaultValue={defaultValue}
+              defaultValue={this.state.text}
+              onChange={this.handleOnChange}
               onBlur={this.handleEditToggle}
               onKeyPress={this.handleSave}
               autoFocus/>
@@ -55,15 +63,19 @@ InlineEdit = React.createClass({
           {type === 'textarea' ?
             <textarea
               ref="inlineInput"
-              defaultValue={defaultValue}
+              defaultValue={this.state.text}
+              onChange={this.handleOnChange}
               onKeyPress={this.handleSave}
+              onBlur={this.handleEditToggle}
               autoFocus/>
           : null}
         </span>
       );
     }
     return (
-      <span onClick={this.handleEditToggle}>{defaultValue}</span>
+      <span onClick={this.handleEditToggle}>
+        {defaultValue ? defaultValue : 'Click to add'}
+      </span>
     );
   }
 });
