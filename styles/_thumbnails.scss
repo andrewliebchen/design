@@ -1,20 +1,20 @@
 @keyframes overlay {
   0% {
-    transform: scale(0.75);
     opacity: 0;
+    transform: scale(0.75);
   }
 
   100% {
-    transform: scale(1);
     opacity: 1;
+    transform: scale(1);
   }
 }
 
 .thumbnails {
   @include prefixer(columns, 3);
   @include prefixer(column-gap, 0);
-  position: relative;
   overflow: hidden;
+  position: relative;
 
   .has-panel & {
     @include prefixer(columns, 2);
@@ -24,35 +24,32 @@
 
 .thumbnail {
   cursor: zoom-in;
-  // display: inline-block;
   position: relative;
   width: 100%;
-  // margin-bottom: 0.5em;
-  // border: 1px solid $colorGrayDark;
 
   &:last-of-type {
     margin-bottom: 0;
   }
 
   img {
-    width: 100%;
-    height: auto;
     display: block;
+    height: auto;
+    width: 100%;
   }
 }
 
 .thumbnail__overlay {
-  @include checkerboard(rgba($colorBrand, 0.3), rgba($colorBrand, 0.8), 1.5em);
-  animation: overlay 0.1s $ease-in-out-back;
+  animation: overlay 0.15s $ease-in-out-back;
+  background-color: rgba($colorBrand, 0.8);
   bottom: 0;
   color: $colorGray;
-  left: 0;
   display: none;
+  fill: $colorGray;
+  left: 0;
   position: absolute;
   right: 0;
   top: 0;
   z-index: 1;
-  fill: $colorGray;
 
   .thumbnail:hover & {
     display: block;
@@ -60,11 +57,12 @@
 }
 
 .thumbnail__overlay__label {
-  transition: transform 0.1s ease-in-out;
+  cursor: pointer;
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate3d(-50%, -50%, 0) scale(1);
+  transition: transform 0.1s ease-in-out;
 
   &:hover {
     transform: translate3d(-50%, -50%, 0) scale(1.25);
@@ -75,8 +73,8 @@
   color: white;
   display: none;
   position: absolute;
-  top: 1em;
   right: 1em;
+  top: 1em;
 
   .block {
     cursor: pointer;
