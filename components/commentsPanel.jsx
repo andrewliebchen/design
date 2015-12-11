@@ -3,6 +3,7 @@ CommentsPanel = React.createClass({
     description: React.PropTypes.string,
     comments: React.PropTypes.array,
     parentId: React.PropTypes.string,
+    currentUser: React.PropTypes.object,
     canPin: React.PropTypes.bool
   },
 
@@ -20,7 +21,7 @@ CommentsPanel = React.createClass({
   },
 
   render() {
-    let {description, comments, parentId, canPin} = this.props;
+    let {description, comments, parentId, currentUser, canPin} = this.props;
     return (
       <div className="panel__scroll panel__scroll_comments" ref="scrollContainer">
         <div className="project__description panel__content">
@@ -35,6 +36,7 @@ CommentsPanel = React.createClass({
         <CommentsList
           comments={comments}
           parentId={parentId}
+          currentUser={currentUser}
           canPin={canPin}/>
       </div>
     );

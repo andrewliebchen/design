@@ -3,11 +3,12 @@ PanelNav = React.createClass({
     onClick: React.PropTypes.func,
     contentTypes: React.PropTypes.array,
     selected: React.PropTypes.oneOf(['comments', 'settings', 'account']),
-    commentCount: React.PropTypes.number
+    commentCount: React.PropTypes.number,
+    currentUser: React.PropTypes.object
   },
 
   render() {
-    let {onClick, contentTypes, selected, commentCount} = this.props;
+    let {onClick, contentTypes, selected, commentCount, currentUser} = this.props;
     return (
       <nav className="panel-nav">
         {contentTypes.map((content, i) => {
@@ -24,7 +25,7 @@ PanelNav = React.createClass({
           );
         })}
         <Avatar
-          user={Meteor.user()}
+          user={currentUser}
           className={`panel-nav__item ${selected === 'account' ? 'is-selected' : ''}`}
           size="large"
           imageOnly
