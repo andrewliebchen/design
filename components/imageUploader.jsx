@@ -21,6 +21,8 @@ ImageUploader = React.createClass({
             parent: this.props.parentId,
             created_at: Date.now(),
             uploaded_by: Meteor.userId()
+          }, (err, success) => {
+            Session.set('toast', `${file.name} added to the project`);
           });
         }
       });
