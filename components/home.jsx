@@ -8,7 +8,10 @@ Home = React.createClass({
   },
 
   handleNewProject() {
-    Meteor.call('newProject', Date.now(), (error, newProjectId) => {
+    Meteor.call('newProject', {
+      created_at: Date.now(),
+      created_by: this.data.currentUser._id
+    }, (error, newProjectId) => {
       if(newProjectId) {
         FlowRouter.go(`/${newProjectId}`);
       }
@@ -53,11 +56,15 @@ if(Meteor.isClient) {
 if(Meteor.isServer) {
   if(Meteor.isServer) {
     Meteor.methods({
-      newProject(createdAt) {
-        check(createdAt, Number);
+      newProject(args) {
+        check(args, {
+          created_at: Number,
+          created_by: String
+        });
 
         return Projects.insert({
-          created_at: createdAt
+          created_at: args.created_at,
+          created_by: args.created_by
         });
       }
     });

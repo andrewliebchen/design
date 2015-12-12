@@ -1,7 +1,7 @@
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 Project = React.createClass({
-  mixins: [ReactMeteorData, PanelMixin],
+  mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
   getMeteorData() {
     return {
@@ -32,6 +32,7 @@ Project = React.createClass({
   render() {
     let {currentUser, project, comments, images} = this.data;
     let projectId = project._id;
+    let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
     return (
       <div
         className="project wrapper"
@@ -43,7 +44,8 @@ Project = React.createClass({
                     defaultValue={project.name}
                     method="editProjectName"
                     parentId={projectId}
-                    toast="Project name updated..."/>}>
+                    toast="Project name updated..."
+                    canEdit={canEdit}/>}>
           <PanelNav
             currentUser={currentUser}
             contentTypes={['comments', 'settings']}
@@ -55,7 +57,7 @@ Project = React.createClass({
             {images.length > 0 ?
               <div className="thumbnails">
                 {images.map((image, i) => {
-                  return <Thumbnail key={i} image={image}/>;
+                  return <Thumbnail key={i} image={image} canEdit={canEdit}/>;
                 })}
               </div>
             :
@@ -84,10 +86,11 @@ Project = React.createClass({
                     description={project.description}
                     comments={comments}
                     parentId={projectId}
-                    currentUser={currentUser}/>
+                    currentUser={currentUser}
+                    canEdit={canEdit}/>
                 : null}
                 {this.state.panel === 'settings' ?
-                  <SettingsPanel project={project}/>
+                  <SettingsPanel project={project} canEdit={canEdit}/>
                 : null}
                 {this.state.panel === 'account' ?
                   <AccountPanel currentUser={currentUser}/>
@@ -96,7 +99,7 @@ Project = React.createClass({
             </Panel>
           : null}
         </Container>
-        {this.state.uploader ?
+        {this.state.uploader && canEdit ?
           <ImageUploader key={1} parentId={projectId} close={this.handleUploaderClose}/>
         : null}
       </div>

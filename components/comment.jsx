@@ -4,7 +4,8 @@ SingleComment = React.createClass({
   propTypes: {
     comment: React.PropTypes.object.isRequired,
     canPin: React.PropTypes.bool,
-    id: React.PropTypes.string
+    id: React.PropTypes.string,
+    canEdit: React.PropTypes.bool
   },
 
   getMeteorData() {
@@ -12,7 +13,7 @@ SingleComment = React.createClass({
     return {
       loading: !commenter.ready(),
       hovered: Session.get('commentHover') === this.props.id,
-      commenter: Meteor.users.findOne()
+      commenter: Meteor.users.findOne(this.props.comment.created_by)
     };
   },
 
@@ -24,7 +25,7 @@ SingleComment = React.createClass({
   },
 
   handleCommentEdit() {
-    console.log('Edit comment');
+    window.confirm("Sorry, this feature isn't ready yet.");
   },
 
   handleCommentDelete() {
@@ -68,8 +69,9 @@ SingleComment = React.createClass({
   },
 
   render() {
-    let {comment, canPin} = this.props;
+    let {comment, canPin, canEdit} = this.props;
     let {loading, commenter} = this.data;
+    let isCommentOwner = commenter ? comment.created_by === commenter._id : null;
     let pinClassName = classnames({
       'is-good': comment.position && comment.position.type === 'good',
       'is-bad': comment.position && comment.position.type === 'bad'
@@ -101,15 +103,18 @@ SingleComment = React.createClass({
                 toggle={<Block size="tiny"><Icon type="settings" size={1}/></Block>}
                 className="comment__meta__item">
                 <span>
-                  <div className="menu__item" onClick={this.handleCommentEdit}>
-                    <Icon type="edit" size={1.5}/>Edit</div>
+                  {canEdit || isCommentOwner ?
+                    <div className="menu__item" onClick={this.handleCommentEdit}>
+                      <Icon type="edit" size={1.5}/>Edit
+                    </div>
+                  : null}
                   <div className="menu__item" onClick={this.handleCommentDelete}>
                     <Icon type="trash" size={1.5}/>Delete
                   </div>
                 </span>
               </Dropdown>
               {canPin ?
-                comment.position ?
+                comment.position && (canEdit || isCommentOwner) ?
                   <Dropdown
                     toggle={<Block className={pinClassName} size="tiny" selected><Icon type={pinType} size={1}/></Block>}
                     className="comment__meta__item">
