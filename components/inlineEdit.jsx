@@ -4,7 +4,8 @@ InlineEdit = React.createClass({
     method: React.PropTypes.string,
     parentId: React.PropTypes.string,
     toast: React.PropTypes.string,
-    type: React.PropTypes.oneOf(['input', 'textarea'])
+    type: React.PropTypes.oneOf(['input', 'textarea']),
+    canEdit: React.PropTypes.bool
   },
 
   getDefaultProps() {
@@ -46,8 +47,8 @@ InlineEdit = React.createClass({
   },
 
   render() {
-    let {defaultValue, type} = this.props;
-    if(this.state.editing) {
+    let {defaultValue, type, canEdit} = this.props;
+    if(this.state.editing && canEdit) {
       return (
         <span className="inline-edit">
           {type === 'input' ?

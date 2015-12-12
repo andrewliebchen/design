@@ -4,7 +4,8 @@ CommentsPanel = React.createClass({
     comments: React.PropTypes.array,
     parentId: React.PropTypes.string,
     currentUser: React.PropTypes.object,
-    canPin: React.PropTypes.bool
+    canPin: React.PropTypes.bool,
+    canEdit: React.PropTypes.bool
   },
 
   _scrollToBottom() {
@@ -21,7 +22,14 @@ CommentsPanel = React.createClass({
   },
 
   render() {
-    let {description, comments, parentId, currentUser, canPin} = this.props;
+    let {
+      description,
+      comments,
+      parentId,
+      currentUser,
+      canPin,
+      canEdit
+    } = this.props;
     return (
       <div className="panel__scroll panel__scroll_comments" ref="scrollContainer">
         <div className="project__description panel__content">
@@ -31,13 +39,15 @@ CommentsPanel = React.createClass({
             method="editProjectDescription"
             parentId={parentId}
             type="textarea"
-            toast="Description up to date!"/>
+            toast="Description up to date!"
+            canEdit={canEdit}/>
         </div>
         <CommentsList
           comments={comments}
           parentId={parentId}
           currentUser={currentUser}
-          canPin={canPin}/>
+          canPin={canPin}
+          canEdit={canEdit}/>
       </div>
     );
   }

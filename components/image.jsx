@@ -1,22 +1,23 @@
 Image = React.createClass({
-  mixins: [ReactMeteorData, PanelMixin],
+  mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
   getMeteorData() {
     return {
       currentUser: Meteor.user(),
       image: Images.findOne(),
       comments: Comments.find({}, {sort: {created_at: 1}}).fetch(),
-      projectName: Projects.findOne().name
+      project: Projects.findOne()
     };
   },
 
   render() {
-    let {currentUser, comments, image, projectName} = this.data;
+    let {currentUser, comments, image, project} = this.data;
+    let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
     return (
       <div className="image wrapper">
         <Header
           title={<span>{image.name}</span>}
-          parentTitle={projectName}
+          parentTitle={project.name}
           parentLink={`/${image.parent}`}>
           <PanelNav
             contentTypes={['comments']}
@@ -49,6 +50,7 @@ Image = React.createClass({
                     comments={comments}
                     parentId={image._id}
                     currentUser={currentUser}
+                    canEdit={canEdit}
                     canPin />
                 : null}
                 {this.state.panel === 'account' ?

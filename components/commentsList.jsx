@@ -5,11 +5,12 @@ CommentsList = React.createClass({
     comments: React.PropTypes.array.isRequired,
     parentId: React.PropTypes.string.isRequired,
     currentUser: React.PropTypes.object,
-    canPin: React.PropTypes.bool
+    canPin: React.PropTypes.bool,
+    canEdit: React.PropTypes.bool
   },
 
   render() {
-    let {comments, parentId, currentUser, canPin} = this.props;
+    let {comments, parentId, currentUser, canPin, canEdit} = this.props;
     return (
       <div className="comments">
         {comments.length > 0 ?
@@ -20,7 +21,8 @@ CommentsList = React.createClass({
                   key={i}
                   comment={comment}
                   id={comment._id}
-                  canPin={canPin}/>
+                  canPin={canPin}
+                canEdit={canEdit}/>
               );
             })}
           </CSSTransitionGroup>

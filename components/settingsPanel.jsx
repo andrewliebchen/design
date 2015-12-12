@@ -1,6 +1,11 @@
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 SettingsPanel = React.createClass({
+  propTypes: {
+    project: React.PropTypes.object.isRequired,
+    canEdit: React.PropTypes.bool
+  },
+
   getInitialState() {
     return {
       copyLabel: false
@@ -26,6 +31,7 @@ SettingsPanel = React.createClass({
   },
 
   render() {
+    let {project, canEdit} = this.props;
     return (
       <div className="panel__scroll">
         <div className="panel__content">
@@ -33,25 +39,29 @@ SettingsPanel = React.createClass({
             <h3>Share this project</h3>
             <p>Anyone with this project's URL will be able to view the project. Share with care!</p>
             <div className="input-group">
-              <input type="text" id="url" readOnly defaultValue={`${Meteor.settings.public.site_url}/${this.props.project._id}`}/>
+              <input type="text" id="url" readOnly defaultValue={`${Meteor.settings.public.site_url}/${project._id}`}/>
               <button id="copyClick" data-clipboard-target="#url">Copy</button>
               <CSSTransitionGroup transitionName="copyLabel">
                 {this.state.copyLabel ? <div className="copy-label">{this.state.copyLabel}</div> : null}
               </CSSTransitionGroup>
             </div>
           </div>
-          <div className="form-group">
-            <h3>Export project</h3>
-            <p>We'd like to think that OhEmGee can do all the things, sometimes you just need to download your project. The download will include all project content, including images and comments.</p>
-            <button className="full-width">Download project</button>
-          </div>
-          <div className="form-group">
-            <h3>Danger zone!</h3>
-            <p>Careful, this action can't be undone.</p>
-            <button className="full-width negative" onClick={this.handleDeleteProject}>
-              <Icon type="trash" size={1.5}/> Delete Project
-            </button>
-          </div>
+          {canEdit ?
+            <div className="form-group">
+              <h3>Export project</h3>
+              <p>We'd like to think that OhEmGee can do all the things, sometimes you just need to download your project. The download will include all project content, including images and comments.</p>
+              <button className="full-width">Download project</button>
+            </div>
+          : null}
+          {canEdit ?
+            <div className="form-group">
+              <h3>Danger zone!</h3>
+              <p>Careful, this action can't be undone.</p>
+              <button className="full-width negative" onClick={this.handleDeleteProject}>
+                <Icon type="trash" size={1.5}/> Delete Project
+              </button>
+            </div>
+          : null}
         </div>
       </div>
     );
