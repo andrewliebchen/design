@@ -1,7 +1,11 @@
 $colorBrand: #AD64C5;
-$colorGray: #F4F7F7;
-$colorGrayMid: darken($colorGray, 10%);
-$colorGrayDark: darken($colorGray, 75%);
+$colorBrandLight: lighten($colorBrand, 10%);
+$colorBrandDark: darken($colorBrand, 10%);
+
+$colorGray: #f2f2f6;
+$colorGrayMid: #dedee2;
+$colorGrayDark: #243233;
+
 $colorNegative: #F05356;
 $colorPositive: #19C594;
 
@@ -28,14 +32,6 @@ $ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
   -webkit-#{$property}: $value;
           #{$property}: $value;
 }
-
-@mixin checkerboard($color1, $color2, $size) {
-  $gradient: linear-gradient(45deg, $color1 25%, transparent 25%, transparent 75%, $color1 75%, $color1);
-  background-image: $gradient, $gradient;
-  background-color: $color2;
-  background-size: $size $size;
-  background-position: 0 0, $size/2 $size/2;
-};
 
 @mixin uppercase($bold: true) {
   @if $bold {

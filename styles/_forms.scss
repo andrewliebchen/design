@@ -59,11 +59,11 @@ button {
   padding: 0 1.5em;
 
   &:hover {
-    background-color: lighten($colorBrand, 10%);
+    background-color: $colorBrandLight;
   }
 
   &:active {
-    background-color: darken($colorBrand, 10%);
+    background-color: $colorBrandDark;
   }
 
   &.full-width {

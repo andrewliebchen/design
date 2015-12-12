@@ -1,5 +1,4 @@
 .image-uploader {
-  @include checkerboard(rgba($colorBrand, 0.5), rgba($colorBrand, 0.98), 1.5em);
   position: fixed;
   z-index: 99;
   top: 0.5em;
