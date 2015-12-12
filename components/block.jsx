@@ -33,7 +33,7 @@ Block = React.createClass({
         onMouseEnter={this.hoverable_onMouseEnter}
         onMouseLeave={this.hoverable_onMouseLeave}>
         {(this.state.hover && label) || (selected && label) ?
-          <span className="tooltip__label">{label}</span>
+          <span className="block__label">{label}</span>
         : this.props.children}
         {badge ? <strong className="block__badge">{badge}</strong> : null}
       </div>
