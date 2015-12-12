@@ -1,7 +1,14 @@
 @mixin block-size($size) {
   height: $size;
-  width: $size;
+  min-width: $size;
   border-radius: $size / 2;
+  line-height: $size;
+
+  .avatar__image img {
+    max-height: $size;
+    max-width: $size;
+    border-radius: $size / 2;
+  }
 }
 
 @keyframes badge {
@@ -15,7 +22,8 @@
 }
 
 .block {
-  @include block-size($blockSize);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
   display: inline-block;
   line-height: $blockSize;
   text-align: center;
@@ -23,6 +31,7 @@
   fill: $colorGrayDark;
   background-color: $colorGrayMid;
   position: relative;
+  float: left;
 
   &:hover,
   &.is-selected {
@@ -34,6 +43,7 @@
     cursor: default;
   }
 
+  // Flavor
   &.is-good,
   &.is-bad {
     fill: $colorGrayDark;
@@ -47,13 +57,9 @@
     background-color: $colorNegative;
   }
 
-  &.delete {
-    fill: $colorNegative;
-
-    &:hover {
-      background-color: $colorNegative;
-      fill: $colorGray;
-    }
+  // Size
+  &.medium {
+    @include block-size($blockSize);
   }
 
   &.small {
@@ -61,16 +67,16 @@
   }
 
   &.tiny {
-    @include block-size(1.5em);
+    @include block-size($blockSizeTiny);
   }
 
-  &.icon {
-    padding: 0.5em;
-  }
-
-  &.action {
-    cursor: pointer;
-  }
+  // &.icon {
+  //   padding: 0.5em;
+  // }
+  //
+  // &.action {
+  //   cursor: pointer;
+  // }
 
   svg {
     position: absolute;
@@ -96,4 +102,10 @@
   text-align: center;
   top: 0;
   width: $size;
+}
+
+.tooltip__label {
+  padding: 0 1em;
+  color: $colorGray;
+  font-weight: bold;
 }
