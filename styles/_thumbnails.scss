@@ -78,11 +78,15 @@
 
   .block {
     cursor: pointer;
-    background-color: $colorGrayDark;
-    fill: $colorGray;
+    background-color: $colorGray;
+    fill: $colorGrayDark;
 
     &:hover {
-      fill: $colorGray;
+      background-color: $colorGray;
+    }
+
+    .block__label {
+      color: $colorGrayDark;
     }
 
     + .block {
@@ -91,9 +95,14 @@
   }
 
   .delete {
+    fill: $colorNegative;
+    
     &:hover {
       background-color: $colorNegative;
-      fill: $colorGray;
+    }
+
+    .block__label {
+      color: $colorGray;
     }
   }
 

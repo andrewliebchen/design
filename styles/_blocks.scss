@@ -23,7 +23,6 @@
 
 .block {
   cursor: pointer;
-  transition: all 0.1s ease-in-out;
   display: inline-block;
   line-height: $blockSize;
   text-align: center;
@@ -96,7 +95,7 @@
   width: $size;
 }
 
-.tooltip__label {
+.block__label {
   padding: 0 1em;
   color: $colorGray;
   font-weight: bold;
