@@ -41,7 +41,9 @@ Panel = React.createClass({
         <aside className="panel__container">
           <header className="panel__header">
             {this.props.nav}
-            <Icon type="close" className="panel__close block action" onClick={close}/>
+            <Block className="panel__close" onClick={close}>
+              <Icon type="close"/>
+            </Block>
           </header>
           {this.props.children}
         </aside>

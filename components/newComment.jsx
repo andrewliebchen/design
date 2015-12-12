@@ -29,7 +29,7 @@ NewComment = React.createClass({
         {this.props.currentUser ?
           <span>
             <input onKeyUp={this.handleKeyUp}/>
-            <Avatar user={this.props.currentUser} imageOnly/>
+            <Avatar user={this.props.currentUser} size="small"/>
           </span>
         :
           <button

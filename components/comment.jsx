@@ -71,9 +71,6 @@ SingleComment = React.createClass({
     let {comment, canPin} = this.props;
     let {loading, commenter} = this.data;
     let pinClassName = classnames({
-      'block': true,
-      'tiny': true,
-      'is-selected': true,
       'is-good': comment.position && comment.position.type === 'good',
       'is-bad': comment.position && comment.position.type === 'bad'
     });
@@ -92,7 +89,7 @@ SingleComment = React.createClass({
         className={`comment ${this.data.hovered ? 'is-hovered' : ''}`}
         onMouseOver={this.handleMouseOver}
         onMouseOut={this.handleMouseOut}>
-        <Avatar user={commenter} imageOnly/>
+        <Avatar user={commenter} size="small"/>
         <div className="comment__body">
           <header className="comment__header">
             <h4 className="comment__name">{commenter.profile.name}</h4>
@@ -101,7 +98,7 @@ SingleComment = React.createClass({
                 {moment(comment.created_at).fromNow()}
               </small>
               <Dropdown
-                toggle={<a className="block tiny"><Icon type="settings" size={1}/></a>}
+                toggle={<Block size="tiny"><Icon type="settings" size={1}/></Block>}
                 className="comment__meta__item">
                 <span>
                   <div className="menu__item" onClick={this.handleCommentEdit}>
@@ -114,7 +111,7 @@ SingleComment = React.createClass({
               {canPin ?
                 comment.position ?
                   <Dropdown
-                    toggle={<a className={pinClassName}><Icon type={pinType} size={1}/></a>}
+                    toggle={<Block className={pinClassName} size="tiny" selected><Icon type={pinType} size={1}/></Block>}
                     className="comment__meta__item">
                     <span>
                       <div className="menu__item" onClick={this.handlePinType}>
@@ -125,11 +122,12 @@ SingleComment = React.createClass({
                     </span>
                   </Dropdown>
                 :
-                  <a
-                    className="block tiny comment__meta__item"
-                    onClick={this.handleAddPin}>
+                  <Block
+                    className="comment__meta__item"
+                    onClick={this.handleAddPin}
+                    size="tiny">
                     <Icon type="pin" size={1}/>
-                  </a>
+                  </Block>
               : null}
             </div>
           </header>

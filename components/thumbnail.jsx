@@ -32,16 +32,19 @@ Thumbnail = React.createClass({
         <div className="thumbnail__overlay" onClick={this.handleImageClick}>
           <Icon type="expand" size={5} className="thumbnail__overlay__label"/>
           <div className="thumbnail__actions">
-            <Icon
-              type="comments"
-              className="action block"
+            <Block
               onClick={this.handleCommentClick}
-              size={1}/>
-            <Icon
-              type="trash"
-              className="action delete block"
+              size="small"
+              label="Image comments">
+              <Icon type="comments" size={1.5}/>
+            </Block>
+            <Block
+              className="delete"
               onClick={this.handleImageDelete}
-              size={1}/>
+              size="small"
+              label="Delete image">
+              <Icon type="trash" size={1.5}/>
+            </Block>
           </div>
         </div>
         <img src={image.src}/>

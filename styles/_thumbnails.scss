@@ -13,7 +13,6 @@
 .thumbnails {
   @include prefixer(columns, 3);
   @include prefixer(column-gap, 0);
-  overflow: hidden;
   position: relative;
 
   .has-panel & {
@@ -26,6 +25,7 @@
   cursor: zoom-in;
   position: relative;
   width: 100%;
+  overflow: visible;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -78,19 +78,22 @@
 
   .block {
     cursor: pointer;
-
-    svg {
-      fill: $colorBrand;
-    }
+    background-color: $colorGrayDark;
+    fill: $colorGray;
 
     &:hover {
-      svg {
-        fill: $colorGray;
-      }
+      fill: $colorGray;
     }
 
     + .block {
       margin-left: 0.5em;
+    }
+  }
+
+  .delete {
+    &:hover {
+      background-color: $colorNegative;
+      fill: $colorGray;
     }
   }
 

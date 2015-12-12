@@ -23,12 +23,15 @@ $panelTiming: 0.2s;
 
 .panel__header {
   padding: 1em;
+  position: relative;
+  z-index: 1;
 }
 
 .panel__close {
   position: absolute;
   top: 1em;
   right: 1em;
+  cursor: pointer;
 }
 
 .panel__scroll {
