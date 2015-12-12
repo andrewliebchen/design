@@ -19,7 +19,6 @@
 
 html,
 body {
-  // @include checkerboard($colorGray, darken($colorGray, 1%), 1.5em);
   font-family: "work sans", "helvetica neue", helvetica, arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
@@ -37,8 +36,8 @@ a {
   text-decoration: underline;
 
   &:hover {
-    color: lighten($colorBrand, 10%);
-    fill: lighten($colorBrand, 10%);
+    color: $colorBrandLight;
+    fill: $colorBrandLight;
   }
 
   &:visited {
