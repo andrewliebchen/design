@@ -62,20 +62,23 @@ InlineEdit = React.createClass({
               autoFocus/>
           : null}
           {type === 'textarea' ?
-            <textarea
-              ref="inlineInput"
-              defaultValue={this.state.text}
-              onChange={this.handleOnChange}
-              onKeyPress={this.handleSave}
-              onBlur={this.handleEditToggle}
-              autoFocus/>
+            <span>
+              <textarea
+                ref="inlineInput"
+                defaultValue={this.state.text}
+                onChange={this.handleOnChange}
+                onKeyPress={this.handleSave}
+                onBlur={this.handleEditToggle}
+                autoFocus/>
+              <small>Format with Markdown.</small>
+            </span>
           : null}
         </span>
       );
     }
     return (
       <span onClick={this.handleEditToggle}>
-        {defaultValue ? defaultValue : 'Click to add'}
+        {defaultValue ? <Markdown>{defaultValue}</Markdown> : 'Click to add'}
       </span>
     );
   }

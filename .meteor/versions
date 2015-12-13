@@ -66,7 +66,9 @@ oauth@1.1.6
 oauth2@1.1.5
 observe-sequence@1.0.7
 ordered-dict@1.0.4
+perak:markdown@1.0.5
 promise@0.5.1
+q42:react-markdown@0.0.2
 random@1.0.5
 rate-limit@1.0.0
 react@0.1.13

@@ -36,6 +36,10 @@
 
 .comment__body {
   padding-left: 2.5em;
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .comment__new {

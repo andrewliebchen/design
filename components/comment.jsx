@@ -137,7 +137,7 @@ SingleComment = React.createClass({
             </div>
           </header>
           <div className="comment__content">
-            {comment.comment}
+            <Markdown>{comment.comment}</Markdown>
           </div>
         </div>
       </div>
