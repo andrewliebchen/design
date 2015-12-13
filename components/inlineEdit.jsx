@@ -31,18 +31,20 @@ InlineEdit = React.createClass({
 
   handleSave(event) {
     if(event.which === 13) {
-      Meteor.call(this.props.method, {
-        id: this.props.parentId,
-        value: this.state.text
-      }, (error, success) => {
-        if(success){
-          Session.set('toast', this.props.toast);
-          this.setState({
-            editing: false,
-            text: ''
-          });
-        }
-      });
+      if(!event.shiftKey) {
+        Meteor.call(this.props.method, {
+          id: this.props.parentId,
+          value: this.state.text
+        }, (error, success) => {
+          if(success){
+            Session.set('toast', this.props.toast);
+            this.setState({
+              editing: false,
+              text: ''
+            });
+          }
+        });
+      }
     }
   },
 
@@ -70,7 +72,7 @@ InlineEdit = React.createClass({
                 onKeyPress={this.handleSave}
                 onBlur={this.handleEditToggle}
                 autoFocus/>
-              <small>Format with Markdown.</small>
+              <small>Format with Markdown. Shift + enter to skip a line.</small>
             </span>
           : null}
         </span>
