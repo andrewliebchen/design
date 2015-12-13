@@ -1,3 +1,7 @@
+Meteor.publish(null, () => {
+  return Meteor.roles.find({})
+});
+
 Meteor.publish('project', (id) => {
   check(id, String);
 
