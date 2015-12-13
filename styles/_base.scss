@@ -69,3 +69,12 @@ img {
 .wrapper {
   min-height: 100vh;
 }
+
+.banner {
+  @include uppercase;
+  background-color: $colorPositive;
+  color: $colorGray;
+  padding: 0.5em;
+  margin-bottom: $offset;
+  fill: $colorGray;
+}
