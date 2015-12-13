@@ -9,7 +9,7 @@ Project = React.createClass({
     return {
       currentUser: Meteor.user(),
       project: Projects.findOne(),
-      images: Images.find({}, {sort: {created_at: 1}}).fetch(),
+      images: Images.find({}, {sort: {order: 1}}).fetch(),
       comments: Comments.find({}, {sort: {created_at: 1}}).fetch()
     }
   },
@@ -101,7 +101,11 @@ Project = React.createClass({
           : null}
         </Container>
         {this.state.uploader && canEdit ?
-          <ImageUploader key={1} parentId={projectId} close={this.handleUploaderClose}/>
+          <ImageUploader
+            key={1}
+            parentId={projectId}
+            close={this.handleUploaderClose}
+            imageCount={images.length}/>
         : null}
       </div>
     );

@@ -3,13 +3,13 @@ const _ = lodash;
 ImageUploader = React.createClass({
   propTypes: {
     parentId: React.PropTypes.string.isRequired,
-    close: React.PropTypes.func
+    close: React.PropTypes.func,
+    imageCount: React.PropTypes.number
   },
 
   handleImageUpload(files) {
     _.map(files, (file) => {
       let uploader = new Slingshot.Upload('fileUploads');
-
       uploader.send(file, (error, url) => {
         if (error) {
           console.error('Error uploading', uploader.xhr.response);
@@ -20,7 +20,8 @@ ImageUploader = React.createClass({
             src: url,
             parent: this.props.parentId,
             created_at: Date.now(),
-            uploaded_by: Meteor.userId()
+            uploaded_by: Meteor.userId(),
+            order: this.props.imageCount++
           }, (err, success) => {
             Session.set('toast', `${file.name} added to the project`);
           });
@@ -37,14 +38,14 @@ ImageUploader = React.createClass({
         className="image-uploader"
         activeClassName="is-active"
         onDrop={this.handleImageUpload}
-        multiple
-        accept="image/*">
+        accept="image/*"
+        multiple>
         <Icon
           type="close"
           className="image-uploader__close"
           onClick={this.props.close}/>
         <strong className="image-uploader__message">
-          Drop or click to add an image
+          Drop or click to add images
         </strong>
       </Dropzone>
     );
@@ -60,7 +61,8 @@ if(Meteor.isServer) {
         src: String,
         parent: String,
         created_at: Number,
-        uploaded_by: String
+        uploaded_by: String,
+        order: Number
       });
 
       let imageWithSameFileName = Images.find({
@@ -71,7 +73,8 @@ if(Meteor.isServer) {
         return Images.update(imageWithSameFileName[0]._id, {
           $set: {
             src: args.src,
-            updated_at: Date.now()
+            updated_at: Date.now(),
+            order: args.order
           }
         });
       } else {
