@@ -1,5 +1,7 @@
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
+const panelNavTypes = ['comments', 'settings'];
+
 Project = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
@@ -48,18 +50,14 @@ Project = React.createClass({
                     canEdit={canEdit}/>}>
           <PanelNav
             currentUser={currentUser}
-            contentTypes={['comments', 'settings']}
+            contentTypes={panelNavTypes}
             onClick={this.handlePanelOpen}
             commentCount={comments.length}/>
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main>
             {images.length > 0 ?
-              <div className="thumbnails">
-                {images.map((image, i) => {
-                  return <Thumbnail key={i} image={image} canEdit={canEdit}/>;
-                })}
-              </div>
+              <Thumbnails images={images} canEdit={canEdit}/>
             :
               <div className="project__no-content">
                 <h3>Let's get this show on the road...</h3>
@@ -75,7 +73,7 @@ Project = React.createClass({
               close={this.handlePanelClose}
               selected={this.state.panel}
               nav={<PanelNav
-                    contentTypes={['comments', 'settings']}
+                    contentTypes={panelNavTypes}
                     onClick={this.handlePanelOpen}
                     selected={this.state.panel}
                     commentCount={comments.length}
@@ -90,7 +88,7 @@ Project = React.createClass({
                     canEdit={canEdit}/>
                 : null}
                 {this.state.panel === 'settings' ?
-                  <SettingsPanel
+                  <ProjectSettingsPanel
                     project={project}
                     currentUser={currentUser}
                     canEdit={canEdit}/>

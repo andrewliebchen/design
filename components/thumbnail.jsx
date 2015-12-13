@@ -22,7 +22,9 @@ Thumbnail = React.createClass({
   handleImageDelete(event) {
     event.stopPropagation();
     if (window.confirm('Do you really want to delete this image?')) {
-      Meteor.call('deleteImage', this.props.image._id);
+      Meteor.call('deleteImage', this.props.image._id, (error, success) => {
+        Session.set('toast', 'That image is outta here!')
+      });
     }
   },
 
@@ -55,12 +57,3 @@ Thumbnail = React.createClass({
     );
   }
 });
-
-if(Meteor.isServer) {
-  Meteor.methods({
-    deleteImage(id) {
-      check(id, String);
-      Images.remove(id);
-    }
-  });
-}

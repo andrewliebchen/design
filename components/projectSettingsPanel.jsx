@@ -1,6 +1,6 @@
 const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-SettingsPanel = React.createClass({
+ProjectSettingsPanel = React.createClass({
   propTypes: {
     project: React.PropTypes.object.isRequired,
     canEdit: React.PropTypes.bool,

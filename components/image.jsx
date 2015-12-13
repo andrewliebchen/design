@@ -1,3 +1,5 @@
+const panelNavTypes = ['comments', 'settings'];
+
 Image = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
@@ -20,7 +22,7 @@ Image = React.createClass({
           parentTitle={project.name}
           parentLink={`/${image.parent}`}>
           <PanelNav
-            contentTypes={['comments']}
+            contentTypes={panelNavTypes}
             onClick={this.handlePanelOpen}
             commentCount={comments.length}
             currentUser={currentUser}/>
@@ -38,7 +40,7 @@ Image = React.createClass({
               close={this.handlePanelClose}
               selected={this.state.panel}
               nav={<PanelNav
-                    contentTypes={['comments']}
+                    contentTypes={panelNavTypes}
                     onClick={this.handlePanelOpen}
                     selected={this.state.panel}
                     commentCount={comments.length}
@@ -52,6 +54,12 @@ Image = React.createClass({
                     currentUser={currentUser}
                     canEdit={canEdit}
                     canPin />
+                : null}
+                {this.state.panel === 'settings' ?
+                  <ImageSettingsPanel
+                    imageId={image._id}
+                    parentId={project._id}
+                    canEdit={canEdit} />
                 : null}
                 {this.state.panel === 'account' ?
                   <AccountPanel currentUser={currentUser}/>
