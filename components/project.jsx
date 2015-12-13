@@ -90,7 +90,10 @@ Project = React.createClass({
                     canEdit={canEdit}/>
                 : null}
                 {this.state.panel === 'settings' ?
-                  <SettingsPanel project={project} canEdit={canEdit}/>
+                  <SettingsPanel
+                    project={project}
+                    currentUser={currentUser}
+                    canEdit={canEdit}/>
                 : null}
                 {this.state.panel === 'account' ?
                   <AccountPanel currentUser={currentUser}/>

@@ -3,7 +3,8 @@ const CSSTransitionGroup = React.addons.CSSTransitionGroup;
 SettingsPanel = React.createClass({
   propTypes: {
     project: React.PropTypes.object.isRequired,
-    canEdit: React.PropTypes.bool
+    canEdit: React.PropTypes.bool,
+    currentUser: React.PropTypes.object
   },
 
   getInitialState() {
@@ -18,6 +19,14 @@ SettingsPanel = React.createClass({
     if (window.confirm('Do you really want to delete this project?')) {
       Meteor.call('deleteProject', this.props.project._id);
     }
+  },
+
+  handleSendInvite() {
+    Meteor.call('sendInviteEmail', {
+      to: React.findDOMNode(this.refs.invite).value,
+      from: this.props.currentUser.profile.name,
+      project: this.props.project
+    });
   },
 
   componentDidMount() {
@@ -46,6 +55,14 @@ SettingsPanel = React.createClass({
               </CSSTransitionGroup>
             </div>
           </div>
+          <div className="form-group">
+            <h3>Invite your team</h3>
+            <p>OhEmGee is made for your team. Add your team's email, and we can send them the link to this project.</p>
+            <textarea ref="invite" placeholder="Separate each address with a comma"/>
+            <button className="full-width" onClick={this.handleSendInvite}>
+              Send email
+            </button>
+          </div>
           {canEdit ?
             <div className="form-group">
               <h3>Export project</h3>
@@ -73,6 +90,27 @@ if(Meteor.isServer) {
     deleteProject(id) {
       check(id, String);
       Projects.remove(id);
+    },
+
+    sendInviteEmail(args) {
+      check(args, {
+        to: String,
+        from: String,
+        project: Object
+      });
+
+      let message = `Check out ${args.project.name} on OhEmGee at ${Meteor.settings.public.site_url}/${args.project._id}.`;
+
+      // Don't block while the email is sending
+      this.unblock();
+
+      // Send the email, fix the address eventually
+      Email.send({
+        from: 'andrewliebchen@gmail.com',
+        to: args.to,
+        subject: `Join ${args.from}'s project on OhEmGee`,
+        text: message
+      });
     }
   });
 }
