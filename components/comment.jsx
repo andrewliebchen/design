@@ -5,7 +5,8 @@ SingleComment = React.createClass({
     comment: React.PropTypes.object.isRequired,
     canPin: React.PropTypes.bool,
     id: React.PropTypes.string,
-    canEdit: React.PropTypes.bool
+    canEdit: React.PropTypes.bool,
+    edit: React.PropTypes.func
   },
 
   getMeteorData() {
@@ -22,10 +23,6 @@ SingleComment = React.createClass({
       'pinning': this.props.id,
       'toast': 'Click on the image to place your pin...'
     });
-  },
-
-  handleCommentEdit() {
-    window.confirm("Sorry, this feature isn't ready yet.");
   },
 
   handleCommentDelete() {
@@ -69,7 +66,7 @@ SingleComment = React.createClass({
   },
 
   render() {
-    let {comment, canPin, canEdit} = this.props;
+    let {comment, canPin, canEdit, edit} = this.props;
     let {loading, commenter} = this.data;
     let isCommentOwner = commenter ? comment.created_by === commenter._id : null;
     let pinClassName = classnames({
@@ -104,7 +101,9 @@ SingleComment = React.createClass({
                 className="comment__meta__item">
                 <span>
                   {canEdit || isCommentOwner ?
-                    <div className="menu__item" onClick={this.handleCommentEdit}>
+                    <div
+                      className="menu__item"
+                      onClick={edit.bind(null, comment._id)}>
                       <Icon type="edit" size={1.5}/>Edit
                     </div>
                   : null}
