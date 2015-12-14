@@ -100,13 +100,13 @@ Project = React.createClass({
             </Panel>
           : null}
         </Container>
-        {this.state.uploader && canEdit ?
+        {/*this.state.uploader && canEdit ?
           <ImageUploader
             key={1}
             parentId={projectId}
             close={this.handleUploaderClose}
             imageCount={images.length}/>
-        : null}
+        : null*/}
       </div>
     );
   }

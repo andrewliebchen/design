@@ -1,6 +1,9 @@
 Thumbnail = React.createClass({
   propTypes: {
     image: React.PropTypes.object.isRequired,
+    dragStart: React.PropTypes.func,
+    dragEnd: React.PropTypes.func,
+    dragOver: React.PropTypes.func,
     canEdit: React.PropTypes.bool
   },
 
@@ -29,9 +32,14 @@ Thumbnail = React.createClass({
   },
 
   render() {
-    let {image, canEdit} = this.props;
+    let {image, index, imageCount, canEdit} = this.props;
     return (
-      <div className="thumbnail">
+      <div
+        className="thumbnail"
+        onDragStart={this.props.dragStart.bind(null, image._id)}
+        onDragEnd={this.props.dragEnd.bind(null, image._id)}
+        onDragOver={this.props.dragOver.bind(null, image._id)}
+        draggable={true}>
         <div className="thumbnail__overlay" onClick={this.handleImageClick}>
           <Icon type="expand" size={5} className="thumbnail__overlay__label"/>
           <div className="thumbnail__actions">

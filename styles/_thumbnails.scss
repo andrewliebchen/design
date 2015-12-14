@@ -22,7 +22,7 @@
 }
 
 .thumbnail {
-  cursor: zoom-in;
+  // cursor: zoom-in;
   position: relative;
   width: 100%;
   overflow: visible;
@@ -96,7 +96,7 @@
 
   .delete {
     fill: $colorNegative;
-    
+
     &:hover {
       background-color: $colorNegative;
     }
