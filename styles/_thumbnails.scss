@@ -22,7 +22,8 @@
 }
 
 .thumbnail {
-  cursor: zoom-in;
+  // cursor: zoom-in;
+  cursor: -webkit-grab;
   position: relative;
   width: 100%;
   overflow: visible;
@@ -57,6 +58,7 @@
 }
 
 .thumbnail__overlay__label {
+  cursor: zoom-in;
   cursor: pointer;
   left: 50%;
   position: absolute;
@@ -96,7 +98,7 @@
 
   .delete {
     fill: $colorNegative;
-    
+
     &:hover {
       background-color: $colorNegative;
     }
