@@ -4,6 +4,7 @@ Thumbnail = React.createClass({
     dragStart: React.PropTypes.func,
     dragEnd: React.PropTypes.func,
     dragOver: React.PropTypes.func,
+    dropTarget: React.PropTypes.bool,
     canEdit: React.PropTypes.bool
   },
 
@@ -32,10 +33,14 @@ Thumbnail = React.createClass({
   },
 
   render() {
-    let {image, index, imageCount, canEdit} = this.props;
+    let {image, index, imageCount, dropTarget, canEdit} = this.props;
+    let thumbnailClassName = classnames({
+      'thumbnail': true,
+      'is-drop-target': dropTarget
+    });
     return (
       <div
-        className="thumbnail"
+        className={thumbnailClassName}
         onDragStart={this.props.dragStart.bind(null, image._id)}
         onDragEnd={this.props.dragEnd.bind(null, image._id)}
         onDragOver={this.props.dragOver.bind(null, image._id)}
