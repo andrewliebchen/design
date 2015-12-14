@@ -8,21 +8,25 @@ Dropdown = React.createClass({
 
   getInitialState() {
     return {
-      menu: false
+      menu: false,
+      clickOnDropdown: false
     };
   },
 
   handleMouseDown() {
-    this.clickOnDropdown = true;
+    this.setState({clickOnDropdown: true});
   },
 
   handleMouseUp() {
-    this.clickOnDropdown = false;
+    this.setState({clickOnDropdown: false});
   },
 
   pageClick() {
-    if(!this.clickOnDropdown) {
-      this.setState({menu: false});
+    if(!this.state.clickOnDropdown) {
+      this.setState({
+        menu: false,
+        clickOnDropdown: false
+      });
     }
   },
 
