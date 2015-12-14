@@ -6,23 +6,26 @@ SingleComment = React.createClass({
     canPin: React.PropTypes.bool,
     id: React.PropTypes.string,
     canEdit: React.PropTypes.bool,
-    edit: React.PropTypes.func
+    edit: React.PropTypes.func,
+    currentUser: React.PropTypes.object
   },
 
   getMeteorData() {
-    let commenter = Meteor.subscribe('user', this.props.comment.created_by);
+    let commenterSub = Meteor.subscribe('user', this.props.comment.created_by);
     return {
-      loading: !commenter.ready(),
+      loading: !commenterSub.ready(),
       hovered: Session.get('commentHover') === this.props.id,
       commenter: Meteor.users.findOne(this.props.comment.created_by)
     };
   },
 
   handleAddPin() {
-    Session.set({
-      'pinning': this.props.id,
-      'toast': 'Click on the image to place your pin...'
-    });
+    if(this.props.canEdit || this._isCommentOwner()) {
+      Session.set({
+        'pinning': this.props.id,
+        'toast': 'Click on the image to place your pin...'
+      });
+    }
   },
 
   handleCommentDelete() {
@@ -65,10 +68,14 @@ SingleComment = React.createClass({
     });
   },
 
+  _isCommentOwner() {
+    return this.props.comment.created_by === this.props.currentUser._id;
+  },
+
   render() {
     let {comment, canPin, canEdit, edit} = this.props;
     let {loading, commenter} = this.data;
-    let isCommentOwner = commenter ? comment.created_by === commenter._id : null;
+    let isCommentOwner = this._isCommentOwner();
     let pinClassName = classnames({
       'is-good': comment.position && comment.position.type === 'good',
       'is-bad': comment.position && comment.position.type === 'bad'
@@ -77,7 +84,7 @@ SingleComment = React.createClass({
       'pin': comment.position.type === 'pin',
       'happy': comment.position.type === 'good',
       'frown': comment.position.type === 'bad'
-    }) : null;
+    }) : 'pin';
 
     if(loading) {
       return <Loading/>;
@@ -112,26 +119,36 @@ SingleComment = React.createClass({
                   </div>
                 </span>
               </Dropdown>
-              {canPin ?
-                comment.position && (canEdit || isCommentOwner) ?
-                  <Dropdown
-                    toggle={<Block className={pinClassName} size="tiny" selected><Icon type={pinType} size={1}/></Block>}
-                    className="comment__meta__item">
-                    <span>
-                      <div className="menu__item" onClick={this.handlePinType}>
-                        <Icon type={pinType} size={1.5}/>Toggle pin type</div>
-                      <div className="menu__item" onClick={this.handlePinDelete}>
-                        <Icon type="trash" size={1.5}/>Remove pin
-                      </div>
-                    </span>
-                  </Dropdown>
-                :
-                  <Block
-                    className="comment__meta__item"
-                    onClick={this.handleAddPin}
-                    size="tiny">
-                    <Icon type="pin" size={1}/>
-                  </Block>
+              {canPin ? comment.position && (canEdit || isCommentOwner) ?
+                <Dropdown
+                  className="comment__meta__item"
+                  toggle={<Block
+                            className={pinClassName}
+                            size="tiny"
+                            selected>
+                            <Icon type={pinType} size={1}/>
+                          </Block>}>
+                  <span>
+                    <div className="menu__item" onClick={this.handlePinType}>
+                      <Icon type={pinType} size={1.5}/>Toggle pin type</div>
+                    <div className="menu__item" onClick={this.handlePinDelete}>
+                      <Icon type="trash" size={1.5}/>Remove pin
+                    </div>
+                  </span>
+                </Dropdown>
+              : comment.position ?
+                <Block
+                  className={`comment__meta__item haha ${pinClassName}`}
+                  size="tiny">
+                  <Icon type={pinType} size={1}/>
+                </Block>
+              :
+                <Block
+                  className={`comment__meta__item ${pinClassName}`}
+                  onClick={this.handleAddPin}
+                  size="tiny">
+                  <Icon type={pinType} size={1}/>
+                </Block>
               : null}
             </div>
           </header>

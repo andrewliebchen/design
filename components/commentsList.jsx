@@ -70,7 +70,8 @@ CommentsList = React.createClass({
                   id={comment._id}
                   canPin={canPin}
                   edit={this.handleCommentEdit}
-                canEdit={canEdit}/>
+                  currentUser={currentUser}
+                  canEdit={canEdit}/>
               );
             })}
           </CSSTransitionGroup>

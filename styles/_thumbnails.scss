@@ -22,8 +22,9 @@
 }
 
 .thumbnail {
-  // cursor: zoom-in;
   cursor: -webkit-grab;
+  cursor:    -moz-grab;
+  cursor:         grab;
   position: relative;
   width: 100%;
   overflow: visible;
