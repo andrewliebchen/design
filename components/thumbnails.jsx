@@ -19,15 +19,19 @@ Thumbnails = React.createClass({
   },
 
   handleDragStart(id, event) {
+    event.stopPropagation();
     this.setState({sortTransmitter: id});
   },
 
   handleDragEnd(id, event) {
+    event.stopPropagation();
+
     if(this.state.sortTransmitter !== this.state.sortReceiver) {
       Meteor.call('sortImages', {
         transmitter: this.state.sortTransmitter,
         receiver: this.state.sortReceiver
       }, (error, success) => {
+        Session.set('toast', 'Image order updated');
         this._resetSort();
       });
     } else {
@@ -36,6 +40,7 @@ Thumbnails = React.createClass({
   },
 
   handleDragOver(id, event) {
+    event.stopPropagation();
     this.setState({sortReceiver: id});
   },
 
@@ -51,6 +56,7 @@ Thumbnails = React.createClass({
               dragStart={this.handleDragStart}
               dragEnd={this.handleDragEnd}
               dragOver={this.handleDragOver}
+              dropTarget={this.state.sortReceiver === image._id}
               canEdit={canEdit}/>
           );
         })}
@@ -70,14 +76,7 @@ if(Meteor.isServer) {
       let receiverOrder = Images.findOne(args.receiver).order;
       let previous = Images.find({order: {$lt: receiverOrder}}, {sort: {order: 1}, limit:1}).fetch();
 
-      let newOrder;
-      if(previous.length > 0) {
-        newOrder = (receiverOrder + previous[0].order) / 2;
-      } else {
-        newOrder = receiverOrder / 2;
-      }
-
-      console.log(newOrder);
+      let newOrder = previous.length > 0 ? (receiverOrder + previous[0].order) / 2 : receiverOrder / 2;
 
       return Images.update(args.transmitter, {
         $set: {order: newOrder}
