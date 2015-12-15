@@ -31,7 +31,8 @@ Panel = React.createClass({
   propTypes: {
     open: React.PropTypes.func,
     close: React.PropTypes.func,
-    selected: React.PropTypes.string
+    selected: React.PropTypes.string,
+    nav: React.PropTypes.element
   },
 
   render() {

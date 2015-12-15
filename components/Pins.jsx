@@ -3,7 +3,10 @@ Pins = React.createClass({
 
   propTypes: {
     parentId: React.PropTypes.string,
-    panel: React.PropTypes.string,
+    panel: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.bool
+    ]),
     imageSrc: React.PropTypes.string
   },
 
