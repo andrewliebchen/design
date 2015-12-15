@@ -1,3 +1,12 @@
+if(Meteor.isClient) {
+  DocHead.setTitle('OhEmGee');
+  DocHead.addMeta({
+    rel: "icon",
+    type: "image/png",
+    href: "/favicon.ico"
+  });
+}
+
 Container = React.createClass({
   propsType: {
     hasPanel: React.PropTypes.bool

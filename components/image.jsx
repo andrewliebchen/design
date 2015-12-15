@@ -81,6 +81,7 @@ if(Meteor.isClient) {
 
     action(params) {
       FlowRouter.subsReady('image', () => {
+        DocHead.setTitle(`${Images.findOne().name} on OhEmGee`);
         ReactLayout.render(Image);
       });
     }

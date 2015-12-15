@@ -120,6 +120,7 @@ if(Meteor.isClient) {
 
     action(params) {
       FlowRouter.subsReady('project', () => {
+        DocHead.setTitle(`${Projects.findOne().name} on OhEmGee`);
         ReactLayout.render(Project);
       });
     }
