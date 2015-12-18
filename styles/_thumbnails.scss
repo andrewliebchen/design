@@ -41,7 +41,7 @@
 }
 
 .thumbnail__overlay {
-  animation: overlay 0.15s $ease-in-out-back;
+  animation: overlay 0.1s ease-in-out;
   background-color: rgba($colorBrand, 0.8);
   bottom: 0;
   color: $colorGray;

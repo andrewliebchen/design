@@ -18,9 +18,14 @@ Image = React.createClass({
     return (
       <div className="image wrapper">
         <Header
-          title={<span>{image.name}</span>}
           parentTitle={project.name}
-          parentLink={`/${image.parent}`}>
+          parentLink={`/${image.parent}`}
+          title={<InlineEdit
+                    defaultValue={image.name}
+                    method="editImageName"
+                    parentId={image._id}
+                    toast="Image name updated..."
+                    canEdit={canEdit}/>}>
           <PanelNav
             contentTypes={panelNavTypes}
             onClick={this.handlePanelOpen}
@@ -83,6 +88,23 @@ if(Meteor.isClient) {
       FlowRouter.subsReady('image', () => {
         DocHead.setTitle(`${Images.findOne().name} on OhEmGee`);
         ReactLayout.render(Image);
+      });
+    }
+  });
+}
+
+if(Meteor.isServer) {
+  Meteor.methods({
+    editImageName(args) {
+      check(args, {
+        id: String,
+        value: String
+      });
+
+      return Images.update(args.id, {
+        $set: {
+          name: args.value
+        }
       });
     }
   });
