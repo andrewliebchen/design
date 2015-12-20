@@ -1,4 +1,4 @@
-const panelNavTypes = ['comments', 'settings'];
+ const panelNavTypes = ['comments', 'settings'];
 
 Image = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
@@ -15,19 +15,12 @@ Image = React.createClass({
   render() {
     let {currentUser, comments, image, project} = this.data;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
-    let currentLink = this.state.panel ? `/${image.parent}?show=${this.state.panel}` : `/${image.parent}`;
+    let parentLink = this.state.panel ? `/${image.parent}?show=${this.state.panel}` : `/${image.parent}`;
     return (
       <div className="image wrapper">
         <Header
-          parentTitle={project.name}
-          parentLink={parentLink}
-          hasPanel={this.state.panel}
-          title={<InlineEdit
-                    defaultValue={image.name}
-                    method="editImageName"
-                    parentId={image._id}
-                    toast="Image name updated..."
-                    canEdit={canEdit}/>}>
+          hasPanel={this.state.panel ? true : false}
+          title={<a href={parentLink}>{project.name}</a>}>
           <PanelNav
             contentTypes={panelNavTypes}
             onClick={this.handlePanelOpen}
@@ -36,6 +29,12 @@ Image = React.createClass({
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main className="image__main">
+            <InlineEdit
+              defaultValue={image.name}
+              method="editImageName"
+              parentId={image._id}
+              toast="Image name updated..."
+              canEdit={canEdit}/>
             <Pins
               parentId={image._id}
               panel={this.state.panel}
