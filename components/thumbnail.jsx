@@ -32,6 +32,12 @@ Thumbnail = React.createClass({
     }
   },
 
+  componentDidMount() {
+    // let image = React.findDOMNode(this.refs.image);
+    // let rgbAverage = GetAverageRGB(image);
+    // console.log(rgbAverage);
+  },
+
   render() {
     let {image, index, imageCount, dropTarget, canEdit} = this.props;
     let thumbnailClassName = classnames({
@@ -65,7 +71,7 @@ Thumbnail = React.createClass({
             : null}
           </div>
         </div>
-        <img src={image.src}/>
+        <img src={image.src} ref="image"/>
       </div>
     );
   }
