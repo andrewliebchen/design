@@ -1,17 +1,4 @@
-$panelTiming: 0.2s;
-
-@keyframes panelContainer {
-  0% {
-    transform: translate3d(100%, 0, 0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 .panel__container {
-  animation: panelContainer $panelTiming ease-in-out;
   width: $panelWidth;
   background-color: white;
   z-index: 99;

@@ -15,11 +15,12 @@ Image = React.createClass({
   render() {
     let {currentUser, comments, image, project} = this.data;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
+    let currentLink = this.state.panel ? `/${image.parent}?show=${this.state.panel}` : `/${image.parent}`;
     return (
       <div className="image wrapper">
         <Header
           parentTitle={project.name}
-          parentLink={`/${image.parent}`}
+          parentLink={parentLink}
           title={<InlineEdit
                     defaultValue={image.name}
                     method="editImageName"

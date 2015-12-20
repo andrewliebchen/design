@@ -1,7 +1,11 @@
 Thumbnails = React.createClass({
   propTypes: {
     images: React.PropTypes.array.isRequired,
-    canEdit: React.PropTypes.bool
+    canEdit: React.PropTypes.bool,
+    panel: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.bool
+    ])
   },
 
   getInitialState() {
@@ -45,7 +49,7 @@ Thumbnails = React.createClass({
   },
 
   render() {
-    let {images, canEdit} = this.props;
+    let {images, canEdit, panel} = this.props;
     return (
       <div className="thumbnails">
         {images.map((image, i) => {
@@ -57,7 +61,8 @@ Thumbnails = React.createClass({
               dragEnd={this.handleDragEnd}
               dragOver={this.handleDragOver}
               dropTarget={this.state.sortReceiver === image._id}
-              canEdit={canEdit}/>
+              canEdit={canEdit}
+              panel={panel}/>
           );
         })}
       </div>

@@ -57,7 +57,10 @@ Project = React.createClass({
         <Container hasPanel={this.state.panel}>
           <Main>
             {images.length > 0 ?
-              <Thumbnails images={images} canEdit={canEdit}/>
+              <Thumbnails
+                images={images}
+                canEdit={canEdit}
+                panel={this.state.panel}/>
             :
               <div className="project__no-content">
                 <h3>Let's get this show on the road...</h3>

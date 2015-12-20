@@ -5,22 +5,16 @@ Thumbnail = React.createClass({
     dragEnd: React.PropTypes.func,
     dragOver: React.PropTypes.func,
     dropTarget: React.PropTypes.bool,
-    canEdit: React.PropTypes.bool
-  },
-
-  getInitialState() {
-    return {
-      imageUrl: `/images/${this.props.image._id}`
-    };
+    canEdit: React.PropTypes.bool,
+    panel: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.bool
+    ])
   },
 
   handleImageClick() {
-    FlowRouter.go(this.state.imageUrl);
-  },
-
-  handleCommentClick(event) {
-    event.stopPropagation();
-    FlowRouter.go(`${this.state.imageUrl}?show=comments`);
+    let imageUrl = `/images/${this.props.image._id}`;
+    FlowRouter.go(this.props.panel ? `${imageUrl}?show=${this.props.panel}` : imageUrl);
   },
 
   handleImageDelete(event) {
@@ -53,14 +47,8 @@ Thumbnail = React.createClass({
         draggable={true}>
         <div className="thumbnail__overlay" onClick={this.handleImageClick}>
           <Icon type="expand" size={5} className="thumbnail__overlay__label"/>
-          <div className="thumbnail__actions">
-            <Block
-              onClick={this.handleCommentClick}
-              size="small"
-              label="Image comments">
-              <Icon type="comments" size={1.5}/>
-            </Block>
-            {canEdit ?
+          {canEdit ?
+            <div className="thumbnail__actions">
               <Block
                 className="delete"
                 onClick={this.handleImageDelete}
@@ -68,8 +56,8 @@ Thumbnail = React.createClass({
                 label="Delete image">
                 <Icon type="trash" size={1.5}/>
               </Block>
-            : null}
-          </div>
+            </div>
+          : null}
         </div>
         <img src={image.src} ref="image"/>
       </div>
