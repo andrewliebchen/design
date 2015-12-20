@@ -42,6 +42,7 @@ Project = React.createClass({
         onDragEnd={this.handleUploaderOpen}
         onDrop={this.handleUploaderClose}>
         <Header
+          hasPanel={this.state.panel}
           title={<InlineEdit
                     defaultValue={project.name}
                     method="editProjectName"

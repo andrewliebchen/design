@@ -21,6 +21,7 @@ Image = React.createClass({
         <Header
           parentTitle={project.name}
           parentLink={parentLink}
+          hasPanel={this.state.panel}
           title={<InlineEdit
                     defaultValue={image.name}
                     method="editImageName"
