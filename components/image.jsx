@@ -30,7 +30,7 @@ Image = React.createClass({
       <div className="image wrapper">
         <Header
           hasPanel={this.state.panel ? true : false}
-          title={<a href={parentLink}>{project.name}</a>}>
+          title={<a href={parentLink}>{project.name ? project.name : 'Back to project'}</a>}>
           <PanelNav
             contentTypes={panelNavTypes}
             onClick={this.handlePanelOpen}
