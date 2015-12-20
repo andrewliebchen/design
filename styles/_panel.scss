@@ -40,3 +40,14 @@
 .panel__content {
   padding: 1em;
 }
+
+.panel__banner {
+  // Always at the top of a panel
+  @include uppercase;
+  background-color: $colorPositive;
+  color: $colorGray;
+  padding: 1em;
+  margin-bottom: $offset;
+  fill: $colorGray;
+  margin-bottom: 1em;
+}

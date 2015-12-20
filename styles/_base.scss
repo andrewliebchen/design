@@ -69,14 +69,3 @@ img {
 .wrapper {
   min-height: 100vh;
 }
-
-.banner {
-  // Always at the top of a panel
-  @include uppercase;
-  background-color: $colorPositive;
-  color: $colorGray;
-  padding: 1em;
-  margin-bottom: $offset;
-  fill: $colorGray;
-  margin: -1em -1em 1em;
-}

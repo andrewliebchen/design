@@ -26,11 +26,11 @@ AccountPanel = React.createClass({
     let {currentUser} = this.props;
     return (
       <div className="panel__scroll">
+        {currentUser && Roles.userIsInRole(currentUser._id, ['admin']) ?
+          <div className="panel__banner">Sweet! You're an admin.</div>
+        : null}
         {currentUser ?
           <div className="panel__content">
-            {Roles.userIsInRole(currentUser._id, ['admin']) ?
-              <div className="banner">Sweet! You're an admin.</div>
-            : null}
             <h3>Accounts settings</h3>
             <p>Got to put your best foot forward, right?</p>
             <div className="form-group">
