@@ -21,6 +21,16 @@
   }
 }
 
+.image__header {
+  padding-bottom: 0.5em;
+
+  input {
+    &:focus {
+      background-color: $colorGrayDark;
+    }
+  }
+}
+
 .image__img {
   margin: auto;
   max-width: 100%;

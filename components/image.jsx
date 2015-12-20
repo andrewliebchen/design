@@ -29,12 +29,16 @@ Image = React.createClass({
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main className="image__main">
-            <InlineEdit
-              defaultValue={image.name}
-              method="editImageName"
-              parentId={image._id}
-              toast="Image name updated..."
-              canEdit={canEdit}/>
+            <header className="image__header">
+              <h3 className="image__title">
+                <InlineEdit
+                  defaultValue={image.name}
+                  method="editImageName"
+                  parentId={image._id}
+                  toast="Image name updated..."
+                  canEdit={canEdit}/>
+              </h3>
+            </header>
             <Pins
               parentId={image._id}
               panel={this.state.panel}
