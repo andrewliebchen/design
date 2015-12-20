@@ -1,20 +1,29 @@
- const panelNavTypes = ['comments', 'settings'];
+const panelNavTypes = ['comments', 'settings'];
 
 Image = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
   getMeteorData() {
-    DocHead.setTitle(`${Images.findOne().name} on OhEmGee`);
+    let currentImage = Images.findOne(FlowRouter.getParam('_id'));
+    DocHead.setTitle(`${currentImage.name} on OhEmGee`);
     return {
       currentUser: Meteor.user(),
-      image: Images.findOne(),
+      image: currentImage,
+      nextImage: Images.find(
+        {order: {$gt: currentImage.order}},
+        {sort: {order: 1}, limit:1}
+      ).fetch(),
+      prevImage: Images.find(
+        {order: {$lt: currentImage.order}},
+        {sort: {order: -1}, limit:1}
+      ).fetch(),
       comments: Comments.find({}, {sort: {created_at: 1}}).fetch(),
       project: Projects.findOne()
     };
   },
 
   render() {
-    let {currentUser, comments, image, project} = this.data;
+    let {currentUser, comments, image, nextImage, prevImage, project} = this.data;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
     let parentLink = this.state.panel ? `/${image.parent}?show=${this.state.panel}` : `/${image.parent}`;
     return (
@@ -39,6 +48,22 @@ Image = React.createClass({
                   toast="Image name updated..."
                   canEdit={canEdit}/>
               </h3>
+              <div className="pagnation">
+                {prevImage.length ?
+                  <a
+                    className="pagination__link pagination__prev"
+                    href={`/images/${prevImage[0]._id}`}>
+                    Last
+                  </a>
+                : null}
+                {nextImage.length ?
+                  <a
+                    className="pagination__link pagination__next"
+                    href={`/images/${nextImage[0]._id}`}>
+                    Next
+                  </a>
+                : null}
+              </div>
             </header>
             <Pins
               parentId={image._id}

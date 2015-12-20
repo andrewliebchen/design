@@ -23,11 +23,42 @@
 
 .image__header {
   padding-bottom: 0.5em;
+  display: flex;
 
   input {
     &:focus {
       background-color: $colorGrayDark;
     }
+  }
+}
+
+.image__title {
+  flex: 1;
+
+  p {
+    margin: 0;
+  }
+}
+
+.pagination {
+  margin-left: 1em;
+}
+
+a.pagination__link {
+  @include uppercase;
+  color: $colorBrandDark;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+  padding: 0.25em 0;
+
+  + .pagination__link {
+    border-left: 0;
+    margin-left: 1em;
+  }
+
+  &:hover {
+    color: $colorBrand;
+    border-color: $colorBrand;
   }
 }
 
