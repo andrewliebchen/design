@@ -6,6 +6,7 @@ Project = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
   getMeteorData() {
+    DocHead.setTitle(`${Projects.findOne().name} on OhEmGee`);
     return {
       currentUser: Meteor.user(),
       project: Projects.findOne(),
@@ -124,7 +125,6 @@ if(Meteor.isClient) {
 
     action(params) {
       FlowRouter.subsReady('project', () => {
-        DocHead.setTitle(`${Projects.findOne().name} on OhEmGee`);
         ReactLayout.render(Project);
       });
     }

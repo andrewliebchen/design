@@ -4,6 +4,7 @@ Image = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
   getMeteorData() {
+    DocHead.setTitle(`${Images.findOne().name} on OhEmGee`);
     return {
       currentUser: Meteor.user(),
       image: Images.findOne(),
@@ -91,7 +92,6 @@ if(Meteor.isClient) {
 
     action(params) {
       FlowRouter.subsReady('image', () => {
-        DocHead.setTitle(`${Images.findOne().name} on OhEmGee`);
         ReactLayout.render(Image);
       });
     }
