@@ -60,6 +60,9 @@ Onboarding = React.createClass({
                   Get started
                 </button>
               }
+              <footer className="onboarding__footer">
+                <small>Skip this and just <a onClick={this.handleGetStarted}>get started</a></small>
+              </footer>
             </div>
           </div>
         : null}

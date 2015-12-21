@@ -6,7 +6,8 @@ Project = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
   getMeteorData() {
-    DocHead.setTitle(`${Projects.findOne().name} on OhEmGee`);
+    let documentTitle = Projects.findOne().name ? `${Projects.findOne().name} on OhEmGee` : 'OhEmGee';
+    DocHead.setTitle(documentTitle);
     return {
       currentUser: Meteor.user(),
       project: Projects.findOne(),

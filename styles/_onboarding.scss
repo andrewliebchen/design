@@ -5,6 +5,10 @@
   left: 0;
   right: 0;
   transform: translateY(-50%);
+
+  a {
+    color: $colorGray;
+  }
 }
 
 .onboarding__content {
@@ -37,4 +41,8 @@
     background-color: $colorGray;
     color: $colorBrand;
   }
+}
+
+.onboarding__footer {
+  margin-top: 1em;
 }
