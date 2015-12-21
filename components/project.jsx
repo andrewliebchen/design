@@ -112,6 +112,7 @@ Project = React.createClass({
             close={this.handleUploaderClose}
             imageCount={images.length}/>
         : null}
+        <Onboarding show={!currentUser.profile.onboarded && canEdit}/>
       </div>
     );
   }

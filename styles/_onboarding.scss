@@ -1,0 +1,40 @@
+.onboarding {
+  position: fixed;
+  background-color: $colorBrand;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.onboarding__content {
+  max-width: 30em;
+  padding: 2em;
+  margin: auto;
+  text-align: center;
+}
+
+.onboarding__slide {
+  font-size: 1.5em;
+}
+
+.onboarding__button {
+  @include uppercase;
+  color: $colorGray;
+  width: 100%;
+  text-decoration: none;
+  background-color: $colorBrandDark;
+
+  &:hover {
+    background-color: lighten($colorBrandDark, 3%);
+  }
+}
+
+.onboarding__button__final {
+  background-color: $colorBrandLight;
+
+  &:hover {
+    background-color: $colorGray;
+    color: $colorBrand;
+  }
+}
