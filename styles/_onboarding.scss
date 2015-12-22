@@ -1,17 +1,6 @@
 .onboarding {
-  position: fixed;
-  background-color: $colorBrand;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-
-  a {
-    color: $colorGray;
-  }
-}
-
-.onboarding__content {
+  margin: 4em auto 0;
+  color: $colorBrandDark;
   max-width: 30em;
   padding: 2em;
   margin: auto;
@@ -20,6 +9,7 @@
 
 .onboarding__slide {
   font-size: 1.5em;
+  line-height: 1.3;
 }
 
 .onboarding__button {
@@ -27,6 +17,11 @@
   color: $colorGray;
   width: 100%;
   text-decoration: none;
+  margin: 1em auto;
+  width: 80%;
+}
+
+.onboarding__button__final {
   background-color: $colorBrandDark;
 
   &:hover {
@@ -34,15 +29,6 @@
   }
 }
 
-.onboarding__button__final {
-  background-color: $colorBrandLight;
-
-  &:hover {
-    background-color: $colorGray;
-    color: $colorBrand;
-  }
-}
-
 .onboarding__footer {
-  margin-top: 1em;
+  color: $colorGrayDark;
 }

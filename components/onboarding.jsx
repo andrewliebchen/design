@@ -27,7 +27,7 @@ Onboarding = React.createClass({
   },
 
   render() {
-    let buttonBackgroundImage = `linear-gradient(to right, #c189d3 ${this.state.currentSlide / slides.length * 100}%, transparent ${this.state.currentSlide / slides.length * 100}%)`;
+    let buttonBackgroundImage = `linear-gradient(to right, #9743b3 ${this.state.currentSlide / slides.length * 100}%, transparent ${this.state.currentSlide / slides.length * 100}%)`;
     let buttonStyle = {
       backgroundImage: buttonBackgroundImage
     };
@@ -36,34 +36,32 @@ Onboarding = React.createClass({
       <span>
         {this.state.show ?
           <div className="onboarding">
-            <div className="onboarding__content">
-              {slides.map((message, i) => {
-                if(this.state.currentSlide === i) {
-                return (
-                  <div className="onboarding__slide" key={i}>
-                    <p>{message}</p>
-                  </div>
-                );
-              }
-              })}
-              {this.state.currentSlide < slides.length - 1 ?
-                <button
-                  className="onboarding__button"
-                  onClick={this.handleAdvanceSlide}
-                  style={buttonStyle}>
-                  Next
-                </button>
-              :
-                <button
-                  className="onboarding__button onboarding__button__final"
-                  onClick={this.handleGetStarted}>
-                  Get started
-                </button>
-              }
-              <footer className="onboarding__footer">
-                <small>Skip this and just <a onClick={this.handleGetStarted}>get started</a></small>
-              </footer>
-            </div>
+            {slides.map((message, i) => {
+              if(this.state.currentSlide === i) {
+              return (
+                <div className="onboarding__slide" key={i}>
+                  <p><strong>{message}</strong></p>
+                </div>
+              );
+            }
+            })}
+            {this.state.currentSlide < slides.length - 1 ?
+              <button
+                className="onboarding__button"
+                onClick={this.handleAdvanceSlide}
+                style={buttonStyle}>
+                Next
+              </button>
+            :
+              <button
+                className="onboarding__button onboarding__button__final"
+                onClick={this.handleGetStarted}>
+                Get started
+              </button>
+            }
+            <footer className="onboarding__footer">
+              <small>Skip this and just <a onClick={this.handleGetStarted}>get started</a></small>
+            </footer>
           </div>
         : null}
       </span>

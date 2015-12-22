@@ -37,6 +37,7 @@ Project = React.createClass({
     let {currentUser, project, comments, images} = this.data;
     let projectId = project._id;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
+    let showOnboarding = !currentUser.profile.onboarded && canEdit;
     return (
       <div
         className="project wrapper"
@@ -64,6 +65,8 @@ Project = React.createClass({
                 images={images}
                 canEdit={canEdit}
                 panel={this.state.panel}/>
+            : showOnboarding ?
+              <Onboarding show={showOnboarding}/>
             :
               <div className="project__no-content">
                 <h3>Let's get this show on the road...</h3>
@@ -113,7 +116,6 @@ Project = React.createClass({
             close={this.handleUploaderClose}
             imageCount={images.length}/>
         : null}
-        <Onboarding show={!currentUser.profile.onboarded && canEdit}/>
       </div>
     );
   }
