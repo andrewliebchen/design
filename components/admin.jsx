@@ -30,6 +30,14 @@ Admin = React.createClass({
     });
   },
 
+  handleRevoke(id) {
+    Meteor.call('revokeToken', id, (error, success) => {
+      if(success) {
+        Session.set('toast', 'Token revoked!')
+      }
+    });
+  },
+
   render() {
     // if(!Roles.userIsInRole(this.data.currentUser._id,'admin')) {
     //   return <Loading/>
@@ -71,10 +79,16 @@ Admin = React.createClass({
                       <td>{invite.created_at}</td>
                       <td>{invite.account_created ? `✅${invite.account_created}` : '⏳'}</td>
                       <td>
-                        <a>Revoke</a>
-                        <a onClick={this.handleSendInvite.bind(null, invite.email, invite.token)}>
-                          Invite
-                        </a>
+                        <button
+                          className="small"
+                          onClick={this.handleRevoke.bind(null, invite._id)}>
+                          Revoke
+                        </button>
+                        <button
+                          className="small"
+                          onClick={this.handleSendInvite.bind(null, invite.email, invite.token)}>
+                          Resend
+                        </button>
                       </td>
                     </tr>
                   );
@@ -138,6 +152,11 @@ if(Meteor.isServer) {
           });
         }
       });
+    },
+
+    revokeToken(id) {
+      check(id, String);
+      return Invites.remove(id);
     }
   });
 }

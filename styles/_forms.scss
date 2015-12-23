@@ -76,6 +76,7 @@ button {
   line-height: 3em;
   border: 0;
   padding: 0 1.5em;
+  display: inline-block;
 
   &:hover {
     background-color: $colorBrandLight;
@@ -86,6 +87,11 @@ button {
     background-color: $colorBrandDark;
   }
 
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &.full-width {
     width: 100%;
   }
@@ -94,14 +100,18 @@ button {
     background-color: $colorNegative;
   }
 
-  &:disabled {
-    opacity: 0.5;
-    pointer-events: none;
+  &.small {
+    line-height: 1.5em;
+    padding: 0 0.25em;
   }
 
   svg {
     position: relative;
     top: 0.3em;
+  }
+
+  + button {
+    margin-left: 0.25em;
   }
 }
 

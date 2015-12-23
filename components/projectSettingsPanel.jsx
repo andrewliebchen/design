@@ -93,6 +93,7 @@ if(Meteor.isServer) {
     },
 
     sendInviteEmail(args) {
+      // TODO Use the common email method
       check(args, {
         to: String,
         from: String,
