@@ -18,11 +18,14 @@
 }
 
 .header__brand {
-  fill: $colorBrand;
-  top: 0.5em;
+  fill: $colorGrayMid;
   position: absolute;
   left: $offset;
   z-index: 1;
+
+  &:hover {
+    fill: $colorBrand;
+  }
 }
 
 .header__title {
