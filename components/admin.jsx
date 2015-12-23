@@ -8,7 +8,7 @@ Admin = React.createClass({
     }
   },
 
-  handleInvite() {
+  handleCreateToken() {
     Meteor.call('addInvite', {
       type: 'alpha',
       created_by: this.data.currentUser._id,
@@ -18,6 +18,15 @@ Admin = React.createClass({
       if(success) {
         React.findDOMNode(this.refs.email).value = '';
       }
+    });
+  },
+
+  handleSendInvite(email, token) {
+    Meteor.call('sendEmail', {
+      to: email,
+      from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
+      subject: "Here's your invite to OhEmGee",
+      message: token
     });
   },
 
@@ -38,10 +47,7 @@ Admin = React.createClass({
         </Header>
         <Main>
           <div className="card">
-            <h3>Admins</h3>
-          </div>
-          <div className="card">
-            <h3>Alpha invites</h3>
+            <h3 className="card__title">Alpha invites</h3>
             <table>
               <thead>
                 <tr>
@@ -66,7 +72,9 @@ Admin = React.createClass({
                       <td>{invite.account_created ? `✅${invite.account_created}` : '⏳'}</td>
                       <td>
                         <a>Revoke</a>
-                        <a>Resend</a>
+                        <a onClick={this.handleSendInvite.bind(null, invite.email, invite.token)}>
+                          Invite
+                        </a>
                       </td>
                     </tr>
                   );
@@ -77,7 +85,7 @@ Admin = React.createClass({
               <label>Recipient email</label>
               <div className="input-group">
                 <input type="email" ref="email"/>
-                <button onClick={this.handleInvite}>Add Invite</button>
+                <button onClick={this.handleCreateToken}>Create token</button>
               </div>
             </div>
           </div>
@@ -111,13 +119,24 @@ if(Meteor.isServer) {
         email: String
       });
 
+      let token = Random.hexString(15);
+
       return Invites.insert({
         type: args.type,
         created_by: args.created_by,
         created_at: args.created_at,
         email: args.email,
-        token: Random.hexString(15),
+        token: token,
         account_created: false
+      }, (error, success) => {
+        if(success) {
+          Meteor.call('sendEmail', {
+            to: args.email,
+            from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
+            subject: "Here's your invite to OhEmGee",
+            text: `${Meteor.settings.public.site_url}/invites/${token}`
+          });
+        }
       });
     }
   });

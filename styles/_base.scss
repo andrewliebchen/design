@@ -81,6 +81,10 @@ img {
   }
 }
 
+.card__title {
+  margin-bottom: 1em;
+}
+
 table {
   width: 100%;
   table-layout: auto;
@@ -109,5 +113,4 @@ tbody {
 
 thead {
   color: lighten($colorGrayDark, 10%);
-  // border-bottom: 2px solid $colorGrayMid;
 }
