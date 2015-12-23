@@ -22,10 +22,11 @@ ProjectSettingsPanel = React.createClass({
   },
 
   handleSendInvite() {
-    Meteor.call('sendInviteEmail', {
+    Meteor.call('sendEmail', {
       to: React.findDOMNode(this.refs.invite).value,
-      from: this.props.currentUser.profile.name,
-      project: this.props.project
+      from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
+      subject: `Join ${this.props.currentUser.profile.name}'s project on OhEmGee`,
+      text: `Check out ${this.props.project.name} on OhEmGee at ${Meteor.settings.public.site_url}/${this.props.project._id}.`
     });
   },
 
@@ -90,28 +91,6 @@ if(Meteor.isServer) {
     deleteProject(id) {
       check(id, String);
       Projects.remove(id);
-    },
-
-    sendInviteEmail(args) {
-      // TODO Use the common email method
-      check(args, {
-        to: String,
-        from: String,
-        project: Object
-      });
-
-      let message = `Check out ${args.project.name} on OhEmGee at ${Meteor.settings.public.site_url}/${args.project._id}.`;
-
-      // Don't block while the email is sending
-      this.unblock();
-
-      // Send the email, fix the address eventually
-      Email.send({
-        from: 'andrewliebchen@gmail.com',
-        to: args.to,
-        subject: `Join ${args.from}'s project on OhEmGee`,
-        text: message
-      });
     }
   });
 }
