@@ -47,11 +47,24 @@ Admin = React.createClass({
   },
 
   handleDemoteAdmin(id) {
-
+    Meteor.call('demoteAdmin', id, (error, success) => {
+      if(success) {
+        Session.set('toast', 'DEEE-moted!');
+      }
+    });
   },
 
   handleAddAsAdmin() {
-
+    let email = React.findDOMNode(this.refs.adminEmail);
+    Meteor.call('addAsAdmin', email.value, (error, success) => {
+      if(error) {
+        Session.set('toast', `Sorry, ${email.value} doesn't match an existing user`);
+      }
+      if(success) {
+        Session.set('toast', `Welcome to the club ${email.value}`);
+        email.value = '';
+      }
+    })
   },
 
   render() {
@@ -78,7 +91,6 @@ Admin = React.createClass({
                   <th>Recipient</th>
                   <th>Type</th>
                   <th>Token</th>
-                  <th>Created</th>
                   <th>Accepted</th>
                   <th/>
                 </tr>
@@ -92,7 +104,6 @@ Admin = React.createClass({
                       </td>
                       <td>{invite.type}</td>
                       <td>{invite.token}</td>
-                      <td>{moment(invite.created_at).fromNow()}</td>
                       <td>{invite.account_created ? `✅${invite.account_created}` : '⏳'}</td>
                       <td>
                         <button
@@ -132,11 +143,13 @@ Admin = React.createClass({
                     <tr key={i}>
                       <td><Avatar user={admin} size="tiny"/> {admin.profile.name}</td>
                       <td>
-                        <button
-                          className="small negative"
-                          onClick={this.handleDemoteAdmin.bind(null, admin._id)}>
-                          Demote
-                        </button>
+                        {admin._id !== this.data.currentUser._id ?
+                          <button
+                            className="small negative"
+                            onClick={this.handleDemoteAdmin.bind(null, admin._id)}>
+                            Demote
+                          </button>
+                        : null}
                       </td>
                     </tr>
                   );
@@ -205,6 +218,21 @@ if(Meteor.isServer) {
     revokeToken(id) {
       check(id, String);
       return Invites.remove(id);
+    },
+
+    demoteAdmin(id) {
+      check(id, String);
+      return Roles.removeUsersFromRoles(id, 'admin');
+    },
+
+    addAsAdmin(email) {
+      check(email, String);
+      let user = Meteor.users.findOne({'profile.email': email});
+      if(user) {
+        return Roles.addUsersToRoles(user._id, 'admin');
+      } else {
+        throw new Meteor.error('not-a-user', 'No such user!');
+      }
     }
   });
 }
