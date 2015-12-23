@@ -9,16 +9,22 @@ Admin = React.createClass({
   },
 
   handleCreateToken() {
-    Meteor.call('addInvite', {
-      type: 'alpha',
-      created_by: this.data.currentUser._id,
-      created_at: Date.now(),
-      email: React.findDOMNode(this.refs.email).value
-    }, (error, success) => {
-      if(success) {
-        React.findDOMNode(this.refs.email).value = '';
-      }
-    });
+    let email = React.findDOMNode(this.refs.email);
+    let emailExists = Invites.findOne({email: email.value});
+    if(!emailExists) {
+      Meteor.call('addInvite', {
+        type: 'alpha',
+        created_by: this.data.currentUser._id,
+        created_at: Date.now(),
+        email: email.value
+      }, (error, success) => {
+        if(success) {
+          email.value = '';
+        }
+      });
+    } else {
+      Session.set('toast', "Whoops, that person's already been invited!");
+    }
   },
 
   handleSendInvite(email, token) {
