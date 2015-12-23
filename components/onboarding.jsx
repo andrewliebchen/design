@@ -1,6 +1,7 @@
 Onboarding = React.createClass({
   propTypes: {
-    show: React.PropTypes.bool
+    show: React.PropTypes.bool,
+    currentUserId: React.PropTypes.string
   },
 
   getInitialState() {
@@ -41,12 +42,16 @@ Onboarding = React.createClass({
     if(this.state.currentSlide < this.state.slides.length - 1) {
       this.setState({currentSlide: this.state.currentSlide + 1});
     } else {
-      this.setState({show: false});
+      Meteor.call('completeOnboarding', this.props.currentUserId, (error, success) => {
+        if(success) {
+          this.setState({show: false});
+        }
+      })
     }
   },
 
   render() {
-    let buttonBackgroundImage = `linear-gradient(to right, #9743b3 ${this.state.currentSlide / this.state.slides.length * 100}%, transparent ${this.state.currentSlide / this.state.slides.length * 100}%)`;
+    let buttonBackgroundImage = `linear-gradient(to right, #9743b3 ${this.state.currentSlide / (this.state.slides.length - 1) * 100}%, transparent ${this.state.currentSlide / this.state.slides.length * 100}%)`;
     let buttonStyle = {
       backgroundImage: buttonBackgroundImage
     };
@@ -80,3 +85,17 @@ Onboarding = React.createClass({
     );
   }
 });
+
+if(Meteor.isServer) {
+  Meteor.methods({
+    completeOnboarding(id) {
+      check(id, String);
+
+      return Meteor.users.update(id, {
+        $set: {
+          'profile.onboarded': true
+        }
+      });
+    }
+  })
+}

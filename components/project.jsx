@@ -66,11 +66,12 @@ Project = React.createClass({
                 canEdit={canEdit}
                 panel={this.state.panel}/>
             : showOnboarding ?
-              <Onboarding show={showOnboarding}/>
+              <Onboarding show={showOnboarding} currentUserId={currentUser._id}/>
             :
-              <div className="project__no-content">
-                <h3>Let's get this show on the road...</h3>
-                <button onClick={this.handleUploaderOpen}>
+              <div className="onboarding">
+                <button
+                  className="onboarding__button"
+                  onClick={this.handleUploaderOpen}>
                   Drag an image or click to upload
                 </button>
               </div>
