@@ -1,5 +1,5 @@
 Meteor.publish(null, () => {
-  return Meteor.roles.find({})
+  return Meteor.roles.find({});
 });
 
 Meteor.publish('project', (id) => {
@@ -28,7 +28,9 @@ Meteor.publish('user', (id) => {
   return Meteor.users.find({_id: id});
 });
 
-Meteor.publish('admin', (id) => {
-  check(id, String);
-  return Invites.find({created_by: id});
+Meteor.publish('admin', () => {
+  return [
+    Invites.find(),
+    Meteor.users.find()
+  ];
 })

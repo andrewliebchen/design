@@ -1,7 +1,7 @@
 Avatar = React.createClass({
   propTypes: {
     user: React.PropTypes.object,
-    size: React.PropTypes.oneOf(['small']),
+    size: React.PropTypes.oneOf(['small', 'tiny']),
     className: React.PropTypes.string,
     handleClick: React.PropTypes.func,
     label: React.PropTypes.string,

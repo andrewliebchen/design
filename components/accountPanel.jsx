@@ -27,7 +27,7 @@ AccountPanel = React.createClass({
     return (
       <div className="panel__scroll">
         {currentUser && Roles.userIsInRole(currentUser._id, ['admin']) ?
-          <div className="panel__banner">Sweet! You're an admin.</div>
+          <div className="panel__banner">Sweet! You're an admin. <a href="/admin">Manage</a></div>
         : null}
         {currentUser ?
           <div className="panel__content">

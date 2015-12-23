@@ -4,12 +4,14 @@ Admin = React.createClass({
   getMeteorData() {
     return {
       currentUser: Meteor.user(),
-      alphaInvites: Invites.find({type: 'alpha'}).fetch()
+      alphaInvites: Invites.find({type: 'alpha'}).fetch(),
+      admins: Roles.getUsersInRole('admin').fetch(),
+      users: Meteor.users.find().fetch()
     }
   },
 
   handleCreateToken() {
-    let email = React.findDOMNode(this.refs.email);
+    let email = React.findDOMNode(this.refs.inviteEmail);
     let emailExists = Invites.findOne({email: email.value});
     if(!emailExists) {
       Meteor.call('addInvite', {
@@ -44,10 +46,18 @@ Admin = React.createClass({
     });
   },
 
+  handleDemoteAdmin(id) {
+
+  },
+
+  handleAddAsAdmin() {
+
+  },
+
   render() {
-    // if(!Roles.userIsInRole(this.data.currentUser._id,'admin')) {
-    //   return <Loading/>
-    // }
+    if(!Roles.userIsInRole(this.data.currentUser._id,'admin')) {
+      return <Loading/>
+    }
 
     return (
       <div className="wrapper">
@@ -82,7 +92,7 @@ Admin = React.createClass({
                       </td>
                       <td>{invite.type}</td>
                       <td>{invite.token}</td>
-                      <td>{invite.created_at}</td>
+                      <td>{moment(invite.created_at).fromNow()}</td>
                       <td>{invite.account_created ? `✅${invite.account_created}` : '⏳'}</td>
                       <td>
                         <button
@@ -104,8 +114,40 @@ Admin = React.createClass({
             <div className="form-group">
               <label>Recipient email</label>
               <div className="input-group">
-                <input type="email" ref="email"/>
+                <input type="email" ref="inviteEmail"/>
                 <button onClick={this.handleCreateToken}>Create token</button>
+              </div>
+            </div>
+          </div>
+          <div className="card">
+            <h3 className="card__title">Admins</h3>
+            <table>
+              <thead>
+                <th>User</th>
+                <th/>
+              </thead>
+              <tbody>
+                {this.data.admins.map((admin, i) => {
+                  return (
+                    <tr key={i}>
+                      <td><Avatar user={admin} size="tiny"/> {admin.profile.name}</td>
+                      <td>
+                        <button
+                          className="small negative"
+                          onClick={this.handleDemoteAdmin.bind(null, admin._id)}>
+                          Demote
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <div className="form-group">
+              <label>New admin's email</label>
+              <div className="input-group">
+                <input type="email" ref="adminEmail"/>
+                <button onClick={this.handleAddAsAdmin}>Add as admin</button>
               </div>
             </div>
           </div>
@@ -118,7 +160,7 @@ Admin = React.createClass({
 if(Meteor.isClient) {
   FlowRouter.route('/admin', {
     subscriptions() {
-      this.register('admin', Meteor.subscribe('admin', Meteor.userId()));
+      this.register('admin', Meteor.subscribe('admin'));
     },
 
     action(params) {
