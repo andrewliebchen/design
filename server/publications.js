@@ -26,4 +26,9 @@ Meteor.publish('image', (id) => {
 Meteor.publish('user', (id) => {
   check(id, String);
   return Meteor.users.find({_id: id});
+});
+
+Meteor.publish('admin', (id) => {
+  check(id, String);
+  return Invites.find({created_by: id});
 })

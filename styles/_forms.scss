@@ -14,7 +14,8 @@
 
 .form-group {
   + .form-group,
-  + button {
+  + button,
+  + table {
     margin-top: $offset;
   }
 }

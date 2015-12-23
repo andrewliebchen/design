@@ -22,7 +22,7 @@ body {
   font-family: "work sans", "helvetica neue", helvetica, arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: $colorGray;
+  color: $colorGrayDark;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: $colorGrayMid;
@@ -68,4 +68,46 @@ img {
 
 .wrapper {
   min-height: 100vh;
+}
+
+.card {
+  background-color: $colorGray;
+  padding: 2em;
+  max-width: 60em;
+  margin: auto;
+
+  + .card {
+    margin-top: 2em;
+  }
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+  background-color: white;
+
+  + table,
+  + .form-group {
+    margin-top: 2em;
+  }
+}
+
+th,
+td {
+  padding: 0.5em;
+}
+
+th {
+  text-align: left;
+}
+
+tbody {
+  tr:nth-child(odd) {
+    background-color: lighten($colorGray, 1.5%);
+  }
+}
+
+thead {
+  color: lighten($colorGrayDark, 10%);
+  // border-bottom: 2px solid $colorGrayMid;
 }

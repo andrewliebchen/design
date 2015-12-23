@@ -1,6 +1,9 @@
 Header = React.createClass({
   propTypes: {
-    title: React.PropTypes.object.isRequired,
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.String
+    ]).isRequired,
     hasPanel: React.PropTypes.bool
   },
 
