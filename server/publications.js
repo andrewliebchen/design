@@ -31,6 +31,7 @@ Meteor.publish('user', (id) => {
 Meteor.publish('admin', () => {
   return [
     Invites.find(),
-    Meteor.users.find()
+    Meteor.users.find(),
+    Projects.find()
   ];
 })

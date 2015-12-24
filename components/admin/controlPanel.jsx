@@ -6,6 +6,7 @@ ControlPanel = React.createClass({
       currentUser: Meteor.user(),
       alphaInvites: Invites.find({type: 'alpha'}).fetch(),
       admins: Roles.getUsersInRole('admin').fetch(),
+      projects: Projects.find().fetch(),
       users: Meteor.users.find().fetch()
     }
   },
@@ -29,6 +30,7 @@ ControlPanel = React.createClass({
           <InviteList
             invites={this.data.alphaInvites}
             currentUserId={this.data.currentUser._id}/>
+          <ProjectList projects={this.data.projects}/>
           <AdminList
             admins={this.data.admins}
             currentUserId={this.data.currentUser._id}/>

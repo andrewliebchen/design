@@ -41,46 +41,49 @@ InviteList = React.createClass({
   },
 
   render() {
+    let {invites} = this.props;
     return (
       <div className="card">
         <h3 className="card__title">Alpha invites</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Recipient</th>
-              <th>Type</th>
-              <th>Token</th>
-              <th>Accepted</th>
-              <th/>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.invites.map((invite, i) => {
-              return (
-                <tr key={i}>
-                  <td>
-                    <a href={`mailto:${invite.email}`}>{invite.email}</a>
-                  </td>
-                  <td>{invite.type}</td>
-                  <td>{invite.token}</td>
-                  <td>{invite.account_created ? `✅${invite.account_created}` : '⏳'}</td>
-                  <td>
-                    <button
-                      className="small"
-                      onClick={this.handleRevoke.bind(null, invite._id)}>
-                      Revoke
-                    </button>
-                    <button
-                      className="small"
-                      onClick={this.handleSendInvite.bind(null, invite.email, invite.token)}>
-                      Resend
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {invites.length > 0 ?
+          <table>
+            <thead>
+              <tr>
+                <th>Recipient</th>
+                <th>Type</th>
+                <th>Token</th>
+                <th>Accepted</th>
+                <th/>
+              </tr>
+            </thead>
+            <tbody>
+              {invites.map((invite, i) => {
+                return (
+                  <tr key={i}>
+                    <td>
+                      <a href={`mailto:${invite.email}`}>{invite.email}</a>
+                    </td>
+                    <td>{invite.type}</td>
+                    <td>{invite.token}</td>
+                    <td>{invite.account_created ? `✅${invite.account_created}` : '⏳'}</td>
+                    <td>
+                      <button
+                        className="small negative"
+                        onClick={this.handleRevoke.bind(null, invite._id)}>
+                        Revoke
+                      </button>
+                      <button
+                        className="small"
+                        onClick={this.handleSendInvite.bind(null, invite.email, invite.token)}>
+                        Resend
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        : <strong>No invites</strong>}
         <div className="form-group">
           <label>Recipient email</label>
           <div className="input-group">

@@ -13,9 +13,7 @@ ProjectSettingsPanel = React.createClass({
     };
   },
 
-  handleDeleteProject(event) {
-    event.stopPropagation();
-
+  handleDeleteProject() {
     if (window.confirm('Do you really want to delete this project?')) {
       Meteor.call('deleteProject', this.props.project._id);
     }
