@@ -1,25 +1,26 @@
 .get-started {
-  padding: 1em;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  background-color: $colorGray;
   color: $colorGrayDark;
-  max-width: 15em;
+  left: 50%;
+  max-width: 20em;
+  position: fixed;
   text-align: center;
-}
-
-.get-started__header {
-  margin-bottom: 1em;
-
-  .logo {
-    fill: $colorBrand;
-  }
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
 }
 
 .get-started__content {
+  position: relative;
+  z-index: 1;
+
   button {
     margin-bottom: 0.5em;
   }
+}
+
+.get-started__background {
+  fill: $colorGray;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
 }

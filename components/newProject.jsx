@@ -1,4 +1,4 @@
-Home = React.createClass({
+NewProject = React.createClass({
   mixins: [ReactMeteorData, AccountActionsMixin],
 
   getMeteorData() {
@@ -22,23 +22,24 @@ Home = React.createClass({
     return (
       <div className="wrapper">
         <div className="get-started">
-          <header className="get-started__header">
-            <Brand size={13}/>
-          </header>
-          {this.data.currentUser ?
-            <div className="get-started__content">
-              <button className="full-width" onClick={this.handleNewProject}>
-                Create a project
-              </button>
-              <a onClick={this.handleSignOut}>Sign out</a>
-            </div>
-          :
-            <div className="get-started__content">
+          <div className="get-started__content">
+            <h2>What's up?</h2>
+            {this.data.currentUser ?
+              <span>
+                <button className="full-width" onClick={this.handleNewProject}>
+                  Create a project
+                </button>
+                <a onClick={this.handleSignOut}>Sign out</a>
+              </span>
+            :
               <button className="full-width" onClick={this.handleSignIn}>
                 Sign in with Google
               </button>
-            </div>
-          }
+            }
+          </div>
+          <div className="get-started__background">
+            <Brand size={30}/>
+          </div>
         </div>
       </div>
     );
@@ -46,9 +47,9 @@ Home = React.createClass({
 });
 
 if(Meteor.isClient) {
-  FlowRouter.route('/', {
+  FlowRouter.route('/create', {
     action() {
-      ReactLayout.render(Home);
+      ReactLayout.render(NewProject);
     }
   });
 }
