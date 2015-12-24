@@ -12,10 +12,7 @@ $loadingSize: 4em;
 }
 
 .loading {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  @include center;
   width: $loadingSize;
 }
 

@@ -23,7 +23,6 @@ NewProject = React.createClass({
       <div className="wrapper">
         <div className="get-started">
           <div className="get-started__content">
-            <h2>What's up?</h2>
             {this.data.currentUser ?
               <span>
                 <button className="full-width" onClick={this.handleNewProject}>
@@ -36,9 +35,6 @@ NewProject = React.createClass({
                 Sign in with Google
               </button>
             }
-          </div>
-          <div className="get-started__background">
-            <Brand size={30}/>
           </div>
         </div>
       </div>

@@ -50,3 +50,10 @@ $ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
   white-space: nowrap;
   word-wrap: normal;
 }
+
+@mixin center($position: absolute, $transform: '') {
+  left: 50%;
+  position: $position;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0) #{$transform};
+}

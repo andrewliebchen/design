@@ -1,26 +1,20 @@
 .get-started {
+  $size: 25em;
+  @include center(fixed);
   color: $colorGrayDark;
-  left: 50%;
-  max-width: 20em;
-  position: fixed;
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
+  background-color: $colorGray;
   text-align: center;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  padding: 5em;
 }
 
 .get-started__content {
-  position: relative;
+  @include center;
   z-index: 1;
 
   button {
     margin-bottom: 0.5em;
   }
-}
-
-.get-started__background {
-  fill: $colorGray;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
 }
