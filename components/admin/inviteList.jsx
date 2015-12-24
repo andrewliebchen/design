@@ -65,7 +65,7 @@ InviteList = React.createClass({
                     </td>
                     <td>{invite.type}</td>
                     <td>{invite.token}</td>
-                    <td>{invite.account_created ? `✅${invite.account_created}` : '⏳'}</td>
+                    <td>{invite.account_created ? `✅${moment(invite.account_created).fromNow()}` : '⏳'}</td>
                     <td>
                       <button
                         className="small negative"
@@ -117,12 +117,12 @@ if(Meteor.isServer) {
         account_created: false
       }, (error, success) => {
         if(success) {
-          Meteor.call('sendEmail', {
-            to: args.email,
-            from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
-            subject: "Here's your invite to OhEmGee",
-            text: `${Meteor.settings.public.site_url}/invites/${token}`
-          });
+          // Meteor.call('sendEmail', {
+          //   to: args.email,
+          //   from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
+          //   subject: "Here's your invite to OhEmGee",
+          //   text: `${Meteor.settings.public.site_url}/signup/${token}`
+          // });
         }
       });
     },

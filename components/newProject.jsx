@@ -20,23 +20,19 @@ NewProject = React.createClass({
 
   render() {
     return (
-      <div className="wrapper">
-        <div className="get-started">
-          <div className="get-started__content">
-            {this.data.currentUser ?
-              <span>
-                <button className="full-width" onClick={this.handleNewProject}>
-                  Create a project
-                </button>
-                <a onClick={this.handleSignOut}>Sign out</a>
-              </span>
-            :
-              <button className="full-width" onClick={this.handleSignIn}>
-                Sign in with Google
-              </button>
-            }
-          </div>
-        </div>
+      <div className="session">
+        {this.data.currentUser ?
+          <span>
+            <button onClick={this.handleNewProject}>
+              Create a project
+            </button>
+            <a onClick={this.handleSignOut}>Sign out</a>
+          </span>
+        :
+          <button onClick={this.handleSignIn}>
+            Sign in with Google
+          </button>
+        }
       </div>
     );
   }

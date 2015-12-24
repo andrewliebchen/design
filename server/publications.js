@@ -34,4 +34,9 @@ Meteor.publish('admin', () => {
     Meteor.users.find(),
     Projects.find()
   ];
-})
+});
+
+Meteor.publish('token', (token) => {
+  check(token, String);
+  return Invites.find({token: token});
+});

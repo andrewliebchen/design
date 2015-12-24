@@ -1,0 +1,9 @@
+.session {
+  @include center(fixed);
+  color: $colorGrayDark;
+  text-align: center;
+
+  button {
+    margin-bottom: 0.5em;
+  }
+}
