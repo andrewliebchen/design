@@ -19,9 +19,13 @@ NewProject = React.createClass({
   },
 
   render() {
+    let {currentUser} = this.data;
+    let authenticated = currentUser && currentUser.profile.authenticated;
+    let isAdmin = currentUser ? Roles.userIsInRole(currentUser._id, ['admin']) : false;
+
     return (
       <div className="session">
-        {this.data.currentUser ?
+        {currentUser && (authenticated || isAdmin) ?
           <span>
             <button onClick={this.handleNewProject}>
               Create a project
@@ -29,9 +33,14 @@ NewProject = React.createClass({
             <a onClick={this.handleSignOut}>Sign out</a>
           </span>
         :
-          <button onClick={this.handleSignIn}>
-            Sign in with Google
-          </button>
+          <span>
+            {!authenticated || !isAdmin ?
+              <h2>No soup for you!</h2>
+            : null}
+            <button onClick={this.handleSignIn}>
+              Sign in with Google
+            </button>
+          </span>
         }
       </div>
     );
