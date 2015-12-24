@@ -60,9 +60,9 @@ InviteList = React.createClass({
               {invites.map((invite, i) => {
                 return (
                   <tr key={i}>
-                    <td>
+                    <th>
                       <a href={`mailto:${invite.email}`}>{invite.email}</a>
-                    </td>
+                    </th>
                     <td>{invite.type}</td>
                     <td>{invite.token}</td>
                     <td>{invite.account_created ? `✅${moment(invite.account_created).fromNow()}` : '⏳'}</td>

@@ -1,4 +1,6 @@
 Header = React.createClass({
+  mixins: [ReactMeteorData],
+
   propTypes: {
     title: React.PropTypes.oneOfType([
       React.PropTypes.object,
@@ -7,8 +9,18 @@ Header = React.createClass({
     hasPanel: React.PropTypes.bool
   },
 
+  getMeteorData() {
+    return {
+      toast: Session.get('toast')
+    };
+  },
+
   render() {
     let {title, hasPanel} = this.props;
+    let brandClassName = classnames({
+      'header__brand': true,
+      'has-toast': this.data.toast
+    });
     let titleClassName = classnames({
       'header__title': true,
       'has-panel': hasPanel
@@ -16,7 +28,7 @@ Header = React.createClass({
     return (
       <header className="header">
         <Toast/>
-        <a className="header__brand header__left" href="/">
+        <a className={brandClassName} href="/">
           <Brand/>
         </a>
         <h2 className={titleClassName}>{title}</h2>

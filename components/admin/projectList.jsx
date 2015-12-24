@@ -29,8 +29,14 @@ ProjectList = React.createClass({
                 let createdBy = Meteor.users.findOne(project.created_by);
                 return (
                   <tr key={i}>
-                    <td>{project.name}</td>
-                    <td><Avatar size="tiny" user={createdBy}/> {createdBy.profile.name}</td>
+                    <th>{project.name ? project.name : 'Untitled'}</th>
+                    <td>
+                      {createdBy ?
+                        <span>
+                          <Avatar size="tiny" user={createdBy}/> {createdBy.profile.name}
+                        </span>
+                      : <span>???</span>}
+                    </td>
                     <td>{moment(project.created_at).fromNow()}</td>
                     <td>
                       <button
