@@ -37,6 +37,8 @@
 .thumbnail__image {
   display: block;
   height: auto;
+  // Delay the transition just a little bit, give the image time to render
+  transition: opacity 0.2s ease-in-out 0.2s;
   width: 100%;
 
   .is-drop-target & {

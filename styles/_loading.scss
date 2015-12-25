@@ -18,7 +18,7 @@ $loadingSize: 4em;
 
 .loading-element {
   animation: pulse 0.4s ease-in-out alternate infinite;
-  background-color: $colorGrayMid;
+  background-color: darken($colorGrayMid, 5%);
   float: left;
   height: $loadingSize / 2;
   width: $loadingSize / 2;
@@ -35,6 +35,6 @@ $loadingSize: 4em;
 
   &__3 {
     animation-delay: 0.2s;
-    background-color: $colorGrayMid;
+    background-color: darken($colorGrayMid, 5%);
   }
 }

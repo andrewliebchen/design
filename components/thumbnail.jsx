@@ -12,6 +12,12 @@ Thumbnail = React.createClass({
     ])
   },
 
+  getInitialState() {
+    return {
+      loaded: false
+    };
+  },
+
   handleImageClick() {
     let imageUrl = `/images/${this.props.image._id}`;
     FlowRouter.go(this.props.panel ? `${imageUrl}?show=${this.props.panel}` : imageUrl);
@@ -27,9 +33,10 @@ Thumbnail = React.createClass({
   },
 
   componentDidMount() {
-    // let image = React.findDOMNode(this.refs.image);
-    // let rgbAverage = GetAverageRGB(image);
-    // console.log(rgbAverage);
+    let image = React.findDOMNode(this.refs.image);
+    ImageLoaded(image, (err, alreadyLoaded) => {
+      this.setState({loaded: true});
+    });
   },
 
   render() {
@@ -59,7 +66,12 @@ Thumbnail = React.createClass({
             </div>
           : null}
         </div>
-        <img className="thumbnail__image" src={image.src} ref="image"/>
+        <img
+          src={image.src}
+          className="thumbnail__image"
+          ref="image"
+          style={{opacity: this.state.loaded ? 1 : 0}}/>
+        {this.state.loaded ? null : <Loading/>}
       </div>
     );
   }

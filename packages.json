@@ -1,6 +1,7 @@
 {
   "classnames": "2.2.0",
   "externalify": "0.1.0",
+  "image-loaded": "0.0.2",
   "react-dropzone": "2.1.0",
   "react-hover-mixin": "1.1.1",
   "react-tabs-component": "1.1.3"

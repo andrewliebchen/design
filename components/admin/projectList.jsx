@@ -29,7 +29,11 @@ ProjectList = React.createClass({
                 let createdBy = Meteor.users.findOne(project.created_by);
                 return (
                   <tr key={i}>
-                    <th>{project.name ? project.name : 'Untitled'}</th>
+                    <th>
+                      <a href={`/${project._id}`}>
+                        {project.name ? project.name : 'Untitled'}
+                      </a>
+                    </th>
                     <td>
                       {createdBy ?
                         <span>
