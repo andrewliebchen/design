@@ -59,7 +59,7 @@ Thumbnail = React.createClass({
             </div>
           : null}
         </div>
-        <img src={image.src} ref="image"/>
+        <img className="thumbnail__image" src={image.src} ref="image"/>
       </div>
     );
   }

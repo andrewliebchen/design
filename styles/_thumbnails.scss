@@ -32,11 +32,15 @@
   &:last-of-type {
     margin-bottom: 0;
   }
+}
 
-  img {
-    display: block;
-    height: auto;
-    width: 100%;
+.thumbnail__image {
+  display: block;
+  height: auto;
+  width: 100%;
+
+  .is-drop-target & {
+
   }
 }
 
