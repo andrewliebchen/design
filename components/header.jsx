@@ -28,7 +28,7 @@ Header = React.createClass({
     return (
       <header className="header">
         <Toast/>
-        <a className={brandClassName} href="/">
+        <a className={brandClassName} href="/create">
           <Brand/>
         </a>
         <h2 className={titleClassName}>{title}</h2>
