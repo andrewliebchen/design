@@ -1,6 +1,6 @@
 .comment {
-  position: relative;
   padding: 1em;
+  position: relative;
 
   &:hover,
   &.is-hovered {
@@ -43,18 +43,18 @@
 }
 
 .comment__new {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  padding: 1em;
-  width: $panelWidth;
   background-color: white;
   border-top: 1px solid $colorGray;
+  bottom: 0;
+  padding: 1em;
+  position: fixed;
+  right: 0;
+  width: $panelWidth;
 
   .avatar {
+    left: 1.5em;
     position: absolute;
     top: 1.5em;
-    left: 1.5em;
   }
 
   input {

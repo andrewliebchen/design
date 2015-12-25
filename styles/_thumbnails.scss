@@ -25,9 +25,9 @@
   cursor: -webkit-grab;
   cursor:    -moz-grab;
   cursor:         grab;
+  overflow: visible;
   position: relative;
   width: 100%;
-  overflow: visible;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -77,8 +77,8 @@
   top: 1em;
 
   .block {
-    cursor: pointer;
     background-color: $colorGray;
+    cursor: pointer;
     fill: $colorGrayDark;
 
     &:hover {

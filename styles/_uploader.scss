@@ -1,14 +1,27 @@
+@keyframes uploader {
+  0% {
+    opacity: 0.01;
+    transform: translateY(-1em) scale3d(1, 0.75, 1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale3d(1, 1, 1);
+  }
+}
+
 .image-uploader {
-  position: fixed;
-  z-index: 99;
-  top: 0.5em;
-  left: 0.5em;
-  bottom: 0.5em;
-  right: 0.5em;
-  padding: 3em;
-  text-align: center;
-  color: $colorGray;
+  animation: uploader 0.15s $ease-in-out-back;
   background-color: rgba($colorBrand, 0.9);
+  bottom: 0.5em;
+  color: $colorGray;
+  left: 0.5em;
+  padding: 3em;
+  position: fixed;
+  right: 0.5em;
+  text-align: center;
+  top: 0.5em;
+  z-index: 99;
 }
 
 .image-uploader__message {
@@ -18,35 +31,13 @@
 }
 
 .image-uploader__close {
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  fill: $colorGray;
   cursor: pointer;
+  fill: $colorGray;
+  position: absolute;
+  right: 1em;
+  top: 1em;
 
   &:hover {
     fill: $colorGrayMid;
   }
 }
-
-// .uploader-enter {
-//   opacity: 0.01;
-//   transform: scale(0.75);
-//
-//   &.uploader-enter-active {
-//     opacity: 1;
-//     transform: scale(1);
-//     transition: all 0.25s $ease-in-out-back;
-//   }
-// }
-//
-// .uploader-leave {
-//   opacity: 1;
-//   transform: scale(1);
-//
-//   &.uploader-leave-active {
-//     opacity: 0.01;
-//     transform: scale(1.5);
-//     transition: all 0.3s $ease-in-out-back;
-//   }
-// }

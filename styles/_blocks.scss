@@ -1,13 +1,13 @@
 @mixin block-size($size) {
-  height: $size;
-  min-width: $size;
   border-radius: $size / 2;
+  height: $size;
   line-height: $size;
+  min-width: $size;
 
   .avatar__image img {
+    border-radius: $size / 2;
     max-height: $size;
     max-width: $size;
-    border-radius: $size / 2;
   }
 }
 
@@ -22,15 +22,15 @@
 }
 
 .block {
+  background-color: $colorGrayMid;
   cursor: pointer;
   display: inline-block;
+  fill: $colorGrayDark;
+  float: left;
   line-height: $blockSize;
+  position: relative;
   text-align: center;
   text-decoration: none;
-  fill: $colorGrayDark;
-  background-color: $colorGrayMid;
-  position: relative;
-  float: left;
 
   &:hover,
   &.is-selected {
@@ -93,7 +93,7 @@
 }
 
 .block__label {
-  padding: 0 1em;
   color: $colorGray;
   font-weight: bold;
+  padding: 0 1em;
 }

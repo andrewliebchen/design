@@ -35,8 +35,8 @@
 
 .header__brand {
   fill: $colorGrayMid;
-  position: absolute;
   left: $offset;
+  position: absolute;
   z-index: 1;
 
   &:hover,
@@ -52,13 +52,13 @@
 .header__title {
   @include ellipsis;
   margin: auto 0;
-  text-align: center;
   padding: 0 25%;
+  text-align: center;
   width: 100%;
 
   &.has-panel {
-    width: 100vw - $panelWidth;
     padding: 0 10%;
+    width: 100vw - $panelWidth;
   }
 
   input {
@@ -70,8 +70,8 @@
     text-decoration: none;
 
     &:hover {
-      text-decoration: underline;
       color: $colorBrand;
+      text-decoration: underline;
     }
   }
 }

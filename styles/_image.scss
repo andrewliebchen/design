@@ -1,21 +1,21 @@
 .image {
   background-color: darken($colorGrayDark, 10%);
+  color: $colorGray;
   height: 100vh;
-  width: 100vw;
+  left: 0;
   position: fixed;
   top: 0;
-  left: 0;
-  color: $colorGray;
+  width: 100vw;
 }
 
 .image__main {
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: absolute;
   top: 5em;
-  left: 0;
-  bottom: 0;
   width: 100vw;
-  overflow-y: auto;
-  overflow-x: hidden;
 
   .has-panel & {
     width: 100vw - $panelWidth;
@@ -23,8 +23,8 @@
 }
 
 .image__header {
-  padding-bottom: 0.5em;
   display: flex;
+  padding-bottom: 0.5em;
 
   input {
     &:focus {
@@ -47,10 +47,10 @@
 
 a.pagination__link {
   @include uppercase;
-  color: $colorBrandDark;
   border-bottom: 2px solid transparent;
-  text-decoration: none;
+  color: $colorBrandDark;
   padding: 0.25em 0;
+  text-decoration: none;
 
   + .pagination__link {
     border-left: 0;
@@ -58,13 +58,13 @@ a.pagination__link {
   }
 
   &:hover {
-    color: $colorBrand;
     border-color: $colorBrand;
+    color: $colorBrand;
   }
 }
 
 .image__img {
   margin: auto;
-  max-width: 100%;
   max-height: 100%;
+  max-width: 100%;
 }

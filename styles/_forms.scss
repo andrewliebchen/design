@@ -27,21 +27,21 @@ label {
 
 input,
 textarea {
-  color: inherit;
   appearance: none;
   background-color: $colorGrayMid;
-  padding: 0.5em 0.75em;
-  display: block;
-  width: 100%;
   border: 0;
+  color: inherit;
+  display: block;
+  padding: 0.5em 0.75em;
+  width: 100%;
 
   &:hover {
     background-color: lighten($colorGrayMid, 2%);
   }
 
   &:focus {
-    box-shadow: inset 0 0 0 1px $colorBrand,;
     background-color: white;
+    box-shadow: inset 0 0 0 1px $colorBrand,;
   }
 
   &:disabled {
@@ -70,13 +70,13 @@ button {
 button {
   appearance: none;
   background-color: $colorBrand;
+  border: 0;
   color: $colorGray;
+  display: inline-block;
   fill: $colorGray;
   font-weight: bold;
   line-height: 3em;
-  border: 0;
   padding: 0 1.5em;
-  display: inline-block;
 
   &:hover {
     background-color: $colorBrandLight;
@@ -117,8 +117,8 @@ button {
 
 .alert {
   @include uppercase;
-  margin-bottom: 1em;
   color: $colorBrand;
+  margin-bottom: 1em;
 }
 
 .input-group {

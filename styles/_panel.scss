@@ -1,11 +1,11 @@
 .panel__container {
-  width: $panelWidth;
   background-color: white;
-  z-index: 99;
-  position: fixed;
-  top: 0;
-  right: 0;
   bottom: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: $panelWidth;
+  z-index: 99;
 }
 
 .panel__header {
@@ -15,22 +15,22 @@
 }
 
 .panel__close {
-  position: absolute;
-  top: 1em;
-  right: 1em;
   cursor: pointer;
+  position: absolute;
+  right: 1em;
+  top: 1em;
 }
 
 .panel__scroll {
-  position: absolute;
-  top: 5em;
+  background-color: $colorGray;
   bottom: 0;
+  color: $colorGrayDark;
   left: 0;
-  right: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: $colorGray;
-  color: $colorGrayDark;
+  position: absolute;
+  right: 0;
+  top: 5em;
 }
 
 .panel__scroll_comments {

@@ -4,8 +4,8 @@
 }
 
 .panel-nav__item {
-  display: inline-block;
   cursor: pointer;
+  display: inline-block;
 
   + .panel-nav__item {
     margin-left: 0.5em;

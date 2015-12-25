@@ -7,22 +7,22 @@
 }
 
 .menu {
-  position: absolute;
-  padding: 0.5em;
   background-color: $colorGrayDark;
   color: $colorGray;
   min-width: 10em;
-  transform-origin: top center;
-  top: 0;
+  padding: 0.5em;
+  position: absolute;
   right: 0;
+  top: 0;
+  transform-origin: top center;
 }
 
 .menu__item {
-  padding: 0 0.5em;
-  line-height: 2;
-  display: block;
   cursor: pointer;
+  display: block;
   font-weight: bold;
+  line-height: 2;
+  padding: 0 0.5em;
   white-space: nowrap;
 
   &:hover {
@@ -30,8 +30,8 @@
   }
 
   .icon {
-    margin-right: 0.5em;
     fill: $colorGrayMid;
+    margin-right: 0.5em;
     position: relative;
     top: 0.3em;
   }

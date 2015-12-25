@@ -1,7 +1,3 @@
-const CSSTransitionGroup = React.addons.CSSTransitionGroup;
-
-const panelNavTypes = ['comments', 'settings'];
-
 Project = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
@@ -18,7 +14,8 @@ Project = React.createClass({
 
   getInitialState() {
     return {
-      uploader: false
+      uploader: false,
+      panelNavTypes: ['comments', 'settings']
     };
   },
 
@@ -54,7 +51,7 @@ Project = React.createClass({
                     canEdit={canEdit}/>}>
           <PanelNav
             currentUser={currentUser}
-            contentTypes={panelNavTypes}
+            contentTypes={this.state.panelNavTypes}
             onClick={this.handlePanelOpen}
             commentCount={comments.length}/>
         </Header>
@@ -83,7 +80,7 @@ Project = React.createClass({
               close={this.handlePanelClose}
               selected={this.state.panel}
               nav={<PanelNav
-                    contentTypes={panelNavTypes}
+                    contentTypes={this.state.panelNavTypes}
                     onClick={this.handlePanelOpen}
                     selected={this.state.panel}
                     commentCount={comments.length}

@@ -1,15 +1,15 @@
 .copy-label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background-color: $colorBrand;
+  bottom: 0;
   color: $colorGray;
-  text-align: center;
-  z-index: 1;
   font-weight: bold;
+  left: 0;
   line-height: 3em;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  z-index: 1;
 }
 
 
