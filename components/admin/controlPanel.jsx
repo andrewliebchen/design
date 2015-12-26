@@ -23,8 +23,7 @@ ControlPanel = React.createClass({
           title="Control panel">
           <Avatar
             user={this.data.currentUser}
-            className="panel-nav__item"
-            label="Account"/>
+            className="panel-nav__item"/>
         </Header>
         <Main>
           <InviteList
