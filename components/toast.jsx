@@ -27,3 +27,7 @@ Toast = React.createClass({
     );
   }
 });
+
+if(Meteor.isClient) {
+  Session.setDefault('toast', false);
+}

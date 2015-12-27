@@ -24,25 +24,26 @@ NewProject = React.createClass({
     let isAdmin = currentUser ? Roles.userIsInRole(currentUser._id, ['admin']) : false;
 
     return (
-      <div className="session">
+      <Gatekeeper
+        title={!authenticated || !isAdmin ? 'No soup for you!' : null}
+        subtitle={!authenticated || !isAdmin ? "Sorry, but you're not authenticated." : null}>
         {currentUser && (authenticated || isAdmin) ?
-          <span>
+          <div className="session__content">
             <button onClick={this.handleNewProject}>
               Create a project
             </button>
-            <a onClick={this.handleSignOut}>Sign out</a>
-          </span>
+            <p>
+              <a onClick={this.handleSignOut}>Sign out</a>
+            </p>
+          </div>
         :
-          <span>
-            {!authenticated || !isAdmin ?
-              <h2>No soup for you!</h2>
-            : null}
+          <div className="session__content">
             <button onClick={this.handleSignIn}>
               Sign in with Google
             </button>
-          </span>
+          </div>
         }
-      </div>
+      </Gatekeeper>
     );
   }
 });

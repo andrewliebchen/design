@@ -65,15 +65,6 @@ img {
   max-width: 100%;
 }
 
-.four-oh-four {
-  @include center(fixed);
-  text-align: center;
-
-  h1 {
-    margin-bottom: 0.25em;
-  }
-}
-
 .wrapper {
   min-height: 100vh;
 }

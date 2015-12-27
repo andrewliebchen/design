@@ -1,0 +1,23 @@
+.session {
+  @include center(fixed);
+  color: $colorGrayDark;
+  text-align: center;
+
+  button {
+    margin-bottom: 0.5em;
+  }
+}
+
+.session__header {
+  margin-bottom: 1em;
+}
+
+.session__brand {
+  display: block;
+  fill: darken($colorGrayMid, 10%);
+  margin-bottom: 1em;
+
+  &:hover {
+    fill: $colorBrand;
+  }
+}

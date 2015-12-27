@@ -61,3 +61,26 @@ Panel = React.createClass({
     );
   }
 });
+
+Gatekeeper = React.createClass({
+  propTypes: {
+    title: React.PropTypes.string,
+    subtitle: React.PropTypes.string
+  },
+
+  render() {
+    let {children, title, subtitle} = this.props;
+    return (
+      <div className="session">
+        <header className="session__header">
+          <a className="session__brand" href="/">
+            <Brand size={5}/>
+          </a>
+          {title ? <h2>{title}</h2> : null}
+          {subtitle ? <p>{subtitle}</p> : null}
+        </header>
+        {children}
+      </div>
+    );
+  }
+});

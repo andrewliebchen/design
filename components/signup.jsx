@@ -9,8 +9,12 @@ SignUp = React.createClass({
 
   _checkToken() {
     let userToken = FlowRouter.getParam('token');
-    let inviteToken = this.data.invite.token;
-    return userToken === inviteToken;
+    let inviteToken = this.data.invite;
+    if(inviteToken) {
+      return userToken === inviteToken.token;
+    } else {
+      return false;
+    }
   },
 
   handleSignIn() {
@@ -26,15 +30,16 @@ SignUp = React.createClass({
 
   render() {
     return (
-      <div className="session">
-        {this._checkToken() ?
-          <button className="full-width" onClick={this.handleSignIn}>
-            Sign in with Google
-          </button>
-        :
-          <h2>Whoops, your invite doesn't seem valid</h2>
-        }
-      </div>
+      <Gatekeeper
+        title={this._checkToken() ? 'Welcome to OhEmGee!' : "Whoops, your invite doesn't seem valid"}>
+        <div className="session__content">
+          {this._checkToken() ?
+            <button className="full-width" onClick={this.handleSignIn}>
+              Sign in with Google
+            </button>
+          : null}
+        </div>
+      </Gatekeeper>
     );
   }
 });
