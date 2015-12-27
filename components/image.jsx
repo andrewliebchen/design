@@ -5,6 +5,12 @@ Image = React.createClass({
 
   getMeteorData() {
     let currentImage = Images.findOne(FlowRouter.getParam('_id'));
+    if(!currentImage) {
+      return {
+        notFound: true
+      };
+    }
+
     DocHead.setTitle(`${currentImage.name} on OhEmGee`);
     return {
       currentUser: Meteor.user(),
@@ -23,6 +29,11 @@ Image = React.createClass({
   },
 
   render() {
+    if(this.data.notFound) {
+      return <NotFound/>
+    }
+
+    
     let {currentUser, comments, image, nextImage, prevImage, project} = this.data;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
     let parentLink = this.state.panel ? `/${image.parent}?show=${this.state.panel}` : `/${image.parent}`;

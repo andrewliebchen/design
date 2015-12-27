@@ -14,12 +14,17 @@ Meteor.publish('project', (id) => {
 
 Meteor.publish('image', (id) => {
   check(id, String);
-  let parentId = Images.findOne(id).parent;
+
+  // Check to be sure we actually have an image...
+  let parent = Images.findOne(id);
+  if(!parent) {
+    return [];
+  }
 
   return [
-    Images.find({parent: parentId}), // Wish this could be limited to current image + next/prev
+    Images.find({parent: parent._id}), // Wish this could be limited to current image + next/prev
     Comments.find({parent: id}),
-    Projects.find({_id: parentId})
+    Projects.find({_id: parent._id})
   ];
 });
 
