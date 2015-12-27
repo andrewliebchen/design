@@ -9,6 +9,6 @@ AccountsUIWrapper = React.createClass({
   },
 
   render() {
-    return <span className="session__wrapper" ref="container" />;
+    return <div className="session__wrapper" ref="container" />;
   }
 });

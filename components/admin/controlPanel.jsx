@@ -1,5 +1,5 @@
 ControlPanel = React.createClass({
-  mixins: [ReactMeteorData],
+  mixins: [ReactMeteorData, AccountActionsMixin],
 
   getMeteorData() {
     return {
@@ -11,8 +11,23 @@ ControlPanel = React.createClass({
     }
   },
 
+  componentWillMount() {
+    if(this.data.currentUser) {
+      Meteor.call('addSeedAdmin', this.data.currentUser);
+    }
+  },
+
   render() {
-    if(!Roles.userIsInRole(this.data.currentUser._id,'admin')) {
+    if (Meteor.users.find().count() === 0) {
+      return (
+        <div className="session">
+          <button onClick={this.handleSignIn}>Setup OhEmGee</button>
+        </div>
+      );
+    }
+
+    if(!Roles.userIsInRole(this.data.currentUser._id, 'admin')) {
+      console.log(Meteor.settings.adminEmail);
       return <Loading/>
     }
 
@@ -51,4 +66,16 @@ if(Meteor.isClient) {
       });
     }
   });
+}
+
+if(Meteor.isServer) {
+  Meteor.methods({
+    addSeedAdmin(currentUser) {
+      check(currentUser, Object);
+
+      if(currentUser.profile.email === Meteor.settings.adminEmail) {
+        return Roles.addUsersToRoles(currentUser._id, 'admin');
+      }
+    }
+  })
 }
