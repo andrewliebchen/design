@@ -33,7 +33,7 @@ Image = React.createClass({
       return <NotFound/>
     }
 
-    
+
     let {currentUser, comments, image, nextImage, prevImage, project} = this.data;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
     let parentLink = this.state.panel ? `/${image.parent}?show=${this.state.panel}` : `/${image.parent}`;
