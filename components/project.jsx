@@ -2,11 +2,18 @@ Project = React.createClass({
   mixins: [ReactMeteorData, PanelMixin, CanEditMixin],
 
   getMeteorData() {
-    let documentTitle = Projects.findOne().name ? `${Projects.findOne().name} on OhEmGee` : 'OhEmGee';
+    let project = Projects.findOne();
+    if(!project) {
+      return {
+        notFound: true
+      };
+    }
+
+    let documentTitle = project.name ? `${project.name} on OhEmGee` : 'OhEmGee';
     DocHead.setTitle(documentTitle);
     return {
       currentUser: Meteor.user(),
-      project: Projects.findOne(),
+      project: project,
       images: Images.find({}, {sort: {order: 1}}).fetch(),
       comments: Comments.find({}, {sort: {created_at: 1}}).fetch()
     }
@@ -31,6 +38,10 @@ Project = React.createClass({
   },
 
   render() {
+    if(this.data.notFound) {
+      return <NotFound/>
+    }
+    
     let {currentUser, project, comments, images} = this.data;
     let projectId = project._id;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
