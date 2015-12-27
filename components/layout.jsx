@@ -5,6 +5,11 @@ if(Meteor.isClient) {
     type: "image/png",
     href: "/favicon.ico"
   });
+  DocHead.addLink({
+    href: "https://fonts.googleapis.com/css?family=Work+Sans:400,700",
+    rel: "stylesheet",
+    type: "text/css"
+  });
 }
 
 Container = React.createClass({
