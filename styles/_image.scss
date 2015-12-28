@@ -1,5 +1,7 @@
+$imageBackgroundColor: darken($colorGrayDark, 10%);
+
 .image {
-  background-color: darken($colorGrayDark, 10%);
+  background-color: $imageBackgroundColor;
   color: $colorGray;
   height: 100vh;
   left: 0;
@@ -22,45 +24,38 @@
   }
 }
 
-.image__header {
-  display: flex;
-  padding-bottom: 0.5em;
-
-  input {
-    &:focus {
-      background-color: $colorGrayDark;
-    }
-  }
-}
-
-.image__title {
-  flex: 1;
-
-  p {
-    margin: 0;
-  }
-}
-
 .pagination {
-  margin-left: 1em;
 }
 
-a.pagination__link {
-  @include uppercase;
-  border-bottom: 2px solid transparent;
-  color: $colorBrandDark;
-  padding: 0.25em 0;
-  text-decoration: none;
-
-  + .pagination__link {
-    border-left: 0;
-    margin-left: 1em;
-  }
+.pagination__link {
+  $size: 3em;
+  position: absolute;
+  top: 50%;
+  z-index: 9;
+  transform: translateY(-50%);
+  width: $size;
+  height: $size;
+  line-height: $size;
+  border-radius: $size / 2;
+  background-color: rgba($imageBackgroundColor, 0.8);
+  fill: $colorGrayMid;
 
   &:hover {
-    border-color: $colorBrand;
-    color: $colorBrand;
+    background-color: $colorGrayDark;
+    fill: $colorGray;
   }
+
+  svg {
+    @include center;
+  }
+}
+
+.pagination__prev {
+  left: 1em;
+}
+
+.pagination__next {
+  right: 1em;
 }
 
 .image__img {

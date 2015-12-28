@@ -40,8 +40,13 @@ Image = React.createClass({
       <div className="image wrapper">
         <Header
           hasPanel={this.state.panel ? true : false}
-          brandLink={`/${project._id}`}
-          title={<a href={parentLink}>{project.name ? project.name : 'Back to project'}</a>}>
+          brandLink={parentLink}
+          title={<InlineEdit
+                  defaultValue={image.name}
+                  method="editImageName"
+                  parentId={image._id}
+                  toast="Image name updated..."
+                  canEdit={canEdit}/>}>
           <PanelNav
             contentTypes={panelNavTypes}
             onClick={this.handlePanelOpen}
@@ -50,36 +55,26 @@ Image = React.createClass({
         </Header>
         <Container hasPanel={this.state.panel}>
           <Main className="image__main">
-            <header className="image__header">
-              <h3 className="image__title">
-                <InlineEdit
-                  defaultValue={image.name}
-                  method="editImageName"
-                  parentId={image._id}
-                  toast="Image name updated..."
-                  canEdit={canEdit}/>
-              </h3>
-              <div className="pagnation">
-                {prevImage.length ?
-                  <a
-                    className="pagination__link pagination__prev"
-                    href={`/images/${prevImage[0]._id}`}>
-                    Last
-                  </a>
-                : null}
-                {nextImage.length ?
-                  <a
-                    className="pagination__link pagination__next"
-                    href={`/images/${nextImage[0]._id}`}>
-                    Next
-                  </a>
-                : null}
-              </div>
-            </header>
             <Pins
               parentId={image._id}
               panel={this.state.panel}
               imageSrc={image.src}/>
+            <div className="pagnation">
+              {prevImage.length ?
+                <a
+                  className="pagination__link pagination__prev"
+                  href={`/images/${prevImage[0]._id}`}>
+                  <Icon type="arrowLeft"/>
+                </a>
+              : null}
+              {nextImage.length ?
+                <a
+                  className="pagination__link pagination__next"
+                  href={`/images/${nextImage[0]._id}`}>
+                  <Icon type="arrowRight"/>
+                </a>
+              : null}
+            </div>
           </Main>
           {this.state.panel ?
             <Panel

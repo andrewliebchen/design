@@ -49,8 +49,6 @@ InlineEdit = React.createClass({
 
   render() {
     let {defaultValue, type, canEdit} = this.props;
-    console.log(defaultValue);
-    console.log(this.state.text);
     if(this.state.editing && canEdit) {
       return (
         <span className="inline-edit">
