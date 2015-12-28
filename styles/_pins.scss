@@ -1,5 +1,9 @@
 .pins {
   position: relative;
+
+  &.is-pinning {
+    cursor: crosshair;
+  }
 }
 
 .pin {

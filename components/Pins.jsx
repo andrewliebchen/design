@@ -18,14 +18,15 @@ Pins = React.createClass({
       pins: Comments.find({
         parent: this.props.parentId,
         position: {$exists: true}
-      }).fetch()
+      }).fetch(),
+      pinning: Session.get('pinning')
     };
   },
 
   handleAddPin(event) {
-    if(Session.get('pinning')) {
+    if(this.data.pinning) {
       let $target = $(event.target);
-      let commentId = Session.get('pinning');
+      let commentId = this.data.pinning;
       let targetOffset = $target.offset();
 
       let targetMarginLeft = parseInt($target.css('margin-left'), 10);
@@ -53,9 +54,14 @@ Pins = React.createClass({
   },
 
   render() {
+    console.log(this.data.pinning);
+    let pinsClassName = classnames({
+      'pins': true,
+      'is-pinning': this.data.pinning
+    });
     return (
       <div
-        className="pins"
+        className={pinsClassName}
         onClick={this.props.panel ? this.handleAddPin : null}>
         {this.props.panel ? this.data.pins.map((pin, i) => {
           return (

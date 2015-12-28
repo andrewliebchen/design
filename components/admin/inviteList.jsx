@@ -117,12 +117,12 @@ if(Meteor.isServer) {
         account_created: false
       }, (error, success) => {
         if(success) {
-          // Meteor.call('sendEmail', {
-          //   to: args.email,
-          //   from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
-          //   subject: "Here's your invite to OhEmGee",
-          //   text: `${Meteor.settings.public.site_url}/signup/${token}`
-          // });
+          Meteor.call('sendEmail', {
+            to: args.email,
+            from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
+            subject: "Here's your invite to OhEmGee",
+            text: `${Meteor.settings.public.site_url}/signup/${token}`
+          });
         }
       });
     },
