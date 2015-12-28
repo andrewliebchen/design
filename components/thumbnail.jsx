@@ -71,7 +71,6 @@ Thumbnail = React.createClass({
           className="thumbnail__image"
           ref="image"
           style={{opacity: this.state.loaded ? 1 : 0}}/>
-        {this.state.loaded ? null : <Loading/>}
       </div>
     );
   }
