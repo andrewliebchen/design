@@ -6,7 +6,8 @@ Header = React.createClass({
       React.PropTypes.object,
       React.PropTypes.String
     ]).isRequired,
-    hasPanel: React.PropTypes.bool
+    hasPanel: React.PropTypes.bool,
+    brandLink: React.PropTypes.string
   },
 
   getMeteorData() {
@@ -15,8 +16,14 @@ Header = React.createClass({
     };
   },
 
+  getDefaultProps() {
+    return {
+      brandLink: '/'
+    };
+  },
+
   render() {
-    let {title, hasPanel} = this.props;
+    let {title, hasPanel, brandLink} = this.props;
     let brandClassName = classnames({
       'header__brand': true,
       'has-toast': this.data.toast
@@ -28,7 +35,7 @@ Header = React.createClass({
     return (
       <header className="header">
         <Toast/>
-        <a className={brandClassName} href="/create">
+        <a className={brandClassName} href={brandLink}>
           <Brand/>
         </a>
         <h2 className={titleClassName}>{title}</h2>

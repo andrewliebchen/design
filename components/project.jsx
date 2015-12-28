@@ -41,7 +41,7 @@ Project = React.createClass({
     if(this.data.notFound) {
       return <NotFound/>
     }
-    
+
     let {currentUser, project, comments, images} = this.data;
     let projectId = project._id;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
@@ -54,6 +54,7 @@ Project = React.createClass({
         onDrop={this.handleUploaderClose}>
         <Header
           hasPanel={this.state.panel}
+          brandLink={`/${project._id}`}
           title={<InlineEdit
                     defaultValue={project.name}
                     method="editProjectName"

@@ -41,6 +41,7 @@ Image = React.createClass({
       <div className="image wrapper">
         <Header
           hasPanel={this.state.panel ? true : false}
+          brandLink={`/${project._id}`}
           title={<a href={parentLink}>{project.name ? project.name : 'Back to project'}</a>}>
           <PanelNav
             contentTypes={panelNavTypes}
