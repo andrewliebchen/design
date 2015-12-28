@@ -28,6 +28,11 @@ Meteor.publish('image', (id) => {
   ];
 });
 
+Meteor.publish('userProjects', (id) => {
+  check(id, String);
+  return Projects.find({created_by: id});
+});
+
 Meteor.publish('user', (id) => {
   check(id, String);
   return Meteor.users.find({_id: id});

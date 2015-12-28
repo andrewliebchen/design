@@ -1,8 +1,22 @@
 AccountPanel = React.createClass({
-  mixins: [AccountActionsMixin],
+  mixins: [ReactMeteorData, AccountActionsMixin, NewProjectMixin],
 
   propTypes: {
     currentUser: React.PropTypes.object
+  },
+
+  getMeteorData() {
+    let currentUserId = Meteor.user()._id;
+    let projects = Meteor.subscribe('userProjects', currentUserId);
+
+    return {
+      loading: !projects.ready(),
+      projects: Projects.find(
+        {created_by: currentUserId},
+        {sort: {created_at: 1}}
+      ).fetch(),
+      currentProject: Projects.findOne(FlowRouter.getParam('_id'))
+    };
   },
 
   handleNameUpdate(event) {
@@ -24,6 +38,7 @@ AccountPanel = React.createClass({
 
   render() {
     let {currentUser} = this.props;
+    let {loading, projects, currentProject} = this.data;
     return (
       <div className="panel__scroll">
         {currentUser && Roles.userIsInRole(currentUser._id, ['admin']) ?
@@ -49,6 +64,39 @@ AccountPanel = React.createClass({
             </div>
             <div className="form-group">
               <button className="full-width" onClick={this.handleSignOut}>Sign out</button>
+            </div>
+            <div className="form-group">
+              <h3>Projects</h3>
+              {projects.length > 0 ?
+                <span>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Project</th>
+                      <th>Created</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {projects.map((project, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>
+                            {currentProject._id === project._id ? '👉' : null}
+                            <strong>
+                              <a href={`/${project._id}`}>
+                                {project.name ? project.name : 'Untitled'}
+                              </a>
+                            </strong>
+                          </td>
+                          <td>{moment(project.created_at).fromNow()}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <button onClick={this.handleNewProject} className="full-width">Create new project</button>
+                </span>
+              : <p>No projects. <a onClick={this.handleNewProject}>Create one?</a></p>}
             </div>
             <div className="form-group">
               <h3>Danger zone!</h3>
