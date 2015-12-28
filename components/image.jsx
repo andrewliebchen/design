@@ -96,6 +96,7 @@ Image = React.createClass({
                 {this.state.panel === 'comments' ?
                   <CommentsPanel
                     description={image.description}
+                    descriptionMethod="editImageDescription"
                     comments={comments}
                     parentId={image._id}
                     currentUser={currentUser}
@@ -145,6 +146,19 @@ if(Meteor.isServer) {
       return Images.update(args.id, {
         $set: {
           name: args.value
+        }
+      });
+    },
+
+    editImageDescription(args) {
+      check(args, {
+        id: String,
+        value: String,
+      });
+
+      return Images.update(args.id, {
+        $set: {
+          description: args.value
         }
       });
     }

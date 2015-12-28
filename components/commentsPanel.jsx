@@ -1,6 +1,7 @@
 CommentsPanel = React.createClass({
   propTypes: {
     description: React.PropTypes.string,
+    descriptionMethod: React.PropTypes.string,
     comments: React.PropTypes.array,
     parentId: React.PropTypes.string,
     currentUser: React.PropTypes.object,
@@ -24,6 +25,7 @@ CommentsPanel = React.createClass({
   render() {
     let {
       description,
+      descriptionMethod,
       comments,
       parentId,
       currentUser,
@@ -36,7 +38,7 @@ CommentsPanel = React.createClass({
           <h3>Description</h3>
           <InlineEdit
             defaultValue={description}
-            method="editProjectDescription"
+            method={descriptionMethod}
             parentId={parentId}
             type="textarea"
             toast="Description up to date!"
@@ -52,20 +54,3 @@ CommentsPanel = React.createClass({
     );
   }
 });
-
-if(Meteor.isServer) {
-  Meteor.methods({
-    editProjectDescription(args) {
-      check(args, {
-        id: String,
-        value: String,
-      });
-
-      return Projects.update(args.id, {
-        $set: {
-          description: args.value
-        }
-      });
-    }
-  });
-}

@@ -101,8 +101,10 @@ Project = React.createClass({
                 {this.state.panel === 'comments' ?
                   <CommentsPanel
                     description={project.description}
+                    descriptionMethod="editImageDescription"
                     comments={comments}
                     parentId={projectId}
+                    parentType="project"
                     currentUser={currentUser}
                     canEdit={canEdit}/>
                 : null}
@@ -156,6 +158,19 @@ if(Meteor.isServer) {
       return Projects.update(args.id, {
         $set: {
           name: args.value
+        }
+      });
+    },
+
+    editProjectDescription(args) {
+      check(args, {
+        id: String,
+        value: String,
+      });
+
+      return Projects.update(args.id, {
+        $set: {
+          description: args.value
         }
       });
     }

@@ -39,8 +39,7 @@ InlineEdit = React.createClass({
           if(success){
             Session.set('toast', this.props.toast);
             this.setState({
-              editing: false,
-              text: ''
+              editing: false
             });
           }
         });
@@ -50,6 +49,8 @@ InlineEdit = React.createClass({
 
   render() {
     let {defaultValue, type, canEdit} = this.props;
+    console.log(defaultValue);
+    console.log(this.state.text);
     if(this.state.editing && canEdit) {
       return (
         <span className="inline-edit">
