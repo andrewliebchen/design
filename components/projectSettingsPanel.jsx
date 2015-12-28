@@ -63,7 +63,7 @@ ProjectSettingsPanel = React.createClass({
             </button>
           </div>
           {canEdit ?
-            <div className="form-group">
+            <div className="form-group not-available">
               <h3>Export project</h3>
               <p>We'd like to think that OhEmGee can do all the things, sometimes you just need to download your project. The download will include all project content, including images and comments.</p>
               <button className="full-width">Download project</button>

@@ -65,6 +65,15 @@ img {
   max-width: 100%;
 }
 
+.not-available {
+  cursor: not-allowed;
+  opacity: 0.5;
+
+  button {
+    pointer-events: none;
+  }
+}
+
 .wrapper {
   min-height: 100vh;
 }
