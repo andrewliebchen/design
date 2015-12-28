@@ -22,12 +22,10 @@ Dropdown = React.createClass({
   },
 
   pageClick() {
-    if(!this.state.clickOnDropdown) {
-      this.setState({
-        menu: false,
-        clickOnDropdown: false
-      });
-    }
+    this.setState({
+      menu: false,
+      clickOnDropdown: false
+    });
   },
 
   handleDropdownToggle() {
