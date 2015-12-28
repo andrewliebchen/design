@@ -45,7 +45,7 @@ Project = React.createClass({
     let {currentUser, project, comments, images} = this.data;
     let projectId = project._id;
     let canEdit = currentUser ? this._canEdit(currentUser._id, project.created_by) : false;
-    let showOnboarding = !currentUser.profile.onboarded && canEdit;
+    let showOnboarding = currentUser && !currentUser.profile.onboarded && canEdit;
     return (
       <div
         className="project wrapper"
