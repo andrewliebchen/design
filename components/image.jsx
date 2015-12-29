@@ -105,7 +105,7 @@ Image = React.createClass({
                     canEdit={canEdit} />
                 : null}
                 {this.state.panel === 'account' ?
-                  <AccountPanel currentUser={currentUser}/>
+                  <AccountPanel currentUser={currentUser} projectId={project._id}/>
                 : null}
               </span>
             </Panel>

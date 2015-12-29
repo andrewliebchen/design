@@ -2,7 +2,8 @@ AccountPanel = React.createClass({
   mixins: [ReactMeteorData, AccountActionsMixin, NewProjectMixin],
 
   propTypes: {
-    currentUser: React.PropTypes.object
+    currentUser: React.PropTypes.object,
+    projectId: React.PropTypes.string
   },
 
   getMeteorData() {
@@ -15,7 +16,7 @@ AccountPanel = React.createClass({
         {created_by: currentUserId},
         {sort: {created_at: 1}}
       ).fetch(),
-      currentProject: Projects.findOne(FlowRouter.getParam('_id'))
+      currentProject: Projects.findOne(this.props.projectId)
     };
   },
 
