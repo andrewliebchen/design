@@ -27,7 +27,6 @@ ControlPanel = React.createClass({
     }
 
     if(!Roles.userIsInRole(this.data.currentUser._id, 'admin')) {
-      console.log(Meteor.settings.adminEmail);
       return <Loading/>
     }
 

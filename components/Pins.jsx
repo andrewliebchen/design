@@ -54,7 +54,6 @@ Pins = React.createClass({
   },
 
   render() {
-    console.log(this.data.pinning);
     let pinsClassName = classnames({
       'pins': true,
       'is-pinning': this.data.pinning
