@@ -24,12 +24,7 @@ InviteList = React.createClass({
   },
 
   handleSendInvite(email, token) {
-    Meteor.call('sendEmail', {
-      to: email,
-      from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
-      subject: "Here's your invite to OhEmGee",
-      message: token
-    });
+    Meteor.call('sendInviteEmail', email, token);
   },
 
   handleRevoke(id) {
@@ -98,6 +93,18 @@ InviteList = React.createClass({
 
 if(Meteor.isServer) {
   Meteor.methods({
+    sendInviteEmail(email, token) {
+      check(email, String);
+      check(token, String);
+      
+      Meteor.call('sendEmail', {
+        to: email,
+        from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
+        subject: "Here's your invite to OhEmGee",
+        text: `${Meteor.settings.public.site_url}/signup/${token}`
+      });
+    },
+
     addInvite(args) {
       check(args, {
         type: String,
@@ -117,12 +124,7 @@ if(Meteor.isServer) {
         account_created: false
       }, (error, success) => {
         if(success) {
-          Meteor.call('sendEmail', {
-            to: args.email,
-            from: 'Andrew from OhEmGee <andrew@ohemgee.space>',
-            subject: "Here's your invite to OhEmGee",
-            text: `${Meteor.settings.public.site_url}/signup/${token}`
-          });
+          Meteor.call('sendInviteEmail', args.email, token);
         }
       });
     },
