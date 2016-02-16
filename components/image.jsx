@@ -28,6 +28,18 @@ Image = React.createClass({
     };
   },
 
+  // _handleKeyDown(event) {
+  //   debugger;
+  // },
+  //
+  // componentWillMount() {
+  //   document.addEventListener('KeyDown', this._handleKeyDown, false);
+  // },
+  //
+  // componentWillUnmount() {
+  //   document.removeEventListener('KeyDown', this._handleKeyDown, false);
+  // },
+
   render() {
     if(this.data.notFound) {
       return <NotFound/>

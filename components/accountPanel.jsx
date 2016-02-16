@@ -7,7 +7,7 @@ AccountPanel = React.createClass({
   },
 
   getMeteorData() {
-    let currentUserId = Meteor.user()._id;
+    let currentUserId = Meteor.user() ? Meteor.user()._id : null;
     let projects = Meteor.subscribe('userProjects', currentUserId);
 
     return {
